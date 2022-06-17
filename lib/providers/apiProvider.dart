@@ -1,54 +1,26 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:palika/api.dart';
+import 'package:http/http.dart';
 import 'package:palika/models/provience.dart';
+//API SERVICE Provider
+final apiProvider = Provider<ApiService>((ref) => ApiService());
 
-final dataProvider = Provider((ref) => DataProvider().getData());
-// final dataProvider = FutureProvider((ref) => DataProvider().getData());
-final abcProvider = Provider((ref) => DataProvider());
+final userDataProvider = FutureProvider<List<Provience>>((ref) async {
+  return ref.read(apiProvider).getUser();
+});
+class ApiService {
+  String endPoint = 'https://gist.githubusercontent.com/sagartmg2/b28cfaa74c5922cbadf38796e8305173/raw/856c2ac86219c0120b05adefb7d58c50308febe1/gistfile1.txt';
 
 
-class DataProvider {
-  Future<List<Provience>> getData() async {
-    final dio = Dio();
-    try {
-      final response = await dio.get(Apidata.apidata,
-      );
-      // print(response.data['data']);
-     final data = (response.data['data']['provinces'] as List).map((e) => Provience.fromJson(e)
-
-     ).toList();
-     print(data);
-  return data;
-    } on DioError catch (err) {
-      throw  err;
+  Future<List<Provience>> getUser() async {
+    Response response = await get(Uri.parse(endPoint));
+    if (response.statusCode == 200) {
+      final List result = jsonDecode(response.body)['data']['provinces'];
+      return result.map(((e) => Provience.fromJson(e))).toList();
+    } else {
+      throw Exception(response.reasonPhrase);
     }
   }
 }
 
-
-
-
-// final searchNewsProvider = StateNotifierProvider<SearchNewsProvider, List<Provience>>((ref) => SearchNewsProvider());
-
-// class SearchNewsProvider extends  StateNotifier<List<Provience>>{
-//   SearchNewsProvider() : super([]){
-//     getNews();
-//   }
-
-//   Future<void> getNews () async{
-//     final dio = Dio();
-//     try{
-
-//       final response = await dio.get(Apidata.apidata);
-
-//       print(response.data);
-
-//       final data = (response.data['data']['provinces'] as List).map((e) => Provience.fromJson(e)).toList();
-//          state = data;
-//     } on DioError catch (e){
-//       print(e);
-//     }
-//   }
-
-//}
