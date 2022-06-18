@@ -18,9 +18,11 @@ import 'package:palika/screens/Forms/foodconsumptionProfile.dart';
 import 'package:palika/screens/Forms/googleMap.dart';
 import 'package:palika/screens/Forms/healthprofile.dart';
 import 'package:palika/screens/Forms/houseform.dart';
+import 'package:palika/screens/Forms/hqhqhq.dart';
 import 'package:palika/screens/Forms/personalform.dart';
 import 'package:palika/screens/Forms/schoolprofileForm.dart';
 import 'package:palika/screens/Forms/workingform.dart';
+import 'package:palika/screens/buttomNavigationbar.dart';
 
 final boxB = Provider<List<formModel>>((ref) => []);
 
@@ -42,25 +44,24 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        home:
+    return GetMaterialApp(debugShowCheckedModeBanner: false, home: MyDropDown(),
 
-              CustomScreen(),
-            //appearenceProfile(),
-            //storage(),
-            //transistionShow(),
+        // MyHomePage(),
 
-            //healthProfileForm(),
-            //childrenhealthProfile(),
-            //personalForm(),
-            //transistionForm(),
-            //foodconsumptionProfile(),
-            // appearanceProfile(),
-            //addressForm(),
-            //  dashBoard(),
+        //CustomScreen(),
+        //appearenceProfile(),
+        //storage(),
+        //transistionShow(),
 
-       //   MyHomePage(),
+        //healthProfileForm(),
+        //childrenhealthProfile(),
+        //personalForm(),
+        //transistionForm(),
+        //foodconsumptionProfile(),
+        // appearanceProfile(),
+        //addressForm(),
+        //  dashBoard(),
+
         routes: {
           personalForm.routeName: (context) => personalForm(),
           addressForm.routeName: (context) => addressForm(),

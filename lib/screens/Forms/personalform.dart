@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
 import 'package:http/http.dart' as http;
+import 'package:palika/hawa.dart';
 import 'package:palika/models/formModel.dart';
 import 'package:palika/providers/formProvider.dart';
 
@@ -37,18 +37,18 @@ class _personalFormState extends State<personalForm> {
     'O+',
     'O-',
   ];
-final firstname = TextEditingController();
-final middlename = TextEditingController();
-final lastname = TextEditingController();
-final mailController = TextEditingController();
-final ageController = TextEditingController();
-final dobController = TextEditingController();
-final htiController = TextEditingController();
-final mobileController = TextEditingController();
-final panController = TextEditingController();
-final bloodgroupController = TextEditingController();
-final _form = GlobalKey<FormState>();
-DateTime dateTime = DateTime.now();
+  final firstname = TextEditingController();
+  final middlename = TextEditingController();
+  final lastname = TextEditingController();
+  final mailController = TextEditingController();
+  final ageController = TextEditingController();
+  final dobController = TextEditingController();
+  final htiController = TextEditingController();
+  final mobileController = TextEditingController();
+  final panController = TextEditingController();
+  final bloodgroupController = TextEditingController();
+  final _form = GlobalKey<FormState>();
+  DateTime dateTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -235,8 +235,7 @@ DateTime dateTime = DateTime.now();
                                 width: 20,
                               ),
                               Container(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.35,
+                                width: MediaQuery.of(context).size.width * 0.35,
                                 height: 40,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
@@ -346,8 +345,7 @@ DateTime dateTime = DateTime.now();
                                 width: 20,
                               ),
                               Container(
-                                width:
-                                    MediaQuery.of(context).size.width * 0.27,
+                                width: MediaQuery.of(context).size.width * 0.27,
                                 height: 40,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
@@ -468,8 +466,8 @@ DateTime dateTime = DateTime.now();
                                     width: 20,
                                   ),
                                   Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.2,
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.2,
                                     height: 40,
                                     decoration: BoxDecoration(
                                       color: Colors.white,
@@ -543,10 +541,8 @@ DateTime dateTime = DateTime.now();
                                       dobController.text.trim(),
                                 );
 
-                               var jsonData = personalForm.toJson();
-                          //     print(jsonData);
-
-
+                                var jsonData = personalForm.toJson();
+                                //     print(jsonData);
 
                                 // var url = Uri.parse(
                                 //     'https://reqbin.com/echo/post/json');
@@ -564,7 +560,7 @@ DateTime dateTime = DateTime.now();
                                 //   },
                                 //   body: json.encode(personalForm),
                                 // );
-                         //       print(response.body);
+                                //       print(response.body);
 
                                 final response1 = ref
                                     .read(formModelProvider.notifier)
