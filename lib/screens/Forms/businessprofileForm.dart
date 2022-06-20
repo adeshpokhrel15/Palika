@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/models/businessTypes.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/providers/businessProvider.dart';
 import 'package:palika/providers/formProvider.dart';
 
 class businessprofile extends StatelessWidget {
@@ -79,28 +81,40 @@ class businessprofile extends StatelessWidget {
                               SizedBox(
                                 height: 20,
                               ),
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return 'Business type id is required';
+                              FutureBuilder<List<Business>>(
+                                future: Apibusiness().getData(),
+                                builder: (context, snap) {
+                                  if (snap.hasData) {
+                                    final List<Business> data = snap.data!;
+                                    return DropdownButtonFormField<Business>(
+                                        menuMaxHeight: 400,
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                            labelText: 'Business Type',
+                                            prefixIcon: const Icon(
+                                              Icons.email,
+                                              color: Colors.orange,
+                                            ),
+                                            hintText: "Business Type"),
+                                        items: [
+                                          ...data.map(
+                                            (e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Text(e.businessNepaliname),
+                                            ),
+                                          )
+                                        ],
+                                        onChanged: (value) {
+                                          businesstypeid.text =
+                                              '${value!.indexbusiness}';
+                                        });
+                                  } else {
+                                    return const LinearProgressIndicator();
                                   }
-
-                                  return null;
                                 },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: businesstypeid,
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    labelText: 'Business type id',
-                                    prefixIcon: Icon(
-                                      Icons.email,
-                                      color: Colors.orange,
-                                    ),
-                                    hintText: "Business type id"),
                               ),
                               SizedBox(
                                 height: 20,
@@ -327,10 +341,7 @@ class businessprofile extends StatelessWidget {
                                           businessproduct.text.trim(),
                                     );
 
-
                                     var jsonData = businessprofileForm.toJson();
-
-
 
                                     final response = ref
                                         .read(formModelProvider.notifier)

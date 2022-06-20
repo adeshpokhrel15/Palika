@@ -443,9 +443,7 @@ class _personalFormState extends State<personalForm> {
                               hintText: "Enter your Pan Number",
                             ),
                           ),
-                          SizedBox(
-                            height: 40,
-                          ),
+
                           FutureBuilder<List<BloodGroup>>(
                             future: Apiblood().getData(),
                             builder: (context, snap) {
@@ -458,12 +456,12 @@ class _personalFormState extends State<personalForm> {
                                           borderRadius:
                                               BorderRadius.circular(30),
                                         ),
-                                        labelText: ' Select Blood Group',
+                                        labelText: 'District',
                                         prefixIcon: const Icon(
                                           Icons.email,
                                           color: Colors.orange,
                                         ),
-                                        hintText: " Select Blood Group "),
+                                        hintText: " District Name"),
                                     items: [
                                       ...data.map(
                                         (e) => DropdownMenuItem(
@@ -480,6 +478,7 @@ class _personalFormState extends State<personalForm> {
                               }
                             },
                           ),
+
                           SizedBox(
                             height: 20,
                           ),
