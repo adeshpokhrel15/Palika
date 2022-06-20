@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/models/nationalities.dart';
 import 'package:palika/providers/formProvider.dart';
+import 'package:palika/providers/nationalities.dart';
 
 class ethencitiesform extends StatelessWidget {
   static const routName = 'ethencities-form';
@@ -76,81 +78,118 @@ class ethencitiesform extends StatelessWidget {
                               SizedBox(
                                 height: 20,
                               ),
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return 'Nationality is required';
+                              FutureBuilder<List<Nationalities>>(
+                                future:
+                                    Apinationalities().nationalitiesgetData(),
+                                builder: (context, snap) {
+                                  if (snap.hasData) {
+                                    final List<Nationalities> data = snap.data!;
+                                    return DropdownButtonFormField<
+                                            Nationalities>(
+                                        menuMaxHeight: 400,
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                            labelText: 'Nationalities',
+                                            prefixIcon: const Icon(
+                                              Icons.email,
+                                              color: Colors.orange,
+                                            ),
+                                            hintText: "Nationalities"),
+                                        items: [
+                                          ...data.map(
+                                            (e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Text(
+                                                  e.nationalitiesnepaliname),
+                                            ),
+                                          )
+                                        ],
+                                        onChanged: (value) {
+                                          nationality.text =
+                                              value!.nationalitiesenglishname;
+                                        });
+                                  } else {
+                                    return const LinearProgressIndicator();
                                   }
-
-                                  return null;
                                 },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: nationality,
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    labelText: 'Nationality',
-                                    prefixIcon: Icon(
-                                      Icons.email,
-                                      color: Colors.orange,
-                                    ),
-                                    hintText: " Nationality"),
                               ),
                               SizedBox(
                                 height: 20,
                               ),
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return 'Religion is required ';
-                                  }
-                                  return null;
-                                },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: religion,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  labelText: 'Religion',
-                                  prefixIcon: Icon(
-                                    Icons.calendar_today,
-                                    color: Colors.lightBlue,
-                                  ),
-                                  hintText: "Religion ",
-                                ),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return 'Ethnic group is required ';
-                                  }
-                                  return null;
-                                },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: ethnicgroup,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  labelText: 'Ethnic group',
-                                  prefixIcon: Icon(
-                                    Icons.calendar_today,
-                                    color: Colors.lightBlue,
-                                  ),
-                                  hintText: "Ethnic group",
-                                ),
-                              ),
+                              // FutureBuilder<List<DistrictModel>>(
+                              //   future: Api().getData(),
+                              //   builder: (context, snap) {
+                              //     if (snap.hasData) {
+                              //       final List<DistrictModel> data = snap.data!;
+                              //       return DropdownButtonFormField<
+                              //               DistrictModel>(
+                              //           menuMaxHeight: 400,
+                              //           decoration: InputDecoration(
+                              //               border: OutlineInputBorder(
+                              //                 borderRadius:
+                              //                     BorderRadius.circular(30),
+                              //               ),
+                              //               labelText: 'District',
+                              //               prefixIcon: const Icon(
+                              //                 Icons.email,
+                              //                 color: Colors.orange,
+                              //               ),
+                              //               hintText: " District Name"),
+                              //           items: [
+                              //             ...data.map(
+                              //               (e) => DropdownMenuItem(
+                              //                 value: e,
+                              //                 child: Text(e.nepaliName),
+                              //               ),
+                              //             )
+                              //           ],
+                              //           onChanged: (value) {
+                              //             permDist.text = value!.nepaliName;
+                              //           });
+                              //     } else {
+                              //       return const LinearProgressIndicator();
+                              //     }
+                              //   },
+                              // ),
+                              // SizedBox(height: 20),
+                              // FutureBuilder<List<LocalBodies>>(
+                              //   future: ApilocalBody().getLocal(),
+                              //   builder: (context, snap) {
+                              //     if (snap.hasData) {
+                              //       final List<LocalBodies> data = snap.data!;
+                              //       return DropdownButtonFormField<LocalBodies>(
+                              //           menuMaxHeight: 400,
+                              //           decoration: InputDecoration(
+                              //               border: OutlineInputBorder(
+                              //                 borderRadius:
+                              //                     BorderRadius.circular(30),
+                              //               ),
+                              //               labelText: 'Minicipality',
+                              //               prefixIcon: const Icon(
+                              //                 Icons.email,
+                              //                 color: Colors.orange,
+                              //               ),
+                              //               hintText: " Minicipality Name"),
+                              //           items: [
+                              //             ...data.map(
+                              //               (e) => DropdownMenuItem(
+                              //                 value: e,
+                              //                 child: Text(e.nepalNamelocal),
+                              //               ),
+                              //             )
+                              //           ],
+                              //           onChanged: (value) {
+                              //             permMunci.text =
+                              //                 value!.englishNamelocal;
+                              //           });
+                              //     } else {
+                              //       return const LinearProgressIndicator();
+                              //     }
+                              //   },
+                              // ),
                               SizedBox(
                                 height: 20,
                               ),
@@ -188,7 +227,6 @@ class ethencitiesform extends StatelessWidget {
                                     );
 
                                     var jsonData = ethencitiesForm.toJson();
-
 
                                     final response = ref
                                         .read(formModelProvider.notifier)

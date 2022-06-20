@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/models/ecaInterested.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/providers/ecaInterested.dart';
 import 'package:palika/providers/formProvider.dart';
 
 class extraactivitiesProfile extends StatefulWidget {
@@ -50,27 +52,39 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
             child: ListView(
               padding: EdgeInsets.all(10),
               children: [
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  controller: interestedfield,
-                  textCapitalization: TextCapitalization.words,
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return 'Interested field is required';
+                FutureBuilder<List<EcainterestedField>>(
+                  future: ApiecaInterested().getData(),
+                  builder: (context, snap) {
+                    if (snap.hasData) {
+                      final List<EcainterestedField> data = snap.data!;
+                      return DropdownButtonFormField<EcainterestedField>(
+                          menuMaxHeight: 400,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: ' Eca Interested Field',
+                              prefixIcon: const Icon(
+                                Icons.email,
+                                color: Colors.orange,
+                              ),
+                              hintText: " Eca Interested Field "),
+                          items: [
+                            ...data.map(
+                              (e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e.ecainterestedFieldNepaliname),
+                              ),
+                            )
+                          ],
+                          onChanged: (value) {
+                            interestedfield.text =
+                                '${value!.indexecainterestedField}';
+                          });
+                    } else {
+                      return const LinearProgressIndicator();
                     }
-                    return null;
                   },
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    labelText: 'Interested field',
-                    prefixIcon: Icon(
-                      Icons.person,
-                      color: Colors.blue,
-                    ),
-                    hintText: 'Interested field',
-                  ),
                 ),
                 SizedBox(
                   height: 10,

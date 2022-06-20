@@ -4,22 +4,23 @@ import 'package:palika/models/bloodGroup.dart';
 import 'package:palika/models/businessTypes.dart';
 import 'package:palika/models/districts.dart';
 import 'package:palika/models/schoolTypes.dart';
+import 'package:palika/models/skinColor.dart';
 
-class Apischool {
+class ApiskinColor {
   static const String baseUrl =
       "https://gist.githubusercontent.com/sagartmg2/b28cfaa74c5922cbadf38796e8305173/raw/856c2ac86219c0120b05adefb7d58c50308febe1/gistfile1.txt";
 
-  Future<List<Schooltype>> getData() async {
+  Future<List<SkinColor>> skincolorgetData() async {
     final result = await http.get(Uri.parse(baseUrl));
     final data = json.decode(result.body);
     // print(data.toString());
 
-    final List schoolData = data['data']['school_types'];
-    final output = schoolData
-        .map((e) => Schooltype(
-            indexschooltype: e[0],
-            schooltypeNepaliname: e[1],
-            schooltypeenglishname: e[2]))
+    final List districtData = data['data']['skin_colors'];
+    final output = districtData
+        .map((e) => SkinColor(
+            indexskinColor: e[0],
+            skinColorNepaliname: e[1],
+            skinColorenglishname: e[2]))
         .toList();
 
     return output;

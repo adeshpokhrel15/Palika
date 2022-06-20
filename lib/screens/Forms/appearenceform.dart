@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/models/skinColor.dart';
 import 'package:palika/providers/formProvider.dart';
+import 'package:palika/providers/skinColor.dart';
 
 class appearenceProfile extends StatefulWidget {
   static const routeName = "apperenceProfile-form";
@@ -50,27 +52,38 @@ class _appearenceProfileState extends State<appearenceProfile> {
             child: ListView(
               padding: EdgeInsets.all(10),
               children: [
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  controller: skincolor,
-                  textCapitalization: TextCapitalization.words,
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return 'Skin color is required';
+                FutureBuilder<List<SkinColor>>(
+                  future: ApiskinColor().skincolorgetData(),
+                  builder: (context, snap) {
+                    if (snap.hasData) {
+                      final List<SkinColor> data = snap.data!;
+                      return DropdownButtonFormField<SkinColor>(
+                          menuMaxHeight: 400,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: ' Select Skin Color',
+                              prefixIcon: const Icon(
+                                Icons.email,
+                                color: Colors.orange,
+                              ),
+                              hintText: " Select Skin Color "),
+                          items: [
+                            ...data.map(
+                              (e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e.skinColorNepaliname),
+                              ),
+                            )
+                          ],
+                          onChanged: (value) {
+                            skincolor.text = '${value!.indexskinColor}';
+                          });
+                    } else {
+                      return const LinearProgressIndicator();
                     }
-                    return null;
                   },
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    labelText: 'Skin color',
-                    prefixIcon: Icon(
-                      Icons.person,
-                      color: Colors.blue,
-                    ),
-                    hintText: 'Skin color',
-                  ),
                 ),
                 SizedBox(
                   height: 10,
@@ -149,8 +162,7 @@ class _appearenceProfileState extends State<appearenceProfile> {
                         handicappedtypeid: handicapedid.text.trim(),
                         ishandicap: isChecked,
                       );
-                       var jsonData = appearenceprofileForm.toJson();
-
+                      var jsonData = appearenceprofileForm.toJson();
 
                       final response = ref
                           .read(formModelProvider.notifier)
@@ -171,6 +183,4 @@ class _appearenceProfileState extends State<appearenceProfile> {
       ));
     });
   }
-
-
 }
