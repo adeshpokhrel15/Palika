@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/models/childrenSchoolSchemes.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/models/schoolTypes.dart';
+import 'package:palika/providers/childrenSchemeType.dart';
 import 'package:palika/providers/formProvider.dart';
+import 'package:palika/providers/schooltypeProvider.dart';
 
 class schoolprofile extends StatelessWidget {
   static const routName = "schoolprofile-form";
@@ -79,6 +83,45 @@ class schoolprofile extends StatelessWidget {
                               SizedBox(
                                 height: 20,
                               ),
+                              FutureBuilder<List<Schooltype>>(
+                                future: Apischool().getData(),
+                                builder: (context, snap) {
+                                  if (snap.hasData) {
+                                    final List<Schooltype> data = snap.data!;
+                                    return DropdownButtonFormField<Schooltype>(
+                                        menuMaxHeight: 400,
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                            labelText: ' School Type',
+                                            prefixIcon: const Icon(
+                                              Icons.email,
+                                              color: Colors.orange,
+                                            ),
+                                            hintText: "  School Type  "),
+                                        items: [
+                                          ...data.map(
+                                            (e) => DropdownMenuItem(
+                                              value: e,
+                                              child:
+                                                  Text(e.schooltypeNepaliname),
+                                            ),
+                                          )
+                                        ],
+                                        onChanged: (value) {
+                                          schooltypeid.text =
+                                              '${value!.indexschooltype}';
+                                        });
+                                  } else {
+                                    return const LinearProgressIndicator();
+                                  }
+                                },
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
                               TextFormField(
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
@@ -152,28 +195,44 @@ class schoolprofile extends StatelessWidget {
                               SizedBox(
                                 height: 20,
                               ),
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return 'Children Schema id is required';
+                              FutureBuilder<List<Childrenschemetype>>(
+                                future: ApichildrenSchemeType().getData(),
+                                builder: (context, snap) {
+                                  if (snap.hasData) {
+                                    final List<Childrenschemetype> data =
+                                        snap.data!;
+                                    return DropdownButtonFormField<
+                                            Childrenschemetype>(
+                                        menuMaxHeight: 400,
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                            labelText: ' Children Scheme Type',
+                                            prefixIcon: const Icon(
+                                              Icons.email,
+                                              color: Colors.orange,
+                                            ),
+                                            hintText:
+                                                "  Children Scheme Type  "),
+                                        items: [
+                                          ...data.map(
+                                            (e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Text(e
+                                                  .childrenschemetypeNepaliname),
+                                            ),
+                                          )
+                                        ],
+                                        onChanged: (value) {
+                                          schooltypeid.text =
+                                              '${value!.indexchildrenschemetype}';
+                                        });
+                                  } else {
+                                    return const LinearProgressIndicator();
                                   }
-                                  return null;
                                 },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: childrenschemaid,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  labelText: 'Children Schema id',
-                                  prefixIcon: Icon(
-                                    Icons.block,
-                                    color: Colors.blue,
-                                  ),
-                                  hintText: "Children Schema id",
-                                ),
                               ),
                               SizedBox(
                                 height: 30,
@@ -212,10 +271,7 @@ class schoolprofile extends StatelessWidget {
                                       childenschoolschemeid:
                                           childrenschemaid.text.trim(),
                                     );
-                                     var jsonData =schoolprofileForm.toJson();
-
-
-
+                                    var jsonData = schoolprofileForm.toJson();
 
                                     final response = ref
                                         .read(formModelProvider.notifier)
