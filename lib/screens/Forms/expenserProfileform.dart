@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/models/expenseCategory.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/providers/expenseCategory.dart';
 import 'package:palika/providers/formProvider.dart';
 
 class expensesprofileform extends StatefulWidget {
@@ -137,6 +139,45 @@ class _expensesprofileformState extends State<expensesprofileform> {
                               SizedBox(
                                 height: 20,
                               ),
+                              FutureBuilder<List<ExpenseCategorytype>>(
+                                future:
+                                    Apichildrenexpensecategories().getData(),
+                                builder: (context, snap) {
+                                  if (snap.hasData) {
+                                    final List<ExpenseCategorytype> data =
+                                        snap.data!;
+                                    return DropdownButtonFormField<
+                                            ExpenseCategorytype>(
+                                        menuMaxHeight: 400,
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                            labelText: ' Expense Category',
+                                            prefixIcon: const Icon(
+                                              Icons.email,
+                                              color: Colors.orange,
+                                            ),
+                                            hintText: ' Expense Category'),
+                                        items: [
+                                          ...data.map(
+                                            (e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Text(
+                                                  e.expenseCategoryNepaliname),
+                                            ),
+                                          )
+                                        ],
+                                        onChanged: (value) {
+                                          expensecategory.text =
+                                              '${value!.indexexpenseCategory}';
+                                        });
+                                  } else {
+                                    return const LinearProgressIndicator();
+                                  }
+                                },
+                              ),
                               TextFormField(
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
@@ -221,9 +262,7 @@ class _expensesprofileformState extends State<expensesprofileform> {
                                       totalexpense: double.parse(
                                           totalexpense.text.trim()),
                                     );
-                                    var jsonData =expensesForm.toJson();
-
-
+                                    var jsonData = expensesForm.toJson();
 
                                     final response = ref
                                         .read(formModelProvider.notifier)
