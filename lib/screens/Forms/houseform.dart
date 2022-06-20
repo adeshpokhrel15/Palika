@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/models/toiletTypes.dart';
+import 'package:palika/providers/districtsProvider.dart';
 import 'package:palika/providers/formProvider.dart';
-
+import 'package:palika/providers/toiletTypeProvider.dart';
 
 class houseform extends StatefulWidget {
   static const routeName = 'house-form';
@@ -159,28 +161,40 @@ class _houseformState extends State<houseform> {
                               SizedBox(
                                 height: 20,
                               ),
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return 'Toilet type id';
+                              FutureBuilder<List<Toilet>>(
+                                future: ApiToilet().toiletgetData(),
+                                builder: (context, snap) {
+                                  if (snap.hasData) {
+                                    final List<Toilet> data = snap.data!;
+                                    return DropdownButtonFormField<Toilet>(
+                                        menuMaxHeight: 400,
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                            labelText: 'Toilet Types',
+                                            prefixIcon: const Icon(
+                                              Icons.email,
+                                              color: Colors.orange,
+                                            ),
+                                            hintText: "Toilet type"),
+                                        items: [
+                                          ...data.map(
+                                            (e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Text(e.toiletNepaliname),
+                                            ),
+                                          )
+                                        ],
+                                        onChanged: (value) {
+                                          toiletypeid.text =
+                                              '${value!.indextoilet}';
+                                        });
+                                  } else {
+                                    return const LinearProgressIndicator();
                                   }
-                                  return null;
                                 },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: toiletypeid,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  labelText: 'Toilet type id',
-                                  prefixIcon: Icon(
-                                    Icons.block,
-                                    color: Colors.blue,
-                                  ),
-                                  hintText: "Toilet type id",
-                                ),
                               ),
                               SizedBox(
                                 height: 40,
@@ -220,10 +234,7 @@ class _houseformState extends State<houseform> {
                                       toilettypeid: toiletypeid.text.trim(),
                                     );
 
-                                  var jsonData =houseForm.toJson();
-
-
-
+                                    var jsonData = houseForm.toJson();
 
                                     final response = ref
                                         .read(formModelProvider.notifier)
