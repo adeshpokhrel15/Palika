@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/models/ethnicGroup.dart';
 import 'package:palika/models/formModel.dart';
 import 'package:palika/models/nationalities.dart';
+import 'package:palika/models/religions.dart';
+import 'package:palika/providers/ethinicGroup.dart';
 import 'package:palika/providers/formProvider.dart';
 import 'package:palika/providers/nationalities.dart';
+import 'package:palika/providers/religionsProvider.dart';
 
 class ethencitiesform extends StatelessWidget {
   static const routName = 'ethencities-form';
@@ -119,77 +123,80 @@ class ethencitiesform extends StatelessWidget {
                               SizedBox(
                                 height: 20,
                               ),
-                              // FutureBuilder<List<DistrictModel>>(
-                              //   future: Api().getData(),
-                              //   builder: (context, snap) {
-                              //     if (snap.hasData) {
-                              //       final List<DistrictModel> data = snap.data!;
-                              //       return DropdownButtonFormField<
-                              //               DistrictModel>(
-                              //           menuMaxHeight: 400,
-                              //           decoration: InputDecoration(
-                              //               border: OutlineInputBorder(
-                              //                 borderRadius:
-                              //                     BorderRadius.circular(30),
-                              //               ),
-                              //               labelText: 'District',
-                              //               prefixIcon: const Icon(
-                              //                 Icons.email,
-                              //                 color: Colors.orange,
-                              //               ),
-                              //               hintText: " District Name"),
-                              //           items: [
-                              //             ...data.map(
-                              //               (e) => DropdownMenuItem(
-                              //                 value: e,
-                              //                 child: Text(e.nepaliName),
-                              //               ),
-                              //             )
-                              //           ],
-                              //           onChanged: (value) {
-                              //             permDist.text = value!.nepaliName;
-                              //           });
-                              //     } else {
-                              //       return const LinearProgressIndicator();
-                              //     }
-                              //   },
-                              // ),
-                              // SizedBox(height: 20),
-                              // FutureBuilder<List<LocalBodies>>(
-                              //   future: ApilocalBody().getLocal(),
-                              //   builder: (context, snap) {
-                              //     if (snap.hasData) {
-                              //       final List<LocalBodies> data = snap.data!;
-                              //       return DropdownButtonFormField<LocalBodies>(
-                              //           menuMaxHeight: 400,
-                              //           decoration: InputDecoration(
-                              //               border: OutlineInputBorder(
-                              //                 borderRadius:
-                              //                     BorderRadius.circular(30),
-                              //               ),
-                              //               labelText: 'Minicipality',
-                              //               prefixIcon: const Icon(
-                              //                 Icons.email,
-                              //                 color: Colors.orange,
-                              //               ),
-                              //               hintText: " Minicipality Name"),
-                              //           items: [
-                              //             ...data.map(
-                              //               (e) => DropdownMenuItem(
-                              //                 value: e,
-                              //                 child: Text(e.nepalNamelocal),
-                              //               ),
-                              //             )
-                              //           ],
-                              //           onChanged: (value) {
-                              //             permMunci.text =
-                              //                 value!.englishNamelocal;
-                              //           });
-                              //     } else {
-                              //       return const LinearProgressIndicator();
-                              //     }
-                              //   },
-                              // ),
+                              FutureBuilder<List<Ethinicgroup>>(
+                                future: Apiethinicgroup().ethinicgroupgetData(),
+                                builder: (context, snap) {
+                                  if (snap.hasData) {
+                                    final List<Ethinicgroup> data = snap.data!;
+                                    return DropdownButtonFormField<
+                                            Ethinicgroup>(
+                                        menuMaxHeight: 400,
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                            labelText: 'Ethinic Group',
+                                            prefixIcon: const Icon(
+                                              Icons.email,
+                                              color: Colors.orange,
+                                            ),
+                                            hintText: "  Ethinic Group"),
+                                        items: [
+                                          ...data.map(
+                                            (e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Text(
+                                                  e.ethinicgroupnepaliname),
+                                            ),
+                                          )
+                                        ],
+                                        onChanged: (value) {
+                                          ethnicgroup.text =
+                                              value!.ethinicgroupnepaliname;
+                                        });
+                                  } else {
+                                    return const LinearProgressIndicator();
+                                  }
+                                },
+                              ),
+                              SizedBox(height: 20),
+                              FutureBuilder<List<Religions>>(
+                                future: Apireligions().religionsgetData(),
+                                builder: (context, snap) {
+                                  if (snap.hasData) {
+                                    final List<Religions> data = snap.data!;
+                                    return DropdownButtonFormField<Religions>(
+                                        menuMaxHeight: 400,
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                            labelText: 'Religions',
+                                            prefixIcon: const Icon(
+                                              Icons.email,
+                                              color: Colors.orange,
+                                            ),
+                                            hintText: " Religions "),
+                                        items: [
+                                          ...data.map(
+                                            (e) => DropdownMenuItem(
+                                              value: e,
+                                              child:
+                                                  Text(e.religionsNepaliname),
+                                            ),
+                                          )
+                                        ],
+                                        onChanged: (value) {
+                                          religion.text =
+                                              value!.religionsenglishname;
+                                        });
+                                  } else {
+                                    return const LinearProgressIndicator();
+                                  }
+                                },
+                              ),
                               SizedBox(
                                 height: 20,
                               ),
