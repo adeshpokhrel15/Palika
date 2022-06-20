@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/models/jobTypes.dart';
 import 'package:palika/providers/formProvider.dart';
+import 'package:palika/providers/jobTypesProvider.dart';
 
 class workingform extends StatefulWidget {
   static const routeName = 'working-form';
@@ -59,28 +61,40 @@ class _workingformState extends State<workingform> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                controller: jobtype,
-                                textCapitalization: TextCapitalization.words,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return 'Job Type is required';
+                              FutureBuilder<List<Jobtypes>>(
+                                future: ApiJobTypes().JobTypesgetData(),
+                                builder: (context, snap) {
+                                  if (snap.hasData) {
+                                    final List<Jobtypes> data = snap.data!;
+                                    return DropdownButtonFormField<Jobtypes>(
+                                        menuMaxHeight: 400,
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                            labelText: 'Job Types',
+                                            prefixIcon: const Icon(
+                                              Icons.email,
+                                              color: Colors.orange,
+                                            ),
+                                            hintText: "Job type"),
+                                        items: [
+                                          ...data.map(
+                                            (e) => DropdownMenuItem(
+                                              value: e,
+                                              child: Text(e.jobtypeNepaliname),
+                                            ),
+                                          )
+                                        ],
+                                        onChanged: (value) {
+                                          jobtype.text =
+                                              '${value!.indexjobtype}';
+                                        });
+                                  } else {
+                                    return const LinearProgressIndicator();
                                   }
-                                  return null;
                                 },
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  labelText: 'Job Type',
-                                  prefixIcon: Icon(
-                                    Icons.person,
-                                    color: Colors.blue,
-                                  ),
-                                  hintText: 'Job Type',
-                                ),
                               ),
                               SizedBox(
                                 height: 20,
@@ -218,10 +232,7 @@ class _workingformState extends State<workingform> {
                                         annualincome: double.parse(
                                             annualincome.text.trim()));
 
-                                         var jsonData = workingForm.toJson();
-
-
-
+                                    var jsonData = workingForm.toJson();
 
                                     final response = ref
                                         .read(formModelProvider.notifier)
