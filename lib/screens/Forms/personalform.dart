@@ -6,8 +6,12 @@ import 'package:nepali_utils/nepali_utils.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
 import 'package:http/http.dart' as http;
 import 'package:palika/hawa.dart';
+import 'package:palika/models/bloodGroup.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/models/genders.dart';
+import 'package:palika/providers/bloodProvider.dart';
 import 'package:palika/providers/formProvider.dart';
+import 'package:palika/providers/genderProvider.dart';
 
 class personalForm extends StatefulWidget {
   static const routeName = 'personal-form';
@@ -19,24 +23,6 @@ class personalForm extends StatefulWidget {
 enum SingingCharacter { male, female, others }
 
 class _personalFormState extends State<personalForm> {
-  int index = 0;
-  int ind = 0;
-  final items = [
-    'Male',
-    'Female',
-    'Others',
-  ];
-
-  final bloods = [
-    'A+',
-    'A-',
-    'B+',
-    'B-',
-    'AB+',
-    'AB-',
-    'O+',
-    'O-',
-  ];
   final firstname = TextEditingController();
   final middlename = TextEditingController();
   final lastname = TextEditingController();
@@ -49,6 +35,8 @@ class _personalFormState extends State<personalForm> {
   final bloodgroupController = TextEditingController();
   final _form = GlobalKey<FormState>();
   DateTime dateTime = DateTime.now();
+  final genderPersonal = TextEditingController();
+  final bloodgroupPersonal = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -307,67 +295,102 @@ class _personalFormState extends State<personalForm> {
                           SizedBox(
                             height: 20,
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                'Gender',
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.blue),
-                              ),
-                              SizedBox(
-                                width: 90,
-                              ),
-                              InkWell(
-                                child: Icon(
-                                  Icons.add_circle,
-                                  size: 30,
-                                  color: Colors.blue,
-                                ),
-                                onTap: () {
-                                  showCupertinoModalPopup(
-                                      context: context,
-                                      builder: (context) =>
-                                          CupertinoActionSheet(
-                                            actions: [buildDatePicker()],
-                                            cancelButton:
-                                                CupertinoActionSheetAction(
-                                              isDestructiveAction: true,
-                                              child: Text('Done'),
-                                              onPressed: () =>
-                                                  Navigator.pop(context),
-                                            ),
-                                          ));
-                                },
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.27,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                    color: Colors.white,
-                                    width: 10,
-                                  ),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    items[index],
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.blue),
-                                    textAlign: TextAlign.end,
-                                  ),
-                                ),
-                              ),
-                            ],
+                          FutureBuilder<List<Gender>>(
+                            future: ApiGender().getData(),
+                            builder: (context, snap) {
+                              if (snap.hasData) {
+                                final List<Gender> data = snap.data!;
+                                return DropdownButtonFormField<Gender>(
+                                    menuMaxHeight: 400,
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        labelText: 'Gender',
+                                        prefixIcon: const Icon(
+                                          Icons.email,
+                                          color: Colors.orange,
+                                        ),
+                                        hintText: " Gender "),
+                                    items: [
+                                      ...data.map(
+                                        (e) => DropdownMenuItem(
+                                          value: e,
+                                          child: Text(e.nepalNamegender),
+                                        ),
+                                      )
+                                    ],
+                                    onChanged: (value) {
+                                      genderPersonal.text =
+                                          value!.nepalNamegender;
+                                    });
+                              } else {
+                                return const LinearProgressIndicator();
+                              }
+                            },
                           ),
+                          // Row(
+                          //   children: [
+                          //     Text(
+                          //       'Gender',
+                          //       style: TextStyle(
+                          //           fontSize: 20,
+                          //           fontWeight: FontWeight.bold,
+                          //           color: Colors.blue),
+                          //     ),
+                          //     SizedBox(
+                          //       width: 90,
+                          //     ),
+                          //     InkWell(
+                          //       child: Icon(
+                          //         Icons.add_circle,
+                          //         size: 30,
+                          //         color: Colors.blue,
+                          //       ),
+                          //       onTap: () {
+                          //         showCupertinoModalPopup(
+                          //             context: context,
+                          //             builder: (context) =>
+                          //                 CupertinoActionSheet(
+                          //                   actions: [buildDatePicker()],
+                          //                   cancelButton:
+                          //                       CupertinoActionSheetAction(
+                          //                     isDestructiveAction: true,
+                          //                     child: Text('Done'),
+                          //                     onPressed: () =>
+                          //                         Navigator.pop(context),
+                          //                   ),
+                          //                 ));
+                          //       },
+                          //     ),
+                          //     SizedBox(
+                          //       width: 20,
+                          //     ),
+                          //     Container(
+                          //       width: MediaQuery.of(context).size.width * 0.27,
+                          //       height: 40,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.white,
+                          //         border: Border.all(
+                          //           color: Colors.white,
+                          //           width: 10,
+                          //         ),
+                          //         borderRadius: BorderRadius.circular(20),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           items[index],
+                          //           style: TextStyle(
+                          //               fontSize: 20,
+                          //               fontWeight: FontWeight.bold,
+                          //               color: Colors.blue),
+                          //           textAlign: TextAlign.end,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                           SizedBox(
                             height: 20,
                           ),
@@ -423,77 +446,39 @@ class _personalFormState extends State<personalForm> {
                           SizedBox(
                             height: 40,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  Text(
-                                    'Blood Group',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.blue),
-                                  ),
-                                  SizedBox(
-                                    width: 40,
-                                  ),
-                                  InkWell(
-                                    child: Icon(
-                                      Icons.add_circle,
-                                      size: 30,
-                                      color: Colors.blue,
-                                    ),
-                                    onTap: () {
-                                      showCupertinoModalPopup(
-                                          context: context,
-                                          builder: (context) =>
-                                              CupertinoActionSheet(
-                                                actions: [buildbloodpicker()],
-                                                cancelButton:
-                                                    CupertinoActionSheetAction(
-                                                  child: Text('Done'),
-                                                  onPressed: () =>
-                                                      Navigator.pop(context),
-                                                ),
-                                              ));
-                                    },
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.2,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 10,
-                                      ),
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        bloods[ind],
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.blue),
-                                        textAlign: TextAlign.end,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 50,
-                              ),
-                            ],
+                          FutureBuilder<List<BloodGroup>>(
+                            future: Apiblood().getData(),
+                            builder: (context, snap) {
+                              if (snap.hasData) {
+                                final List<BloodGroup> data = snap.data!;
+                                return DropdownButtonFormField<BloodGroup>(
+                                    menuMaxHeight: 400,
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        labelText: ' Select Blood Group',
+                                        prefixIcon: const Icon(
+                                          Icons.email,
+                                          color: Colors.orange,
+                                        ),
+                                        hintText: " Select Blood Group "),
+                                    items: [
+                                      ...data.map(
+                                        (e) => DropdownMenuItem(
+                                          value: e,
+                                          child: Text(e.bloodname),
+                                        ),
+                                      )
+                                    ],
+                                    onChanged: (value) {
+                                      genderPersonal.text = '${value!.bloodid}';
+                                    });
+                              } else {
+                                return const LinearProgressIndicator();
+                              }
+                            },
                           ),
                           SizedBox(
                             height: 20,
@@ -535,10 +520,8 @@ class _personalFormState extends State<personalForm> {
                                   age: int.parse(ageController.text.trim()),
                                   handicappedidpersonal:
                                       htiController.text.trim(),
-                                  gender: items[index].trim(),
-                                  bloodgroup: bloods[ind].trim(),
-                                  dateofbirthpersonal:
-                                      dobController.text.trim(),
+                                  gender: genderPersonal.text.trim(),
+                                  bloodgroup: bloodgroupPersonal.text.trim(),
                                 );
 
                                 var jsonData = personalForm.toJson();
@@ -580,58 +563,4 @@ class _personalFormState extends State<personalForm> {
                   ))));
     });
   }
-
-  Widget buildDatePicker() => SizedBox(
-        height: 250,
-        child: Center(
-          child: CupertinoPicker(
-              looping: true,
-              itemExtent: 50,
-              onSelectedItemChanged: (index) {
-                setState(() {
-                  this.index = index;
-                });
-                final item = items[index];
-                print(item);
-              },
-              children: items.map((item) {
-                return Center(
-                  child: Text(
-                    item,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                  ),
-                );
-              }).toList()),
-        ),
-      );
-
-  Widget buildbloodpicker() => SizedBox(
-        height: 250,
-        child: Center(
-          child: CupertinoPicker(
-              looping: true,
-              itemExtent: 50,
-              onSelectedItemChanged: (ind) {
-                setState(() {
-                  this.ind = ind;
-                });
-                final blood = bloods[ind];
-                print(blood);
-              },
-              children: bloods.map((blood) {
-                return Center(
-                  child: Text(
-                    blood,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                  ),
-                );
-              }).toList()),
-        ),
-      );
 }

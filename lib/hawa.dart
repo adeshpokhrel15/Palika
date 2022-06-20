@@ -1,190 +1,188 @@
-// // import 'package:flutter/cupertino.dart';
-// // import 'package:flutter/material.dart';
-// // import 'package:flutter_riverpod/flutter_riverpod.dart';
-// // import 'package:get/get.dart';
-// // import 'package:palika/providers/districts.dart';
-// // import 'package:palika/providers/apiProvider.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/models/districts.dart';
+import 'package:palika/models/formModel.dart';
+import 'package:palika/models/localBodies.dart';
+import 'package:palika/models/provience.dart';
+import 'package:palika/providers/districtsProvider.dart';
+import 'package:palika/providers/formProvider.dart';
+import 'package:palika/providers/localBodyProvider.dart';
+import 'package:palika/providers/provienceProvider.dart';
 
-// // class CustomScreen extends StatelessWidget {
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return Scaffold(
-// //       body: SafeArea(
-// //         child: Consumer(builder: (context, ref, child) {
-// //           final productData = ref.watch(userDataProvider);
+class AAAaddressForm extends StatefulWidget {
+  static const routeName = 'address-form';
 
-// //           //final abcdistrics = ref.watch(districtsDataProvider);
-// //           return productData.when(
-// //               data: (data) {
-// //                 //   print(data);
-// //                 return ListView.builder(
-// //                     itemCount: data.length,
-// //                     itemBuilder: (context, index) {
-// //                       return GestureDetector(
-// //                         child: ListTile(
-// //                           title: Text(data[index].nepaliName),
-// //                           subtitle: Text(data[index].englishName),
-// //                           leading: Text('${data[index].code}'),
-// //                         ),
-// //                       );
-// //                     });
-// //               },
-// //               error: (err, stack) => Center(
-// //                     child: Text('$err'),
-// //                   ),
-// //               loading: () => Center(
-// //                     child: CircularProgressIndicator(
-// //                       color: Colors.purple,
-// //                     ),
-// //                   ));
-// //         }),
-// //       ),
-// //     );
-// //   }
-// // }
+  @override
+  State<AAAaddressForm> createState() => _AAAaddressForm();
+}
 
-// import 'package:dio/dio.dart';
-// import 'package:find_dropdown/find_dropdown.dart';
-// import 'package:flutter/material.dart';
-// import 'package:palika/models/provience.dart';
+class _AAAaddressForm extends State<AAAaddressForm> {
+  final _form = GlobalKey<FormState>();
 
-// class AAMyHomePage extends StatefulWidget {
-//   @override
-//   _AAMyHomePageState createState() => _AAMyHomePageState();
-// }
+  final tempProv = TextEditingController();
 
-// class _AAMyHomePageState extends State<AAMyHomePage> {
-//   var countriesKey = GlobalKey<FindDropdownState>();
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text("FindDropdown Example")),
-//       body: Padding(
-//         padding: const EdgeInsets.all(25),
-//         child: Column(
-//           children: <Widget>[
-//             FindDropdown(
-//               items: ["Brasil", "Itália", "Estados Unidos", "Canadá"],
-//               label: "País",
-//               onChanged: (item) {
-//                 print(item);
-//                 countriesKey.currentState?.setSelectedItem(<String>[]);
-//               },
-//               selectedItem: "Brasil",
-//               showSearchBox: false,
-//               labelStyle: TextStyle(color: Colors.redAccent),
-//               backgroundColor: Colors.redAccent,
-//               titleStyle: TextStyle(color: Colors.greenAccent),
-//               validate: (String? item) {
-//                 if (item == null)
-//                   return "Required field";
-//                 else if (item == "Brasil")
-//                   return "Invalid item";
-//                 else
-//                   return null;
-//               },
-//             ),
-//             FindDropdown<String>.multiSelect(
-//               key: countriesKey,
-//               items: ["Brasil", "Itália", "Estados Unidos", "Canadá"],
-//               label: "Países",
-//               selectedItems: ["Brasil"],
-//               onChanged: (selectedItems) => print("countries: $selectedItems"),
-//               showSearchBox: false,
-//               labelStyle: TextStyle(color: Colors.redAccent),
-//               titleStyle: TextStyle(color: Colors.greenAccent),
-//               dropdownItemBuilder: (context, item, isSelected) {
-//                 return ListTile(
-//                   title: Text(item.toString()),
-//                   trailing: isSelected ? Icon(Icons.check) : null,
-//                   selected: isSelected,
-//                 );
-//               },
-//               okButtonBuilder: (context, onPressed) {
-//                 return Align(
-//                   alignment: Alignment.centerRight,
-//                   child: FloatingActionButton(
-//                       child: Icon(Icons.check),
-//                       onPressed: onPressed,
-//                       mini: true),
-//                 );
-//               },
-//               validate: (List<String>? items) {
-//                 print("VALIDATION: $items");
-//                 String? response;
-//                 if (items == null || items.isEmpty) {
-//                   response = "Required field";
-//                 } else if (items.contains("Brasil")) {
-//                   response = "'Brasil' não pode ser selecionado.";
-//                 }
-//                 print(response);
-//                 return response;
-//               },
-//             ),
-//             FindDropdown<Provience>(
-//               label: "Nome",
-//               onFind: (String filter) => getData(filter),
-//               searchBoxDecoration: InputDecoration(
-//                   hintText: "Search", border: OutlineInputBorder()),
-//               onChanged: (Provience? data) => print(data),
-//             ),
-//             FindDropdown<Provience>(
-//               label: "Personagem",
-//               onFind: (String filter) => getData(filter),
-//               onChanged: (Provience? data) => print(data),
-//               dropdownBuilder: (BuildContext context, Provience? item) {
-//                 return Container(
-//                   decoration: BoxDecoration(
-//                     border: Border.all(color: Theme.of(context).dividerColor),
-//                     borderRadius: BorderRadius.circular(5),
-//                     color: Colors.white,
-//                   ),
-//                   child: (item?.englishName == null)
-//                       ? ListTile(
-//                           leading: CircleAvatar(),
-//                           title: Text("No item selected"))
-//                       : ListTile(
-//                           leading: CircleAvatar(
-//                               backgroundImage: NetworkImage(item!.englishName)),
-//                           title: Text(item.nepaliName),
-//                           subtitle: Text(item.code.toString()),
-//                         ),
-//                 );
-//               },
-//               dropdownItemBuilder:
-//                   (BuildContext context, Provience item, bool isSelected) {
-//                 return Container(
-//                   decoration: !isSelected
-//                       ? null
-//                       : BoxDecoration(
-//                           border:
-//                               Border.all(color: Theme.of(context).primaryColor),
-//                           borderRadius: BorderRadius.circular(5),
-//                           color: Colors.white,
-//                         ),
-//                   child: ListTile(
-//                     selected: isSelected,
-//                     title: Text(item.nepaliName),
-//                     subtitle: Text(item.code.toString()),
-//                     leading: CircleAvatar(
-//                         backgroundImage: NetworkImage(item.englishName)),
-//                   ),
-//                 );
-//               },
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
+  final tempDist = TextEditingController();
 
-//   Future<List<Provience>> getData(filter) async {
-//     var response = await Dio().get(
-//       "http://5d85ccfb1e61af001471bf60.mockapi.io/user",
-//       queryParameters: {"filter": filter},
-//     );
+  final tempMunci = TextEditingController();
 
-//     var models = Provience.fromJson(response.data);
-//     return [];
-//   }
-// }
+  final temoWard = TextEditingController();
+
+  final tempTol = TextEditingController();
+
+  final tempBno = TextEditingController();
+
+  final permProv = TextEditingController();
+
+  final permDist = TextEditingController();
+
+  final permMunci = TextEditingController();
+
+  final permWard = TextEditingController();
+
+  final permTol = TextEditingController();
+  final permBnoadd = TextEditingController();
+
+  final tempward = TextEditingController();
+  final permward = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer(builder: (context, ref, child) {
+      return SafeArea(
+          child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.white,
+                title: Center(
+                  child: Text(
+                    'Form',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                  ),
+                ),
+                elevation: 0,
+                leading: IconButton(
+                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ),
+              body: Form(
+                  key: _form,
+                  child: SingleChildScrollView(
+                      child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 20),
+                    child: Container(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Center(
+                              child: Text(
+                                'Temporary Address',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            FutureBuilder<List<DistrictModel>>(
+                              future: Api().getData(),
+                              builder: (context, snap) {
+                                if (snap.hasData) {
+                                  final List<DistrictModel> data = snap.data!;
+                                  return DropdownButtonFormField<DistrictModel>(
+                                      menuMaxHeight: 400,
+                                      iconSize: 50,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                          ),
+                                          labelText: 'District',
+                                          prefixIcon: const Icon(
+                                            Icons.email,
+                                            color: Colors.orange,
+                                          ),
+                                          hintText: " District Name"),
+                                      items: [
+                                        ...data.map(
+                                          (e) => DropdownMenuItem(
+                                            value: e,
+                                            child: Text(e.nepaliName),
+                                          ),
+                                        )
+                                      ],
+                                      onChanged: (value) {
+                                        permDist.text = value!.nepaliName;
+                                      });
+                                } else {
+                                  return Container();
+                                }
+                              },
+                            ),
+                            Container(
+                              height: 50,
+                              width: 150,
+                              child: MaterialButton(
+                                onPressed: () async {
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                            actions: [
+                                              TextButton(
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                  child: const Text('OK'))
+                                            ],
+                                            title: const Text('Success'),
+                                            contentPadding:
+                                                const EdgeInsets.all(20.0),
+                                            content: const Text(
+                                                'Addedd sucessfully in Draft'),
+                                          ));
+                                  _form.currentState!.save();
+                                  _form.currentState!.validate();
+                                  FocusScope.of(context).unfocus();
+                                  final addressForm = formModel(
+                                    tempProv: tempProv.text.trim(),
+                                    tempMuni: tempMunci.text.trim(),
+                                    tempdistrict: tempDist.text.trim(),
+                                    tempstreettol: tempTol.text.trim(),
+                                    tempblockno: int.parse(tempBno.text.trim()),
+                                    permProv: permProv.text.trim(),
+                                    permMuni: permMunci.text.trim(),
+                                    permdistrict: permDist.text.trim(),
+                                    permstreettol: permTol.text.trim(),
+                                    permblocknoaddress:
+                                        int.parse(permBnoadd.text.trim()),
+                                  );
+                                  var jsonData = addressForm.toJson();
+
+                                  final response = ref
+                                      .read(formModelProvider.notifier)
+                                      .addForm(addressForm);
+                                },
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(22.0)),
+                                elevation: 5.0,
+                                child: Text('Save as Draft'),
+                                color: Color(0xFF00a2e8),
+                                textColor: Colors.black,
+                              ),
+                            ),
+                          ]),
+                    ),
+                  )))));
+    });
+  }
+}
