@@ -1,0 +1,81 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:papro/screens/dashBoard.dart';
+
+class Api {
+  static const String baseUrl =
+      "https://gist.githubusercontent.com/sagartmg2/b28cfaa74c5922cbadf38796e8305173/raw/856c2ac86219c0120b05adefb7d58c50308febe1/gistfile1.txt";
+
+  Future<List<DistrictModel>> getData() async {
+    final result = await http.get(Uri.parse(baseUrl));
+    final data = json.decode(result.body);
+    // log(data.toString());
+
+    final List districtData = data['data']['districts'];
+    final output = districtData
+        .map(
+          (e) => DistrictModel(
+            findex: e[0],
+            sindex: e[1],
+            englishName: e[Constant.englishName],
+            nepaliName: e[Constant.nepaliName],
+            totalCount: e[4],
+          ),
+        )
+        .toList();
+
+    return output;
+  }
+}
+
+
+.................................................................
+
+
+
+
+
+class FormModel {
+  final String name;
+  final String permanentDistrict;
+  FormModel({
+    required this.name,
+    required this.permanentDistrict,
+  });
+
+
+                            FutureBuilder<List<DistrictModel>>(
+                              future: Api().getData(),
+                              builder: (context, snap) {
+                                if (snap.hasData) {
+                                  final List<DistrictModel> data = snap.data!;
+                                  return DropdownButtonFormField<DistrictModel>(
+                                      menuMaxHeight: 400,
+                                      decoration: InputDecoration(
+                                          border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                          ),
+                                          labelText: 'District',
+                                          prefixIcon: const Icon(
+                                            Icons.email,
+                                            color: Colors.orange,
+                                          ),
+                                          hintText: " District Name"),
+                                      items: [
+                                        ...data.map(
+                                          (e) => DropdownMenuItem(
+                                            value: e,
+                                            child: Text(e.nepaliName),
+                                          ),
+                                        )
+                                      ],
+                                      onChanged: (value) {
+                                        permDist.text = value!.nepaliName;
+                                      });
+                                } else {
+                                  return const LinearProgressIndicator();
+                                }
+                              },
+                            ),

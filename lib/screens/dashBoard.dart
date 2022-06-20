@@ -1,7 +1,7 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:palika/providers/apiProvider.dart';
+import 'package:palika/providers/provienceProvider.dart';
 import 'package:palika/screens/Forms/addressform.dart';
 import 'package:palika/screens/Forms/appearenceform.dart';
 import 'package:palika/screens/Forms/businessprofileForm.dart';

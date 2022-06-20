@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/models/districts.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/models/provience.dart';
+import 'package:palika/providers/districtsProvider.dart';
 import 'package:palika/providers/formProvider.dart';
+import 'package:palika/providers/provienceProvider.dart';
 
 class addressForm extends StatefulWidget {
   static const routeName = 'address-form';
@@ -304,6 +308,40 @@ class _addressFormState extends State<addressForm> {
                                 SizedBox(
                                   height: 20,
                                 ),
+                                FutureBuilder<List<Provience>>(
+                                  future: ApiService().getUser(),
+                                  builder: (context, snap) {
+                                    if (snap.hasData) {
+                                      final List<Provience> data = snap.data!;
+                                      return DropdownButtonFormField<Provience>(
+                                          menuMaxHeight: 400,
+                                          decoration: InputDecoration(
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(30),
+                                              ),
+                                              labelText: 'Provience',
+                                              prefixIcon: const Icon(
+                                                Icons.email,
+                                                color: Colors.orange,
+                                              ),
+                                              hintText: "Provience Name"),
+                                          items: [
+                                            ...data.map(
+                                              (e) => DropdownMenuItem(
+                                                value: e,
+                                                child: Text(e.nepaliName),
+                                              ),
+                                            )
+                                          ],
+                                          onChanged: (value) {
+                                            permDist.text = value!.nepaliName;
+                                          });
+                                    } else {
+                                      return const LinearProgressIndicator();
+                                    }
+                                  },
+                                ),
                                 TextFormField(
                                   autovalidateMode:
                                       AutovalidateMode.onUserInteraction,
@@ -371,28 +409,41 @@ class _addressFormState extends State<addressForm> {
                                 SizedBox(
                                   height: 20,
                                 ),
-                                TextFormField(
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  validator: (val) {
-                                    if (val!.isEmpty) {
-                                      return 'district is required';
+                                FutureBuilder<List<DistrictModel>>(
+                                  future: Api().getData(),
+                                  builder: (context, snap) {
+                                    if (snap.hasData) {
+                                      final List<DistrictModel> data =
+                                          snap.data!;
+                                      return DropdownButtonFormField<
+                                              DistrictModel>(
+                                          menuMaxHeight: 400,
+                                          decoration: InputDecoration(
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(30),
+                                              ),
+                                              labelText: 'District',
+                                              prefixIcon: const Icon(
+                                                Icons.email,
+                                                color: Colors.orange,
+                                              ),
+                                              hintText: " District Name"),
+                                          items: [
+                                            ...data.map(
+                                              (e) => DropdownMenuItem(
+                                                value: e,
+                                                child: Text(e.nepaliName),
+                                              ),
+                                            )
+                                          ],
+                                          onChanged: (value) {
+                                            permDist.text = value!.nepaliName;
+                                          });
+                                    } else {
+                                      return const LinearProgressIndicator();
                                     }
-
-                                    return null;
                                   },
-                                  keyboardType: TextInputType.emailAddress,
-                                  controller: permDist,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(30),
-                                      ),
-                                      labelText: 'District',
-                                      prefixIcon: Icon(
-                                        Icons.email,
-                                        color: Colors.orange,
-                                      ),
-                                      hintText: " District Name"),
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -576,8 +627,7 @@ class _addressFormState extends State<addressForm> {
                                         int.parse(permBnoadd.text.trim()),
                                     tempward: tempwards[ind],
                                   );
-                                  var jsonData =addressForm.toJson();
-
+                                  var jsonData = addressForm.toJson();
 
                                   final response = ref
                                       .read(formModelProvider.notifier)
