@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/models/bloodGroup.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/providers/bloodProvider.dart';
 import 'package:palika/providers/formProvider.dart';
 
 class childrenhealthProfile extends StatefulWidget {
@@ -30,6 +32,7 @@ class _childrenhealthProfileState extends State<childrenhealthProfile> {
   final geneticdiseasedescrption = TextEditingController();
   final vaccinedetails = TextEditingController();
   final vaccinedoes = TextEditingController();
+  final genderChildren = TextEditingController();
 
   bool _checkBCGVaccinated = false;
   bool _checkDPTHEPBVaccinated = false;
@@ -74,65 +77,41 @@ class _childrenhealthProfileState extends State<childrenhealthProfile> {
             child: ListView(
               padding: EdgeInsets.all(10),
               children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 3,
-                    ),
-                    Text(
-                      'Blood Group',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue),
-                    ),
-                    SizedBox(
-                      width: 40,
-                    ),
-                    InkWell(
-                      child: Icon(
-                        Icons.add_circle,
-                        size: 30,
-                        color: Colors.blue,
-                      ),
-                      onTap: () {
-                        showCupertinoModalPopup(
-                            context: context,
-                            builder: (context) => CupertinoActionSheet(
-                                  actions: [buildbloodpicker()],
-                                  cancelButton: CupertinoActionSheetAction(
-                                    child: Text('Done'),
-                                    onPressed: () => Navigator.pop(context),
-                                  ),
-                                ));
-                      },
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.2,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 10,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Center(
-                        child: Text(
-                          bloods[ind],
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue),
-                          textAlign: TextAlign.end,
-                        ),
-                      ),
-                    ),
-                  ],
+                FutureBuilder<List<BloodGroup>>(
+                  future: Apiblood().getData(),
+                  builder: (context, snap) {
+                    if (snap.hasData) {
+                      final List<BloodGroup> data = snap.data!;
+                      return DropdownButtonFormField<BloodGroup>(
+                          menuMaxHeight: 400,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: 'Blood Group',
+                              prefixIcon: const Icon(
+                                Icons.email,
+                                color: Colors.orange,
+                              ),
+                              hintText: " Blood Group "),
+                          items: [
+                            ...data.map(
+                              (e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e.bloodname),
+                              ),
+                            )
+                          ],
+                          onChanged: (value) {
+                            genderChildren.text = '${value!.bloodid}';
+                          });
+                    } else {
+                      return const LinearProgressIndicator();
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 SizedBox(
                   height: 20,
@@ -524,8 +503,6 @@ class _childrenhealthProfileState extends State<childrenhealthProfile> {
                       );
 
                       var jsonData = childrenHealth.toJson();
-
-
 
                       final response = ref
                           .read(formModelProvider.notifier)

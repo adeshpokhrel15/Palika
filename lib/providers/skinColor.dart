@@ -18,7 +18,9 @@ class ApiskinColor {
     final List districtData = data['data']['skin_colors'];
     final output = districtData
         .map((e) => SkinColor(
-            indexskinColor: e[0],
+            indexskinColor: int.parse(
+              e[0],
+            ),
             skinColorNepaliname: e[1],
             skinColorenglishname: e[2]))
         .toList();

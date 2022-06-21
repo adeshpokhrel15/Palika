@@ -16,7 +16,9 @@ class ApiJobTypes {
     final output = districtData
         .map(
           (e) => Jobtypes(
-            indexjobtype: e[0],
+            indexjobtype: int.parse(
+              e[0],
+            ),
             jobtypeNepaliname: e[1],
             jobtypeenglishname: e[2],
           ),

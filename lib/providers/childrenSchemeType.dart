@@ -18,7 +18,9 @@ class ApichildrenSchemeType {
     final List districtData = data['data']['children_school_schemes'];
     final output = districtData
         .map((e) => Childrenschemetype(
-            indexchildrenschemetype: e[0],
+            indexchildrenschemetype: int.parse(
+              e[0],
+            ),
             childrenschemetypeNepaliname: e[1],
             childrenschemetypeenglishname: e[2]))
         .toList();

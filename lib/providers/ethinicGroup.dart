@@ -16,7 +16,9 @@ class Apiethinicgroup {
     final List ethinicgroup = data['data']['ethnic_groups'];
     final output = ethinicgroup
         .map((e) => Ethinicgroup(
-            indexethinicgroup: e[0],
+            indexethinicgroup:int.parse(
+              e[0],
+            ),
             ethinicgroupnepaliname: e[1],
             ethinicgroupenglishname: e[2]))
         .toList();

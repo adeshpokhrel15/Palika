@@ -16,7 +16,9 @@ class Apibusiness {
     final List districtData = data['data']['business_types'];
     final output = districtData
         .map((e) => Business(
-            indexbusiness: e[0],
+            indexbusiness: int.parse(
+              e[0],
+            ),
             businessNepaliname: e[1],
             businessenglishname: e[2]))
         .toList();

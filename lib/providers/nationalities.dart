@@ -15,7 +15,9 @@ class Apinationalities {
     final List nationalitiesdata = data['data']['nationalities'];
     final output = nationalitiesdata
         .map((e) => Nationalities(
-              indexnationalities: e[0],
+              indexnationalities: int.parse(
+                e[0],
+              ),
               nationalitiesnepaliname: e[1],
               nationalitiesenglishname: e[2],
             ))

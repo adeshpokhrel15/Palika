@@ -28,7 +28,7 @@ class businessprofile extends StatelessWidget {
                 backgroundColor: Colors.white,
                 title: Center(
                   child: Text(
-                    'Business Profile Form',
+                    'Business Profile',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

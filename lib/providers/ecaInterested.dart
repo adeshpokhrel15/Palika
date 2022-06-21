@@ -17,7 +17,9 @@ class ApiecaInterested {
     final List ecadata = data['data']['eca_interested_fields'];
     final output = ecadata
         .map((e) => EcainterestedField(
-            indexecainterestedField: e[0],
+            indexecainterestedField: int.parse(
+              e[0],
+            ),
             ecainterestedFieldNepaliname: e[1],
             ecainterestedFieldenglishname: e[2]))
         .toList();

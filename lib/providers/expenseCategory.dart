@@ -14,7 +14,9 @@ class Apichildrenexpensecategories {
     final List districtData = data['data']['expense_categories'];
     final output = districtData
         .map((e) => ExpenseCategorytype(
-            indexexpenseCategory: e[0],
+            indexexpenseCategory: int.parse(
+              e[0],
+            ),
             expenseCategoryNepaliname: e[1],
             expenseCategoryenglishname: e[2]))
         .toList();

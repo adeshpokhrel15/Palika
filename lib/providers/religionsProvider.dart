@@ -18,7 +18,9 @@ class Apireligions {
     final output = religionsgroup
         .map(
           (e) => Religions(
-              indexreligions: e[0],
+              indexreligions: int.parse(
+                e[0],
+              ),
               religionsNepaliname: e[1],
               religionsenglishname: e[2]),
         )

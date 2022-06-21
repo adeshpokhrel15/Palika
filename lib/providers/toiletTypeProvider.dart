@@ -15,7 +15,11 @@ class ApiToilet {
     final List districtData = data['data']['toilet_types'];
     final output = districtData
         .map((e) => Toilet(
-            indextoilet: e[0], toiletNepaliname: e[1], toiletenglishname: e[2]))
+            indextoilet: int.parse(
+              e[0],
+            ),
+            toiletNepaliname: e[1],
+            toiletenglishname: e[2]))
         .toList();
 
     return output;

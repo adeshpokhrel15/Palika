@@ -178,24 +178,6 @@ class _expensesprofileformState extends State<expensesprofileform> {
                                   }
                                 },
                               ),
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return 'Expense category is required ';
-                                  }
-                                  return null;
-                                },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: expensecategory,
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    labelText: 'Expense category',
-                                    hintText: 'Expense category'),
-                              ),
                               SizedBox(
                                 height: 20,
                               ),

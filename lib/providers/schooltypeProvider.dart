@@ -17,7 +17,9 @@ class Apischool {
     final List schoolData = data['data']['school_types'];
     final output = schoolData
         .map((e) => Schooltype(
-            indexschooltype: e[0],
+            indexschooltype: int.parse(
+              e[0],
+            ),
             schooltypeNepaliname: e[1],
             schooltypeenglishname: e[2]))
         .toList();
