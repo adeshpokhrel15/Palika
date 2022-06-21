@@ -47,6 +47,7 @@ class _addressFormState extends State<addressForm> {
   final permward = TextEditingController();
   int ind = 0;
   int index = 0;
+  List<LocalBodies> data = [];
 
   final tempwards = [
     1,
@@ -93,6 +94,16 @@ class _addressFormState extends State<addressForm> {
     19,
     20,
   ];
+
+  // List<Provience> _tempData = [];
+
+  // Future<List<Provience>> _getProvs() async {
+  //   final response = await ApiService().getUser();
+
+  //   _tempData = response;
+
+  //   return _tempData;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -144,10 +155,13 @@ class _addressFormState extends State<addressForm> {
                             ),
                             FutureBuilder<List<Provience>>(
                               future: ApiService().getUser(),
+                              // future: _getProvs(),
                               builder: (context, snap) {
                                 if (snap.hasData) {
                                   final List<Provience> data = snap.data!;
+                                  // final List<Provience> tempData = _tempData;
                                   return DropdownButtonFormField<Provience>(
+                                      // value: null,
                                       menuMaxHeight: 400,
                                       decoration: InputDecoration(
                                           border: OutlineInputBorder(
@@ -161,12 +175,20 @@ class _addressFormState extends State<addressForm> {
                                           ),
                                           hintText: "Provience Name"),
                                       items: [
-                                        ...data.map(
-                                          (e) => DropdownMenuItem(
-                                            value: e,
-                                            child: Text(e.nepaliName),
-                                          ),
-                                        )
+                                        ...data
+                                            .map(
+                                              (e) => DropdownMenuItem(
+                                                value: e,
+                                                child: Text(e.nepaliName),
+                                              ),
+                                            )
+                                            .toList()
+                                        // ..._tempData.map(
+                                        //   (e) => DropdownMenuItem(
+                                        //     value: e,
+                                        //     child: Text(e.nepaliName),
+                                        //   ),
+                                        // )
                                       ],
                                       onChanged: (value) {
                                         permProv.text = value!.nepaliName;
@@ -241,8 +263,7 @@ class _addressFormState extends State<addressForm> {
                                         )
                                       ],
                                       onChanged: (value) {
-                                        permMunci.text =
-                                            value!.englishNamelocal;
+                                        permMunci.text = value!.nepalNamelocal;
                                       });
                                 } else {
                                   return const LinearProgressIndicator();
@@ -483,7 +504,7 @@ class _addressFormState extends State<addressForm> {
                                           ],
                                           onChanged: (value) {
                                             tempMunci.text =
-                                                value!.englishNamelocal;
+                                                value!.nepalNamelocal;
                                           });
                                     } else {
                                       return const LinearProgressIndicator();

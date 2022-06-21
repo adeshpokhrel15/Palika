@@ -9,12 +9,15 @@ class Apiblood {
 
   Future<List<BloodGroup>> getData() async {
     final result = await http.get(Uri.parse(baseUrl));
+    // print(json.decode(result.body)['data']['blood_groups']);
     final data = json.decode(result.body);
     // print(data.toString());
 
     final List districtData = data['data']['blood_groups'];
+    // print(districtData);
     final output = districtData
-        .map((e) => BloodGroup(bloodid: e[0], bloodname: e[1]))
+        .map((e) =>
+            BloodGroup(bloodid: int.parse(e[0]), bloodname: (e[1].toString())))
         .toList();
 
     return output;

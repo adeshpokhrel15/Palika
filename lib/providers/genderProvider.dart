@@ -15,7 +15,9 @@ class ApiGender {
     final List districtData = data['data']['genders'];
     final output = districtData
         .map((e) => Gender(
-            genderIndex: e[0], englishNamegender: e[1], nepalNamegender: e[2]))
+            genderIndex: int.parse(e[0]),
+            englishNamegender: e[1],
+            nepalNamegender: e[2]))
         .toList();
 
     return output;
