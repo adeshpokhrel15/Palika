@@ -4,8 +4,8 @@ class Religions {
   late String religionsenglishname;
 
   Religions({
-    required indexreligions,
-    required religionsNepaliname,
-    required religionsenglishname,
+    required this.indexreligions,
+    required this.religionsNepaliname,
+    required this.religionsenglishname,
   });
 }

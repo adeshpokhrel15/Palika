@@ -4,8 +4,8 @@ class Ethinicgroup {
   late String ethinicgroupenglishname;
 
   Ethinicgroup({
-    required indexethinicgroup,
-    required ethinicgroupnepaliname,
-    required ethinicgroupenglishname,
+    required this.indexethinicgroup,
+    required this.ethinicgroupnepaliname,
+    required this.ethinicgroupenglishname,
   });
 }

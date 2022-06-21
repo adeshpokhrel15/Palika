@@ -4,8 +4,8 @@ class Nationalities {
   late String nationalitiesenglishname;
 
   Nationalities({
-    required indexnationalities,
-    required nationalitiesnepaliname,
-    required nationalitiesenglishname,
+    required this.indexnationalities,
+    required this.nationalitiesnepaliname,
+    required this.nationalitiesenglishname,
   });
 }

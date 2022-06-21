@@ -4,8 +4,8 @@ class SkinColor {
   late String skinColorenglishname;
 
   SkinColor({
-    required indexskinColor,
-    required skinColorNepaliname,
-    required skinColorenglishname,
+    required this.indexskinColor,
+    required this.skinColorNepaliname,
+    required this.skinColorenglishname,
   });
 }

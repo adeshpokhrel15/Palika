@@ -4,8 +4,8 @@ class EcainterestedField {
   late String ecainterestedFieldenglishname;
 
   EcainterestedField({
-    required indexecainterestedField,
-    required ecainterestedFieldNepaliname,
-    required ecainterestedFieldenglishname,
+    required this.indexecainterestedField,
+    required this.ecainterestedFieldNepaliname,
+    required this.ecainterestedFieldenglishname,
   });
 }
