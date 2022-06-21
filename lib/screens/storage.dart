@@ -34,36 +34,36 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      FormCallMethod(formdetails,
-                          title: 'Full Name',
-                          details: formdetails[0].firstname),
-                             FormCallMethod(formdetails,
-                          title: 'Middle Name',
-                          details: formdetails[0].middlename!),
-                             FormCallMethod(formdetails,
-                          title: 'Last Name',
-                          details: formdetails[0].lastname),
-                      FormCallMethod(formdetails,
-                          title: 'Gender', details: formdetails[0].gender!),
-                      FormCallMethod(formdetails,
-                          title: 'Date of Birth',
-                          details: formdetails[0].dateofbirthpersonal!),
+                      // FormCallMethod(formdetails,
+                      //     title: 'Full Name',
+                      //     details: formdetails[0].firstname),
+                      //        FormCallMethod(formdetails,
+                      //     title: 'Middle Name',
+                      //     details: formdetails[0].middlename!),
+                      //        FormCallMethod(formdetails,
+                      //     title: 'Last Name',
+                      //     details: formdetails[0].lastname),
+                      // FormCallMethod(formdetails,
+                      //     title: 'Gender', details: formdetails[0].gender!),
+                      // FormCallMethod(formdetails,
+                      //     title: 'Date of Birth',
+                      //     details: formdetails[0].dateofbirthpersonal!),
                       FormCallMethod(formdetails,
                           title: 'Blood Group',
                           details: formdetails[0].bloodgroup!),
-                      FormCallMethod(formdetails,
-                          title: 'Email', details: formdetails[0].email!),
-                      FormCallMethod(formdetails,
-                          title: 'Age', details: '${formdetails[0].age!}'),
-                      FormCallMethod(formdetails,
-                          title: 'Handicapped Type Id',
-                          details: '${formdetails[0].handicappedidpersonal!}'),
-                      FormCallMethod(formdetails,
-                          title: 'Mobile Number',
-                          details: '${formdetails[0].mobilenumber!}'),
-                      FormCallMethod(formdetails,
-                          title: 'Pan Number',
-                          details: formdetails[0].pannumber!),
+                      // FormCallMethod(formdetails,
+                      //     title: 'Email', details: formdetails[0].email!),
+                      // FormCallMethod(formdetails,
+                      //     title: 'Age', details: '${formdetails[0].age!}'),
+                      // FormCallMethod(formdetails,
+                      //     title: 'Handicapped Type Id',
+                      //     details: '${formdetails[0].handicappedidpersonal!}'),
+                      // FormCallMethod(formdetails,
+                      //     title: 'Mobile Number',
+                      //     details: '${formdetails[0].mobilenumber!}'),
+                      // FormCallMethod(formdetails,
+                      //     title: 'Pan Number',
+                      //     details: formdetails[0].pannumber!),
                     ]),
                   ),
                   Center(
@@ -650,25 +650,21 @@ class storage extends StatelessWidget {
                     width: double.infinity,
                     child: MaterialButton(
                       onPressed: () async {
-
-
-                                        var url = Uri.parse(
-                                      'https://reqbin.com/echo/post/json');
-                                  var response = await http.post(
-                                    url,
-                                    headers: {
-                                      "Accept":
-                                          "application/json; charset=utf-8",
-                                      "Access-Control-Allow-Origin":
-                                          "*", // Required for CORS support to work
-                                      "Access-Control-Allow-Methods":
-                                          "POST, GET, OPTIONS",
-                                      HttpHeaders.contentTypeHeader:
-                                          "application/json",
-                                    },
-                                    // body: json.encode(personalForm)
-                                  );
-                                 print(response.body);
+                        var url =
+                            Uri.parse('https://reqbin.com/echo/post/json');
+                        var response = await http.post(
+                          url,
+                          headers: {
+                            "Accept": "application/json; charset=utf-8",
+                            "Access-Control-Allow-Origin":
+                                "*", // Required for CORS support to work
+                            "Access-Control-Allow-Methods":
+                                "POST, GET, OPTIONS",
+                            HttpHeaders.contentTypeHeader: "application/json",
+                          },
+                          // body: json.encode(personalForm)
+                        );
+                        print(response.body);
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(22.0)),

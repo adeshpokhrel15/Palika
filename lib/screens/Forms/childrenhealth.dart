@@ -113,9 +113,6 @@ class _childrenhealthProfileState extends State<childrenhealthProfile> {
                 SizedBox(
                   height: 20,
                 ),
-                SizedBox(
-                  height: 20,
-                ),
                 TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   controller: birthplace,

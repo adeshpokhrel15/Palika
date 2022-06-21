@@ -3,7 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class settingPage extends StatelessWidget {
+class settingPage extends StatefulWidget {
+  @override
+  State<settingPage> createState() => _settingPageState();
+}
+
+class _settingPageState extends State<settingPage> {
   Widget listTile({
     required IconData icon,
     required String title,
@@ -27,6 +32,10 @@ class settingPage extends StatelessWidget {
       ),
     ]);
   }
+
+  bool state = false;
+  bool state2 = false;
+  bool state3 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -157,17 +166,112 @@ class settingPage extends StatelessWidget {
             width: double.infinity,
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0, top: 2),
-              child: Text(
+              child: const Text(
                 'Account Info',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                 ),
               ),
             )),
-        buttonmeth(name: 'Notification', isActive: true),
-        buttonmeth(name: 'Account activity', isActive: true),
-        buttonmeth(name: 'Oppportunity', isActive: false),
-        SizedBox(
+        Column(
+          // crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.75,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 13),
+                      child: const Text(
+                        "Notification",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.15,
+                    child: CupertinoSwitch(
+                      value: state,
+                      onChanged: (value) {
+                        state = value;
+                        setState(() {});
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.75,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 13),
+                      child: const Text(
+                        "Account activity",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.15,
+                    child: CupertinoSwitch(
+                      value: state2,
+                      onChanged: (value2) {
+                        state2 = value2;
+                        setState(() {});
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.75,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 13),
+                      child: const Text(
+                        "Oppportunity",
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.15,
+                    child: CupertinoSwitch(
+                      value: state3,
+                      onChanged: (value3) {
+                        state3 = value3;
+                        setState(() {});
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
           height: 50,
         ),
         Container(
@@ -185,27 +289,5 @@ class settingPage extends StatelessWidget {
         ),
       ]),
     ));
-  }
-
-  Row buttonmeth({required String name, required bool isActive}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 13),
-          child: Text(
-            name,
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.w500, color: Colors.black),
-          ),
-        ),
-        Transform.scale(
-            scale: 0.8,
-            child: CupertinoSwitch(
-              value: isActive,
-              onChanged: (bool val) {},
-            ))
-      ],
-    );
   }
 }

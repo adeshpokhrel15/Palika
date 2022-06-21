@@ -1,8 +1,12 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/models/formModel.dart';
 import 'package:palika/providers/formProvider.dart';
+
+import '../../models/bloodGroup.dart';
+import '../../providers/bloodProvider.dart';
 
 class healthProfileForm extends StatefulWidget {
   static const routeName = 'healthprofile-form';
@@ -24,7 +28,7 @@ class _healthProfileFormState extends State<healthProfileForm> {
     'O+',
     'O-',
   ];
-
+  final bloodgroupHealth = TextEditingController();
   final birthplace = TextEditingController();
   final birthweight = TextEditingController();
   final birthconditioins = TextEditingController();
@@ -68,65 +72,44 @@ class _healthProfileFormState extends State<healthProfileForm> {
             child: ListView(
               padding: EdgeInsets.all(10),
               children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      width: 3,
-                    ),
-                    Text(
-                      'Blood Group',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blue),
-                    ),
-                    SizedBox(
-                      width: 40,
-                    ),
-                    InkWell(
-                      child: Icon(
-                        Icons.add_circle,
-                        size: 30,
-                        color: Colors.blue,
-                      ),
-                      onTap: () {
-                        showCupertinoModalPopup(
-                            context: context,
-                            builder: (context) => CupertinoActionSheet(
-                                  actions: [buildbloodpicker()],
-                                  cancelButton: CupertinoActionSheetAction(
-                                    child: Text('Done'),
-                                    onPressed: () => Navigator.pop(context),
-                                  ),
-                                ));
-                      },
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.2,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 10,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Center(
-                        child: Text(
-                          bloods[ind],
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.blue),
-                          textAlign: TextAlign.end,
-                        ),
-                      ),
-                    ),
-                  ],
+                FutureBuilder<List<BloodGroup>>(
+                  future: Apiblood().getData(),
+                  builder: (context, snap) {
+                    if (snap.hasData) {
+                      final List<BloodGroup> data = snap.data!;
+                      return DropdownButtonFormField<BloodGroup>(
+                          menuMaxHeight: 400,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: 'Blood Group',
+                              prefixIcon: const Icon(
+                                Icons.email,
+                                color: Colors.orange,
+                              ),
+                              hintText: " Blood Group "),
+                          items: [
+                            // ...data.map(
+                            //   (e) => DropdownMenuItem(
+                            //     value: e,
+                            //     child: Text(e.bloodname),
+                            //   ),
+                            // )
+
+                            for (var i = 0; i < data.length; i++)
+                              DropdownMenuItem(
+                                value: data[i],
+                                child: Text(data[i].bloodname),
+                              ),
+                          ],
+                          onChanged: (value) {
+                            bloodgroupHealth.text = '${value!.bloodid}';
+                          });
+                    } else {
+                      return const LinearProgressIndicator();
+                    }
+                  },
                 ),
                 SizedBox(
                   height: 20,
@@ -363,8 +346,7 @@ class _healthProfileFormState extends State<healthProfileForm> {
                         healthbloodgroup: bloods[ind].trim(),
                       );
 
-                      var jsonData =healthProfile.toJson();
-
+                      var jsonData = healthProfile.toJson();
 
                       final response = ref
                           .read(formModelProvider.notifier)
