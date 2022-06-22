@@ -259,6 +259,14 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                               width: 150,
                               child: MaterialButton(
                                 onPressed: () async {
+                                  _form.currentState!.save();
+                                  _form.currentState!.validate();
+                                  final childrenDetails = formModel(
+                                    childrenFirstname: name.text.trim(),
+                                    familydetailid: familydetailid.text.trim(),
+                                    childrengender: items[index].trim(),
+                                    childrendob: dobcontroller.text.trim(),
+                                  );
                                   showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
@@ -275,15 +283,6 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                             content: const Text(
                                                 'Addedd sucessfully in Draft'),
                                           ));
-                                  _form.currentState!.save();
-                                  _form.currentState!.validate();
-                                  FocusScope.of(context).unfocus();
-                                  final childrenDetails = formModel(
-                                    childrenFirstname: name.text.trim(),
-                                    familydetailid: familydetailid.text.trim(),
-                                    childrengender: items[index].trim(),
-                                    childrendob: dobcontroller.text.trim(),
-                                  );
 
                                   var jsonData = childrenDetails.toJson();
 

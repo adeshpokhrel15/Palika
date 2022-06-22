@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get/get.dart';
+import 'package:nepali_utils/nepali_utils.dart';
 
 import 'package:palika/models/bloodGroup.dart';
 import 'package:palika/models/formModel.dart';
@@ -8,7 +8,7 @@ import 'package:palika/models/genders.dart';
 import 'package:palika/providers/bloodProvider.dart';
 import 'package:palika/providers/formProvider.dart';
 import 'package:palika/providers/genderProvider.dart';
-import 'package:palika/screens/Forms/schoolprofileForm.dart';
+import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
 
 class personalForm extends StatefulWidget {
   static const routeName = 'personal-form';
@@ -31,14 +31,12 @@ class _personalFormState extends State<personalForm> {
   final panController = TextEditingController();
   final bloodgroupController = TextEditingController();
   final _form = GlobalKey<FormState>();
-  DateTime dateTime = DateTime.now();
   final genderPersonal = TextEditingController();
   final bloodgroupPersonal = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, child) {
-      // final provience = ref.watch(dataProvider);
       return SafeArea(
           child: Scaffold(
               appBar: AppBar(
@@ -149,74 +147,6 @@ class _personalFormState extends State<personalForm> {
                           const SizedBox(
                             height: 20,
                           ),
-                          TextFormField(
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (val) {
-                              if (val!.isEmpty) {
-                                return 'email is required';
-                              }
-                              if (!RegExp(
-                                      "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                                  .hasMatch(val)) {
-                                return 'Please a valid Email';
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.emailAddress,
-                            controller: mailController,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                                labelText: 'Email',
-                                prefixIcon: const Icon(
-                                  Icons.email,
-                                  color: Colors.orange,
-                                ),
-                                hintText: "Test@gmail.com"),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          FutureBuilder<List<Gender>>(
-                            future: ApiGender().getData(),
-                            builder: (context, snap) {
-                              if (snap.hasData) {
-                                final List<Gender> data = snap.data!;
-                                return DropdownButtonFormField<Gender>(
-                                    menuMaxHeight: 400,
-                                    decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                        ),
-                                        labelText: 'Gender',
-                                        prefixIcon: const Icon(
-                                          Icons.email,
-                                          color: Colors.orange,
-                                        ),
-                                        hintText: " Gender "),
-                                    items: [
-                                      ...data.map(
-                                        (e) => DropdownMenuItem(
-                                          value: e,
-                                          child: Text(e.nepalNamegender),
-                                        ),
-                                      )
-                                    ],
-                                    onChanged: (value) {
-                                      genderPersonal.text =
-                                          value!.nepalNamegender;
-                                    });
-                              } else {
-                                return const LinearProgressIndicator();
-                              }
-                            },
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
                           Row(
                             children: [
                               const Text(
@@ -226,32 +156,32 @@ class _personalFormState extends State<personalForm> {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.blue),
                               ),
-                              const SizedBox(
+                              SizedBox(
                                 width: 43,
                               ),
                               InkWell(
-                                child: const Icon(
+                                child: Icon(
                                   Icons.add_circle,
                                   size: 30,
                                   color: Colors.blue,
                                 ),
                                 onTap: () {
-                                  // picker.showCupertinoDatePicker(
-                                  //   context: context,
-                                  //   initialDate: NepaliDateTime.now(),
-                                  //   firstDate: NepaliDateTime(2000),
-                                  //   lastDate: NepaliDateTime(2090),
-                                  //   language: Language.english,
-                                  //   dateOrder: picker.DateOrder.mdy,
-                                  //   onDateChanged: (newDate) {
-                                  //     setState(() {
-                                  //       dobController.text =
-                                  //           newDate.toIso8601String();
-                                  //     });
-                                  //     dobController.text =
-                                  //         newDate.toIso8601String();
-                                  //   },
-                                  // );
+                                  picker.showCupertinoDatePicker(
+                                    context: context,
+                                    initialDate: NepaliDateTime.now(),
+                                    firstDate: NepaliDateTime(2000),
+                                    lastDate: NepaliDateTime(2090),
+                                    language: Language.english,
+                                    dateOrder: picker.DateOrder.mdy,
+                                    onDateChanged: (newDate) {
+                                      setState(() {
+                                        dobController.text =
+                                            newDate.toIso8601String();
+                                      });
+                                      dobController.text =
+                                          newDate.toIso8601String();
+                                    },
+                                  );
                                 },
                               ),
                               const SizedBox(
@@ -280,6 +210,36 @@ class _personalFormState extends State<personalForm> {
                                 ),
                               ),
                             ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'email is required';
+                              }
+                              if (!RegExp(
+                                      "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                  .hasMatch(val)) {
+                                return 'Please a valid Email';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            controller: mailController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                labelText: 'Email',
+                                prefixIcon: const Icon(
+                                  Icons.email,
+                                  color: Colors.orange,
+                                ),
+                                hintText: "Test@gmail.com"),
                           ),
                           const SizedBox(
                             height: 20,
@@ -326,6 +286,47 @@ class _personalFormState extends State<personalForm> {
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 labelText: 'Handicapped Type Id'),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          FutureBuilder<List<Gender>>(
+                            future: ApiGender().getData(),
+                            builder: (context, snap) {
+                              if (snap.hasData) {
+                                final List<Gender> data = snap.data!;
+
+                                return DropdownButtonFormField<Gender>(
+                                    menuMaxHeight: 400,
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        labelText: 'Select Gender',
+                                        prefixIcon: const Icon(
+                                          Icons.email,
+                                          color: Colors.orange,
+                                        ),
+                                        hintText: "Gender "),
+                                    items: [
+                                      ...data.map(
+                                        (e) => DropdownMenuItem(
+                                          value: e,
+                                          child: Text(e.nepalNamegender),
+                                        ),
+                                      )
+                                    ],
+                                    onChanged: (value) {
+                                      genderPersonal.text =
+                                          value!.nepalNamegender;
+
+                                      print(genderPersonal.text);
+                                    });
+                              } else {
+                                return const LinearProgressIndicator();
+                              }
+                            },
                           ),
                           const SizedBox(
                             height: 20,
@@ -410,7 +411,8 @@ class _personalFormState extends State<personalForm> {
                                     ],
                                     onChanged: (value) {
                                       bloodgroupPersonal.text =
-                                          '${value!.bloodname}';
+                                          value!.bloodname;
+
                                       print(bloodgroupPersonal.text);
                                     });
                               } else {
@@ -428,8 +430,22 @@ class _personalFormState extends State<personalForm> {
                               onPressed: () {
                                 _form.currentState!.save();
                                 _form.currentState!.validate();
-
-                                //FocusScope.of(context).unfocus();
+                                showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                          actions: [
+                                            TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: const Text('OK'))
+                                          ],
+                                          title: const Text('Success'),
+                                          contentPadding:
+                                              const EdgeInsets.all(20.0),
+                                          content: const Text(
+                                              'Addedd sucessfully in Draft'),
+                                        ));
 
                                 final personalForm = formModel(
                                   firstname: firstname.text.trim(),
@@ -444,6 +460,7 @@ class _personalFormState extends State<personalForm> {
                                       htiController.text.trim(),
                                   gender: genderPersonal.text.trim(),
                                   bloodgroup: bloodgroupPersonal.text,
+                                  dateofbirthpersonal: dobController.text,
                                 );
 
                                 var jsonData = personalForm.toJson();

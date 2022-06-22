@@ -77,7 +77,6 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                     ) //Row
                   ],
                 ),
-
                 SizedBox(
                   height: 20,
                 ),
@@ -131,7 +130,6 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                 SizedBox(
                   height: 20,
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -158,6 +156,15 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                   width: 150,
                   child: MaterialButton(
                     onPressed: () async {
+                      _form.currentState!.save();
+                      _form.currentState!.validate();
+
+                      final foodconsumptionProfileForm = formModel(
+                          foodconsumptiontiming: foodtiming.text.trim(),
+                          regularmealdescription:
+                              regulardescription.text.trim(),
+                          isbalanceddiet: checkBalnced,
+                          isorganic: checkOrganic);
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
@@ -173,22 +180,8 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                                 content:
                                     const Text('Addedd sucessfully in Draft'),
                               ));
-                      _form.currentState!.save();
-                      _form.currentState!.validate();
-                      FocusScope.of(context).unfocus();
 
-                      final foodconsumptionProfileForm = formModel(
-                          foodconsumptiontiming: foodtiming.text.trim(),
-                          regularmealdescription:
-                              regulardescription.text.trim(),
-                          isbalanceddiet: checkBalnced,
-                          isorganic: checkOrganic);
-
-                          var jsonData = foodconsumptionProfileForm.toJson();
-
-
-
-
+                      var jsonData = foodconsumptionProfileForm.toJson();
 
                       final response = ref
                           .read(formModelProvider.notifier)
@@ -209,5 +202,4 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
       ));
     });
   }
-
 }

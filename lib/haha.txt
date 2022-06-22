@@ -1,169 +1,9 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
-import 'package:papro/screens/dashBoard.dart';
-
-class Api {
-  static const String baseUrl =
-      "https://gist.githubusercontent.com/sagartmg2/b28cfaa74c5922cbadf38796e8305173/raw/856c2ac86219c0120b05adefb7d58c50308febe1/gistfile1.txt";
-
-  Future<List<DistrictModel>> getData() async {
-    final result = await http.get(Uri.parse(baseUrl));
-    final data = json.decode(result.body);
-    // log(data.toString());
-
-    final List districtData = data['data']['districts'];
-    final output = districtData
-        .map(
-          (e) => DistrictModel(
-            findex: e[0],
-            sindex: e[1],
-            englishName: e[Constant.englishName],
-            nepaliName: e[Constant.nepaliName],
-            totalCount: e[4],
-          ),
-        )
-        .toList();
-
-    return output;
-  }
-}
-
-
-.................................................................
-
-
-
-
-
-class FormModel {
-  final String name;
-  final String permanentDistrict;
-  FormModel({
-    required this.name,
-    required this.permanentDistrict,
-  });
-
-
-                            FutureBuilder<List<DistrictModel>>(
-                              future: Api().getData(),
-                              builder: (context, snap) {
-                                if (snap.hasData) {
-                                  final List<DistrictModel> data = snap.data!;
-                                  return DropdownButtonFormField<DistrictModel>(
-                                      menuMaxHeight: 400,
-                                      decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30),
-                                          ),
-                                          labelText: 'District',
-                                          prefixIcon: const Icon(
-                                            Icons.email,
-                                            color: Colors.orange,
-                                          ),
-                                          hintText: " District Name"),
-                                      items: [
-                                        ...data.map(
-                                          (e) => DropdownMenuItem(
-                                            value: e,
-                                            child: Text(e.nepaliName),
-                                          ),
-                                        )
-                                      ],
-                                      onChanged: (value) {
-                                        permDist.text = value!.nepaliName;
-                                      });
-                                } else {
-                                  return const LinearProgressIndicator();
-                                }
-                              },
-                            ),
-
-
-
-                  FutureBuilder<List<Business>>(
-                                future: ApiService().getUser(),
-                                builder: (context, snap) {
-                                  if (snap.hasData) {
-                                    final List<Business> data = snap.data!;
-                                    return DropdownButtonFormField<Business>(
-                                        menuMaxHeight: 400,
-                                        decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                            ),
-                                            labelText: 'Business Type',
-                                            prefixIcon: const Icon(
-                                              Icons.email,
-                                              color: Colors.orange,
-                                            ),
-                                            hintText: "Business Type"),
-                                        items: [
-                                          ...data.map(
-                                            (e) => DropdownMenuItem(
-                                              value: e,
-                                              child: Text(e.businessNepaliname),
-                                            ),
-                                          )
-                                        ],
-                                        onChanged: (value) {
-                                          businesstypeid.text =
-                                              '${value!.indexbusiness}';
-                                        });
-                                  } else {
-                                    return const LinearProgressIndicator();
-                                  }
-                                },
-                              )
-
-
-
-
-                               FutureBuilder<List<Gender>>(
-                            future: ApiGender().getData(),
-                            builder: (context, snap) {
-                              if (snap.hasData) {
-                                final List<Gender> data = snap.data!;
-                                return DropdownButtonFormField<Gender>(
-                                    menuMaxHeight: 400,
-                                    decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                        ),
-                                        labelText: 'Gender',
-                                        prefixIcon: const Icon(
-                                          Icons.email,
-                                          color: Colors.orange,
-                                        ),
-                                        hintText: " Gender "),
-                                    items: [
-                                      ...data.map(
-                                        (e) => DropdownMenuItem(
-                                          value: e,
-                                          child: Text(e.nepalNamegender),
-                                        ),
-                                      )
-                                    ],
-                                    onChanged: (value) {
-                                      genderPersonal.text =
-                                          value!.nepalNamegender;
-                                    });
-                              } else {
-                                return const LinearProgressIndicator();
-                              }
-                            },
-                          ),
-
-
-
-                            FutureBuilder<List<BloodGroup>>(
+ FutureBuilder<List<BloodGroup>>(
                             future: Apiblood().getData(),
                             builder: (context, snap) {
                               if (snap.hasData) {
                                 final List<BloodGroup> data = snap.data!;
+
                                 return DropdownButtonFormField<BloodGroup>(
                                     menuMaxHeight: 400,
                                     decoration: InputDecoration(
@@ -171,12 +11,12 @@ class FormModel {
                                           borderRadius:
                                               BorderRadius.circular(30),
                                         ),
-                                        labelText: ' Select Blood Group',
+                                        labelText: 'Blood Group',
                                         prefixIcon: const Icon(
                                           Icons.email,
                                           color: Colors.orange,
                                         ),
-                                        hintText: " Select Blood Group "),
+                                        hintText: " Blood Group "),
                                     items: [
                                       ...data.map(
                                         (e) => DropdownMenuItem(
@@ -186,7 +26,10 @@ class FormModel {
                                       )
                                     ],
                                     onChanged: (value) {
-                                      genderPersonal.text = '${value!.bloodid}';
+                                      bloodgroupPersonal.text =
+                                          '${value?.bloodname}';
+
+                                      print(bloodgroupPersonal.text);
                                     });
                               } else {
                                 return const LinearProgressIndicator();

@@ -204,7 +204,16 @@ class _workingformState extends State<workingform> {
                                   onPressed: () async {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
-                                    FocusScope.of(context).unfocus();
+
+                                    final workingForm = formModel(
+                                        jobtype: jobtype.text.trim(),
+                                        joborganization:
+                                            joborganization.text.trim(),
+                                        organizationaddress:
+                                            organizationaddress.text.trim(),
+                                        designation: designation.text.trim(),
+                                        annualincome: double.parse(
+                                            annualincome.text.trim()));
                                     showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
@@ -222,15 +231,6 @@ class _workingformState extends State<workingform> {
                                               content: const Text(
                                                   'Addedd sucessfully in Draft'),
                                             ));
-                                    final workingForm = formModel(
-                                        jobtype: jobtype.text.trim(),
-                                        joborganization:
-                                            joborganization.text.trim(),
-                                        organizationaddress:
-                                            organizationaddress.text.trim(),
-                                        designation: designation.text.trim(),
-                                        annualincome: double.parse(
-                                            annualincome.text.trim()));
 
                                     var jsonData = workingForm.toJson();
 

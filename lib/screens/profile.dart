@@ -140,7 +140,7 @@ class _myProfileState extends State<myProfile> {
                   cardmethod(
                     title: 'Investment',
                     image:
-                        'https://puassets.s3.amazonaws.com/wp-content/uploads/2015/11/increase-rate-house-property-investment-growth-success-interest-cost.jpg',
+                        'https://th.bing.com/th/id/R.cfb2c3cfccba783c5994f615b6888e83?rik=pqEUVKdEzoquWg&pid=ImgRaw&r=0&sres=1&sresct=1',
                   ),
                   cardmethod(
                       title: 'Savings',
@@ -157,7 +157,7 @@ class _myProfileState extends State<myProfile> {
                   cardmethod(
                     title: 'Investment',
                     image:
-                        'https://puassets.s3.amazonaws.com/wp-content/uploads/2015/11/increase-rate-house-property-investment-growth-success-interest-cost.jpg',
+                        'https://th.bing.com/th/id/R.cfb2c3cfccba783c5994f615b6888e83?rik=pqEUVKdEzoquWg&pid=ImgRaw&r=0&sres=1&sresct=1',
                   ),
                 ]),
           )),

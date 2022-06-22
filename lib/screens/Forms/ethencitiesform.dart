@@ -205,6 +205,15 @@ class ethencitiesform extends StatelessWidget {
                                 width: 150,
                                 child: MaterialButton(
                                   onPressed: () async {
+                                    _form.currentState!.save();
+                                    _form.currentState!.validate();
+                                    final ethencitiesForm = formModel(
+                                      nationalismandreligion:
+                                          natrel.text.trim(),
+                                      nationality: nationality.text.trim(),
+                                      religion: religion.text.trim(),
+                                      ethnicgroup: ethnicgroup.text.trim(),
+                                    );
                                     showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
@@ -222,16 +231,6 @@ class ethencitiesform extends StatelessWidget {
                                               content: const Text(
                                                   'Addedd sucessfully in Draft'),
                                             ));
-                                    _form.currentState!.save();
-                                    _form.currentState!.validate();
-                                    FocusScope.of(context).unfocus();
-                                    final ethencitiesForm = formModel(
-                                      nationalismandreligion:
-                                          natrel.text.trim(),
-                                      nationality: nationality.text.trim(),
-                                      religion: religion.text.trim(),
-                                      ethnicgroup: ethnicgroup.text.trim(),
-                                    );
 
                                     var jsonData = ethencitiesForm.toJson();
 

@@ -244,7 +244,17 @@ class schoolprofile extends StatelessWidget {
                                   onPressed: () async {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
-                                    showDialog(
+
+                                    final schoolprofileForm = formModel(
+                                      schoolname: schoolname.text.trim(),
+                                      schooltypeid: schooltypeid.text.trim(),
+                                      dresscode: dresscode.text.trim(),
+                                      dresscondition:
+                                          dresscondition.text.trim(),
+                                      childenschoolschemeid:
+                                          childrenschemaid.text.trim(),
+                                    );
+                                      showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
                                               actions: [
@@ -261,16 +271,7 @@ class schoolprofile extends StatelessWidget {
                                               content: const Text(
                                                   'Addedd sucessfully in Draft'),
                                             ));
-                                    FocusScope.of(context).unfocus();
-                                    final schoolprofileForm = formModel(
-                                      schoolname: schoolname.text.trim(),
-                                      schooltypeid: schooltypeid.text.trim(),
-                                      dresscode: dresscode.text.trim(),
-                                      dresscondition:
-                                          dresscondition.text.trim(),
-                                      childenschoolschemeid:
-                                          childrenschemaid.text.trim(),
-                                    );
+
                                     var jsonData = schoolprofileForm.toJson();
 
                                     final response = ref

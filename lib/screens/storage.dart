@@ -22,7 +22,7 @@ class storage extends StatelessWidget {
               // final formdetails = _boxx.values.toList();
               return ListView(
                 children: [
-                  Center(
+                  const Center(
                     child: Text(
                       'Personal Form',
                       style: TextStyle(
@@ -34,39 +34,39 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
-                      //     title: 'Full Name',
-                      //     details: formdetails[0].firstname),
-                      //        FormCallMethod(formdetails,
-                      //     title: 'Middle Name',
-                      //     details: formdetails[0].middlename!),
-                      //        FormCallMethod(formdetails,
-                      //     title: 'Last Name',
-                      //     details: formdetails[0].lastname),
-                      // FormCallMethod(formdetails,
-                      //     title: 'Gender', details: formdetails[0].gender!),
-                      // FormCallMethod(formdetails,
-                      //     title: 'Date of Birth',
-                      //     details: formdetails[0].dateofbirthpersonal!),
+                      FormCallMethod(formdetails,
+                          title: 'Full Name',
+                          details: formdetails[0].firstname!),
+                      FormCallMethod(formdetails,
+                          title: 'Middle Name',
+                          details: formdetails[0].middlename!),
+                      FormCallMethod(formdetails,
+                          title: 'Last Name',
+                          details: formdetails[0].lastname!),
+                      FormCallMethod(formdetails,
+                          title: 'Gender', details: formdetails[0].gender!),
+                      FormCallMethod(formdetails,
+                          title: 'Date of Birth',
+                          details: formdetails[0].dateofbirthpersonal!),
                       FormCallMethod(formdetails,
                           title: 'Blood Group',
                           details: formdetails[0].bloodgroup!),
-                      // FormCallMethod(formdetails,
-                      //     title: 'Email', details: formdetails[0].email!),
-                      // FormCallMethod(formdetails,
-                      //     title: 'Age', details: '${formdetails[0].age!}'),
-                      // FormCallMethod(formdetails,
-                      //     title: 'Handicapped Type Id',
-                      //     details: '${formdetails[0].handicappedidpersonal!}'),
-                      // FormCallMethod(formdetails,
-                      //     title: 'Mobile Number',
-                      //     details: '${formdetails[0].mobilenumber!}'),
-                      // FormCallMethod(formdetails,
-                      //     title: 'Pan Number',
-                      //     details: formdetails[0].pannumber!),
+                      FormCallMethod(formdetails,
+                          title: 'Email', details: formdetails[0].email!),
+                      FormCallMethod(formdetails,
+                          title: 'Age', details: '${formdetails[0].age!}'),
+                      FormCallMethod(formdetails,
+                          title: 'Handicapped Type Id',
+                          details: formdetails[0].handicappedidpersonal!),
+                      FormCallMethod(formdetails,
+                          title: 'Mobile Number',
+                          details: '${formdetails[0].mobilenumber!}'),
+                      FormCallMethod(formdetails,
+                          title: 'Pan Number',
+                          details: formdetails[0].pannumber!),
                     ]),
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Address Form',
                       style: TextStyle(

@@ -214,7 +214,19 @@ class _expensesprofileformState extends State<expensesprofileform> {
                                   onPressed: () async {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
-                                    FocusScope.of(context).unfocus();
+
+                                    final expensesForm = formModel(
+                                      totalmonthlyincome: int.parse(
+                                        totalmonthincome.text.trim(),
+                                      ),
+                                      incomesource: incomesource.text.trim(),
+                                      incomesourceman:
+                                          incomesourcemain.text.trim(),
+                                      expensecategory:
+                                          expensecategory.text.trim(),
+                                      totalexpense: double.parse(
+                                          totalexpense.text.trim()),
+                                    );
                                     showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
@@ -232,18 +244,6 @@ class _expensesprofileformState extends State<expensesprofileform> {
                                               content: const Text(
                                                   'Addedd sucessfully in Draft'),
                                             ));
-                                    final expensesForm = formModel(
-                                      totalmonthlyincome: int.parse(
-                                        totalmonthincome.text.trim(),
-                                      ),
-                                      incomesource: incomesource.text.trim(),
-                                      incomesourceman:
-                                          incomesourcemain.text.trim(),
-                                      expensecategory:
-                                          expensecategory.text.trim(),
-                                      totalexpense: double.parse(
-                                          totalexpense.text.trim()),
-                                    );
                                     var jsonData = expensesForm.toJson();
 
                                     final response = ref

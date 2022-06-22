@@ -139,6 +139,13 @@ class _appearenceProfileState extends State<appearenceProfile> {
                   width: 150,
                   child: MaterialButton(
                     onPressed: () async {
+                      _form.currentState!.save();
+                      _form.currentState!.validate();
+                      final appearenceprofileForm = formModel(
+                        skincolor: skincolor.text.trim(),
+                        handicappedtypeid: handicapedid.text.trim(),
+                        ishandicap: isChecked,
+                      );
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
@@ -154,14 +161,6 @@ class _appearenceProfileState extends State<appearenceProfile> {
                                 content:
                                     const Text('Addedd sucessfully in Draft'),
                               ));
-                      _form.currentState!.save();
-                      _form.currentState!.validate();
-                      FocusScope.of(context).unfocus();
-                      final appearenceprofileForm = formModel(
-                        skincolor: skincolor.text.trim(),
-                        handicappedtypeid: handicapedid.text.trim(),
-                        ishandicap: isChecked,
-                      );
                       var jsonData = appearenceprofileForm.toJson();
 
                       final response = ref

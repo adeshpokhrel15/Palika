@@ -206,7 +206,16 @@ class _houseformState extends State<houseform> {
                                   onPressed: () async {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
-                                    FocusScope.of(context).unfocus();
+
+                                    final houseForm = formModel(
+                                      Houseaddress: houseaddress.text.trim(),
+                                      Blocknumber:
+                                          int.parse(blocknumber.text.trim()),
+                                      Streetname: streetname.text,
+                                      Housenumber:
+                                          int.parse(housenumber.text.trim()),
+                                      toilettypeid: toiletypeid.text.trim(),
+                                    );
                                     showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
@@ -224,15 +233,6 @@ class _houseformState extends State<houseform> {
                                               content: const Text(
                                                   'Addedd sucessfully in Draft'),
                                             ));
-                                    final houseForm = formModel(
-                                      Houseaddress: houseaddress.text.trim(),
-                                      Blocknumber:
-                                          int.parse(blocknumber.text.trim()),
-                                      Streetname: streetname.text,
-                                      Housenumber:
-                                          int.parse(housenumber.text.trim()),
-                                      toilettypeid: toiletypeid.text.trim(),
-                                    );
 
                                     var jsonData = houseForm.toJson();
 

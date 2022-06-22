@@ -165,6 +165,15 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
                   width: 80,
                   child: MaterialButton(
                     onPressed: () async {
+                      _form.currentState!.save();
+                      _form.currentState!.validate();
+
+                      final extraForm = formModel(
+                        interestedfieldid: interestedfield.text.trim(),
+                        professionalstatus: professionalstatus.text.trim(),
+                        durationofactivities: durationofactivities.text.trim(),
+                        istakingtraining: checktraining,
+                      );
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
@@ -180,15 +189,6 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
                                 content:
                                     const Text('Addedd sucessfully in Draft'),
                               ));
-                      _form.currentState!.save();
-                      _form.currentState!.validate();
-                      FocusScope.of(context).unfocus();
-                      final extraForm = formModel(
-                        interestedfieldid: interestedfield.text.trim(),
-                        professionalstatus: professionalstatus.text.trim(),
-                        durationofactivities: durationofactivities.text.trim(),
-                        istakingtraining: checktraining,
-                      );
                       var jsonData = extraForm.toJson();
 
                       final response = ref

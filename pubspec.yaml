@@ -36,7 +36,7 @@ dependencies:
   bottom_navy_bar: ^6.0.0
   get: ^4.6.5
   fl_chart: ^0.50.6
-  charts_flutter: ^0.12.0
+  #charts_flutter: ^0.12.0
   pie_chart: ^5.3.1
   google_nav_bar: ^5.0.6
   flutter_cupertino_datetime_picker: ^3.0.0

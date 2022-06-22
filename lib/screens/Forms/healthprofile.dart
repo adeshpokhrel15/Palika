@@ -77,6 +77,7 @@ class _healthProfileFormState extends State<healthProfileForm> {
                   builder: (context, snap) {
                     if (snap.hasData) {
                       final List<BloodGroup> data = snap.data!;
+
                       return DropdownButtonFormField<BloodGroup>(
                           menuMaxHeight: 400,
                           decoration: InputDecoration(
@@ -90,21 +91,16 @@ class _healthProfileFormState extends State<healthProfileForm> {
                               ),
                               hintText: " Blood Group "),
                           items: [
-                            // ...data.map(
-                            //   (e) => DropdownMenuItem(
-                            //     value: e,
-                            //     child: Text(e.bloodname),
-                            //   ),
-                            // )
-
-                            for (var i = 0; i < data.length; i++)
-                              DropdownMenuItem(
-                                value: data[i],
-                                child: Text(data[i].bloodname),
+                            ...data.map(
+                              (e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e.bloodname),
                               ),
+                            )
                           ],
                           onChanged: (value) {
-                            bloodgroupHealth.text = '${value!.bloodid}';
+                            bloodgroupHealth.text = '${value!.bloodname}';
+                            print(bloodgroupHealth.text);
                           });
                     } else {
                       return const LinearProgressIndicator();

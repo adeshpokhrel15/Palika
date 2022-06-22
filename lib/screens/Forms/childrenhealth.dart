@@ -460,24 +460,9 @@ class _childrenhealthProfileState extends State<childrenhealthProfile> {
                   width: 150,
                   child: MaterialButton(
                     onPressed: () async {
-                      showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                actions: [
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text('OK'))
-                                ],
-                                title: const Text('Success'),
-                                contentPadding: const EdgeInsets.all(20.0),
-                                content:
-                                    const Text('Addedd sucessfully in Draft'),
-                              ));
                       _form.currentState!.save();
                       _form.currentState!.validate();
-                      FocusScope.of(context).unfocus();
+
                       final childrenHealth = formModel(
                         childrenbirthplace: birthplace.text.trim(),
                         chilrenbirthweight: int.parse(birthweight.text.trim()),
@@ -498,6 +483,21 @@ class _childrenhealthProfileState extends State<childrenhealthProfile> {
                         childrenisIPVvaccinated: _checkIPVVaccinated,
                         childrenbloodgroup: bloods[ind].trim(),
                       );
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('OK'))
+                                ],
+                                title: const Text('Success'),
+                                contentPadding: const EdgeInsets.all(20.0),
+                                content:
+                                    const Text('Addedd sucessfully in Draft'),
+                              ));
 
                       var jsonData = childrenHealth.toJson();
 

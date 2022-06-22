@@ -214,7 +214,14 @@ class _citizendetailsFormState extends State<citizendetailsForm> {
                                 onPressed: () async {
                                   _form.currentState!.save();
                                   _form.currentState!.validate();
-                                  FocusScope.of(context).unfocus();
+
+                                  final citizenshipForm = formModel(
+                                    citizenshipnumber:
+                                        citizenshipnumber.text.trim(),
+                                    issuedat: issuedat.text.trim(),
+                                    verifiedby: verifiedby.text.trim(),
+                                    issueddate: issueddate.text.trim(),
+                                  );
                                   showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
@@ -232,15 +239,7 @@ class _citizendetailsFormState extends State<citizendetailsForm> {
                                                 'Addedd sucessfully in Draft'),
                                           ));
 
-                                  final citizenshipForm = formModel(
-                                    citizenshipnumber:
-                                        citizenshipnumber.text.trim(),
-                                    issuedat: issuedat.text.trim(),
-                                    verifiedby: verifiedby.text.trim(),
-                                    issueddate: issueddate.text.trim(),
-                                  );
-
-                                var jsonData = citizenshipForm.toJson();
+                                  var jsonData = citizenshipForm.toJson();
 
                                   final response = ref
                                       .read(formModelProvider.notifier)

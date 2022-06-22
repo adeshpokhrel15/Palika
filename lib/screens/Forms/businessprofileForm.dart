@@ -303,24 +303,7 @@ class businessprofile extends StatelessWidget {
                                   onPressed: () async {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
-                                    FocusScope.of(context).unfocus();
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) => AlertDialog(
-                                              actions: [
-                                                TextButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: const Text('OK'))
-                                              ],
-                                              title: const Text('Success'),
-                                              contentPadding:
-                                                  const EdgeInsets.all(20.0),
-                                              content: const Text(
-                                                  'Addedd sucessfully in Draft'),
-                                            ));
+
                                     final businessprofileForm = formModel(
                                       businessorg: businessorg.text.trim(),
                                       businesstypeid:
@@ -340,6 +323,23 @@ class businessprofile extends StatelessWidget {
                                       businessproduct:
                                           businessproduct.text.trim(),
                                     );
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: const Text('OK'))
+                                              ],
+                                              title: const Text('Success'),
+                                              contentPadding:
+                                                  const EdgeInsets.all(20.0),
+                                              content: const Text(
+                                                  'Addedd sucessfully in Draft'),
+                                            ));
 
                                     var jsonData = businessprofileForm.toJson();
 

@@ -126,14 +126,27 @@ class _googlemapProfileState extends State<googlemapProfile> {
                     onPressed: () async {
                       _form.currentState!.save();
                       _form.currentState!.validate();
-                      FocusScope.of(context).unfocus();
+
                       final googleForm = formModel(
                         latitude: double.parse(latitude.text.trim()),
                         longitude: double.parse(longitude.text.trim()),
                       );
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('OK'))
+                                ],
+                                title: const Text('Success'),
+                                contentPadding: const EdgeInsets.all(20.0),
+                                content:
+                                    const Text('Addedd sucessfully in Draft'),
+                              ));
                       var jsonData = googleForm.toJson();
-
-
 
                       final response = ref
                           .read(formModelProvider.notifier)
