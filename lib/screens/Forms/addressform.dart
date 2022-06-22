@@ -19,69 +19,69 @@ class addressForm extends StatefulWidget {
 
 class _addressFormState extends State<addressForm> {
   final _form = GlobalKey<FormState>();
-  final tempProv = TextEditingController();
-  final tempDist = TextEditingController();
-  final tempMunci = TextEditingController();
-  final temoWard = TextEditingController();
+  final tempProvController = TextEditingController();
+  final tempDistController = TextEditingController();
+  final tempMunciController = TextEditingController();
+  final tempWardsController = TextEditingController();
   final tempTol = TextEditingController();
   final tempBno = TextEditingController();
   final permProv = TextEditingController();
   final permDist = TextEditingController();
-  final permMunci = TextEditingController();
-  final permWard = TextEditingController();
+  final permMunciController = TextEditingController();
+  final permWardsController = TextEditingController();
   final permTol = TextEditingController();
   final permBnoadd = TextEditingController();
 
   final tempward = TextEditingController();
   final permward = TextEditingController();
-  int ind = 0;
-  int index = 0;
+  // int ind = 0;
+  // int index = 0;
 
-  final tempwards = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-  ];
+  // final tempwards = [
+  //   1,
+  //   2,
+  //   3,
+  //   4,
+  //   5,
+  //   6,
+  //   7,
+  //   8,
+  //   9,
+  //   10,
+  //   11,
+  //   12,
+  //   13,
+  //   14,
+  //   15,
+  //   16,
+  //   17,
+  //   18,
+  //   19,
+  //   20,
+  // ];
 
-  final permwards = [
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-  ];
+  // final permwards = [
+  //   1,
+  //   2,
+  //   3,
+  //   4,
+  //   5,
+  //   6,
+  //   7,
+  //   8,
+  //   9,
+  //   10,
+  //   11,
+  //   12,
+  //   13,
+  //   14,
+  //   15,
+  //   16,
+  //   17,
+  //   18,
+  //   19,
+  //   20,
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +159,8 @@ class _addressFormState extends State<addressForm> {
                                           .toList()
                                     ],
                                     onChanged: (value) {
-                                      permProv.text = value!.nepaliName;
+                                      tempProvController.text =
+                                          value!.nepaliName;
                                     });
                               } else {
                                 return const LinearProgressIndicator();
@@ -196,7 +197,8 @@ class _addressFormState extends State<addressForm> {
                                       )
                                     ],
                                     onChanged: (value) {
-                                      permDist.text = value!.nepaliName;
+                                      tempDistController.text =
+                                          value!.nepaliName;
                                     });
                               } else {
                                 return const LinearProgressIndicator();
@@ -231,7 +233,8 @@ class _addressFormState extends State<addressForm> {
                                       )
                                     ],
                                     onChanged: (value) {
-                                      permMunci.text = value!.nepalNamelocal;
+                                      tempMunciController.text =
+                                          value!.nepalNamelocal;
                                     });
                               } else {
                                 return const LinearProgressIndicator();
@@ -261,336 +264,364 @@ class _addressFormState extends State<addressForm> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                children: [
-                                  const Text(
-                                    'Ward No.',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.blue),
-                                  ),
-                                  const SizedBox(
-                                    width: 40,
-                                  ),
-                                  InkWell(
-                                    child: const Icon(
-                                      Icons.add_circle,
-                                      size: 30,
-                                      color: Colors.blue,
-                                    ),
-                                    onTap: () {
-                                      showCupertinoModalPopup(
-                                          context: context,
-                                          builder: (context) =>
-                                              CupertinoActionSheet(
-                                                actions: [tempwardpicker()],
-                                                cancelButton:
-                                                    CupertinoActionSheetAction(
-                                                  child: Text('Done'),
-                                                  onPressed: () =>
-                                                      Navigator.pop(context),
-                                                ),
-                                              ));
-                                    },
-                                  ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.20,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 10,
-                                      ),
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '${tempwards[ind]}',
-                                        style: const TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.blue),
-                                        textAlign: TextAlign.end,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return 'Block No. is required ';
-                                  }
-                                  return null;
-                                },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: tempBno,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  labelText: 'Block No.',
-                                  prefixIcon: const Icon(
-                                    Icons.block,
-                                    color: Colors.blue,
-                                  ),
-                                  hintText: "Block No.",
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Ward No. is required ';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            controller: tempWardsController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
                                 ),
+                                labelText: 'Ward No.'),
+                          ),
+                          // Row(
+                          //   children: [
+                          //     const Text(
+                          //       'Ward No.',
+                          //       style: TextStyle(
+                          //           fontSize: 20,
+                          //           fontWeight: FontWeight.bold,
+                          //           color: Colors.blue),
+                          //     ),
+                          //     const SizedBox(
+                          //       width: 40,
+                          //     ),
+                          //     InkWell(
+                          //       child: const Icon(
+                          //         Icons.add_circle,
+                          //         size: 30,
+                          //         color: Colors.blue,
+                          //       ),
+                          //       onTap: () {
+                          //         showCupertinoModalPopup(
+                          //             context: context,
+                          //             builder: (context) =>
+                          //                 CupertinoActionSheet(
+                          //                   actions: [tempwardpicker()],
+                          //                   cancelButton:
+                          //                       CupertinoActionSheetAction(
+                          //                     child: Text('Done'),
+                          //                     onPressed: () =>
+                          //                         Navigator.pop(context),
+                          //                   ),
+                          //                 ));
+                          //       },
+                          //     ),
+                          //     const SizedBox(
+                          //       width: 20,
+                          //     ),
+                          //     Container(
+                          //       width: MediaQuery.of(context).size.width * 0.20,
+                          //       height: 40,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.white,
+                          //         border: Border.all(
+                          //           color: Colors.white,
+                          //           width: 10,
+                          //         ),
+                          //         borderRadius: BorderRadius.circular(20),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           '${tempwards[ind]}',
+                          //           style: const TextStyle(
+                          //               fontSize: 20,
+                          //               fontWeight: FontWeight.bold,
+                          //               color: Colors.blue),
+                          //           textAlign: TextAlign.end,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Block No. is required ';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            controller: tempBno,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
                               ),
-                              const SizedBox(
-                                height: 40,
+                              labelText: 'Block No.',
+                              prefixIcon: Icon(
+                                Icons.block,
+                                color: Colors.blue,
                               ),
-                              const Center(
-                                child: Text(
-                                  'Permanent Address',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              hintText: "Block No.",
+                            ),
+                          ),
+                          SizedBox(
+                            height: 40,
+                          ),
+                          const Center(
+                            child: Text(
+                              'Permanent Address',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          FutureBuilder<List<Provience>>(
+                            future: ApiService().getUser(),
+                            builder: (context, snap) {
+                              if (snap.hasData) {
+                                final List<Provience> data = snap.data!;
+                                return DropdownButtonFormField<Provience>(
+                                    menuMaxHeight: 400,
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        labelText: 'Provience',
+                                        prefixIcon: const Icon(
+                                          Icons.email,
+                                          color: Colors.orange,
+                                        ),
+                                        hintText: "Provience Name"),
+                                    items: [
+                                      ...data.map(
+                                        (e) => DropdownMenuItem(
+                                          value: e,
+                                          child: Text(e.nepaliName),
+                                        ),
+                                      )
+                                    ],
+                                    onChanged: (value) {
+                                      permProv.text = value!.nepaliName;
+                                    });
+                              } else {
+                                return const LinearProgressIndicator();
+                              }
+                            },
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          FutureBuilder<List<DistrictModel>>(
+                            future: Api().getData(),
+                            builder: (context, snap) {
+                              if (snap.hasData) {
+                                final List<DistrictModel> data = snap.data!;
+                                return DropdownButtonFormField<DistrictModel>(
+                                    menuMaxHeight: 400,
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        labelText: 'District',
+                                        prefixIcon: const Icon(
+                                          Icons.email,
+                                          color: Colors.orange,
+                                        ),
+                                        hintText: " District Name"),
+                                    items: [
+                                      ...data.map(
+                                        (e) => DropdownMenuItem(
+                                          value: e,
+                                          child: Text(e.nepaliName),
+                                        ),
+                                      )
+                                    ],
+                                    onChanged: (value) {
+                                      permDist.text = value!.nepaliName;
+                                    });
+                              } else {
+                                return const LinearProgressIndicator();
+                              }
+                            },
+                          ),
+                          SizedBox(height: 20),
+                          FutureBuilder<List<LocalBodies>>(
+                            future: ApilocalBody().getLocal(),
+                            builder: (context, snap) {
+                              if (snap.hasData) {
+                                final List<LocalBodies> data = snap.data!;
+                                return DropdownButtonFormField<LocalBodies>(
+                                    menuMaxHeight: 400,
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        labelText: 'Minicipality',
+                                        prefixIcon: const Icon(
+                                          Icons.email,
+                                          color: Colors.orange,
+                                        ),
+                                        hintText: " Minicipality Name"),
+                                    items: [
+                                      ...data.map(
+                                        (e) => DropdownMenuItem(
+                                          value: e,
+                                          child: Text(e.nepalNamelocal),
+                                        ),
+                                      )
+                                    ],
+                                    onChanged: (value) {
+                                      permMunciController.text =
+                                          value!.nepalNamelocal;
+                                    });
+                              } else {
+                                return const LinearProgressIndicator();
+                              }
+                            },
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Street/Tol is required ';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            controller: permTol,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
                                 ),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              FutureBuilder<List<Provience>>(
-                                future: ApiService().getUser(),
-                                builder: (context, snap) {
-                                  if (snap.hasData) {
-                                    final List<Provience> data = snap.data!;
-                                    return DropdownButtonFormField<Provience>(
-                                        menuMaxHeight: 400,
-                                        decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                            ),
-                                            labelText: 'Provience',
-                                            prefixIcon: const Icon(
-                                              Icons.email,
-                                              color: Colors.orange,
-                                            ),
-                                            hintText: "Provience Name"),
-                                        items: [
-                                          ...data.map(
-                                            (e) => DropdownMenuItem(
-                                              value: e,
-                                              child: Text(e.nepaliName),
-                                            ),
-                                          )
-                                        ],
-                                        onChanged: (value) {
-                                          tempProv.text = value!.nepaliName;
-                                        });
-                                  } else {
-                                    return const LinearProgressIndicator();
-                                  }
-                                },
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              FutureBuilder<List<DistrictModel>>(
-                                future: Api().getData(),
-                                builder: (context, snap) {
-                                  if (snap.hasData) {
-                                    final List<DistrictModel> data = snap.data!;
-                                    return DropdownButtonFormField<
-                                            DistrictModel>(
-                                        menuMaxHeight: 400,
-                                        decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                            ),
-                                            labelText: 'District',
-                                            prefixIcon: const Icon(
-                                              Icons.email,
-                                              color: Colors.orange,
-                                            ),
-                                            hintText: " District Name"),
-                                        items: [
-                                          ...data.map(
-                                            (e) => DropdownMenuItem(
-                                              value: e,
-                                              child: Text(e.nepaliName),
-                                            ),
-                                          )
-                                        ],
-                                        onChanged: (value) {
-                                          tempDist.text = value!.nepaliName;
-                                        });
-                                  } else {
-                                    return const LinearProgressIndicator();
-                                  }
-                                },
-                              ),
-                              SizedBox(height: 20),
-                              FutureBuilder<List<LocalBodies>>(
-                                future: ApilocalBody().getLocal(),
-                                builder: (context, snap) {
-                                  if (snap.hasData) {
-                                    final List<LocalBodies> data = snap.data!;
-                                    return DropdownButtonFormField<LocalBodies>(
-                                        menuMaxHeight: 400,
-                                        decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                            ),
-                                            labelText: 'Minicipality',
-                                            prefixIcon: const Icon(
-                                              Icons.email,
-                                              color: Colors.orange,
-                                            ),
-                                            hintText: " Minicipality Name"),
-                                        items: [
-                                          ...data.map(
-                                            (e) => DropdownMenuItem(
-                                              value: e,
-                                              child: Text(e.nepalNamelocal),
-                                            ),
-                                          )
-                                        ],
-                                        onChanged: (value) {
-                                          tempMunci.text =
-                                              value!.nepalNamelocal;
-                                        });
-                                  } else {
-                                    return const LinearProgressIndicator();
-                                  }
-                                },
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return 'Street/Tol is required ';
-                                  }
-                                  return null;
-                                },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: permTol,
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    labelText: 'Street/Tol name'),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Row(
-                                children: [
-                                  SizedBox(
-                                    width: 3,
-                                  ),
-                                  const Text(
-                                    'Ward No.',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.blue),
-                                  ),
-                                  SizedBox(
-                                    width: 40,
-                                  ),
-                                  InkWell(
-                                    child: Icon(
-                                      Icons.add_circle,
-                                      size: 30,
-                                      color: Colors.blue,
-                                    ),
-                                    onTap: () {
-                                      showCupertinoModalPopup(
-                                          context: context,
-                                          builder: (context) =>
-                                              CupertinoActionSheet(
-                                                actions: [permwardpicker()],
-                                                cancelButton:
-                                                    CupertinoActionSheetAction(
-                                                  child: Text('Done'),
-                                                  onPressed: () =>
-                                                      Navigator.pop(context),
-                                                ),
-                                              ));
-                                    },
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.20,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 10,
-                                      ),
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        '${permwards[index]}',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.blue),
-                                        textAlign: TextAlign.end,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
-                                    return 'Block No. is required ';
-                                  }
-                                  return null;
-                                },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: permBnoadd,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(30),
-                                  ),
-                                  labelText: 'Block No.',
-                                  prefixIcon: Icon(
-                                    Icons.block,
-                                    color: Colors.blue,
-                                  ),
-                                  hintText: "Block No.",
+                                labelText: 'Street/Tol name'),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Ward No. is required ';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            controller: permWardsController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
                                 ),
+                                labelText: 'Ward No.'),
+                          ),
+
+                          // Row(
+                          //   children: [
+                          //     SizedBox(
+                          //       width: 3,
+                          //     ),
+                          //     Text(
+                          //       'Ward No.',
+                          //       style: TextStyle(
+                          //           fontSize: 20,
+                          //           fontWeight: FontWeight.bold,
+                          //           color: Colors.blue),
+                          //     ),
+                          //     SizedBox(
+                          //       width: 40,
+                          //     ),
+                          //     InkWell(
+                          //       child: Icon(
+                          //         Icons.add_circle,
+                          //         size: 30,
+                          //         color: Colors.blue,
+                          //       ),
+                          //       onTap: () {
+                          //         showCupertinoModalPopup(
+                          //             context: context,
+                          //             builder: (context) =>
+                          //                 CupertinoActionSheet(
+                          //                   actions: [permwardpicker()],
+                          //                   cancelButton:
+                          //                       CupertinoActionSheetAction(
+                          //                     child: Text('Done'),
+                          //                     onPressed: () =>
+                          //                         Navigator.pop(context),
+                          //                   ),
+                          //                 ));
+                          //       },
+                          //     ),
+                          //     SizedBox(
+                          //       width: 20,
+                          //     ),
+                          //     Container(
+                          //       width: MediaQuery.of(context).size.width * 0.20,
+                          //       height: 40,
+                          //       decoration: BoxDecoration(
+                          //         color: Colors.white,
+                          //         border: Border.all(
+                          //           color: Colors.white,
+                          //           width: 10,
+                          //         ),
+                          //         borderRadius: BorderRadius.circular(20),
+                          //       ),
+                          //       child: Center(
+                          //         child: Text(
+                          //           '${permwards[index]}',
+                          //           style: TextStyle(
+                          //               fontSize: 20,
+                          //               fontWeight: FontWeight.bold,
+                          //               color: Colors.blue),
+                          //           textAlign: TextAlign.end,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+
+                          SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Block No. is required ';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            controller: permBnoadd,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
                               ),
-                              SizedBox(
-                                height: 40,
+                              labelText: 'Block No.',
+                              prefixIcon: Icon(
+                                Icons.block,
+                                color: Colors.blue,
                               ),
-                            ],
+                              hintText: "Block No.",
+                            ),
+                          ),
+                          SizedBox(
+                            height: 40,
                           ),
                           Container(
                             height: 50,
@@ -600,18 +631,21 @@ class _addressFormState extends State<addressForm> {
                                 _form.currentState!.save();
                                 _form.currentState!.validate();
                                 final addressForm = formModel(
-                                  tempProv: tempProv.text.trim(),
-                                  tempMuni: tempMunci.text.trim(),
-                                  tempdistrict: tempDist.text.trim(),
+                                  tempProv: tempProvController.text.trim(),
+                                  tempMuni: tempMunciController.text.trim(),
+                                  tempdistrict: tempDistController.text.trim(),
                                   tempstreettol: tempTol.text.trim(),
                                   tempblockno: int.parse(tempBno.text.trim()),
                                   permProv: permProv.text.trim(),
-                                  permMuni: permMunci.text.trim(),
+                                  permMuni: permMunciController.text.trim(),
                                   permdistrict: permDist.text.trim(),
                                   permstreettol: permTol.text.trim(),
                                   permblocknoaddress:
                                       int.parse(permBnoadd.text.trim()),
-                                  tempward: tempwards[ind],
+                                  tempward: int.parse(
+                                      tempWardsController.text.trim()),
+                                  permpward: int.parse(
+                                      permWardsController.text.trim()),
                                 );
                                 showDialog(
                                     context: context,
@@ -648,56 +682,56 @@ class _addressFormState extends State<addressForm> {
     });
   }
 
-  Widget tempwardpicker() => SizedBox(
-        height: 250,
-        child: Center(
-          child: CupertinoPicker(
-              looping: true,
-              itemExtent: 50,
-              onSelectedItemChanged: (ind) {
-                setState(() {
-                  this.ind = ind;
-                });
-                final blood = tempwards[ind];
-                print(blood);
-              },
-              children: tempwards.map((blood) {
-                return Center(
-                  child: Text(
-                    '${blood}',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                  ),
-                );
-              }).toList()),
-        ),
-      );
-  Widget permwardpicker() => SizedBox(
-        height: 250,
-        child: Center(
-          child: CupertinoPicker(
-              looping: true,
-              itemExtent: 50,
-              onSelectedItemChanged: (index) {
-                setState(() {
-                  this.index = index;
-                });
-                final perm = permwards[index];
-                print(perm);
-              },
-              children: permwards.map((perm) {
-                return Center(
-                  child: Text(
-                    '${perm}',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                  ),
-                );
-              }).toList()),
-        ),
-      );
+  // Widget tempwardpicker() => SizedBox(
+  //       height: 250,
+  //       child: Center(
+  //         child: CupertinoPicker(
+  //             looping: true,
+  //             itemExtent: 50,
+  //             onSelectedItemChanged: (ind) {
+  //               setState(() {
+  //                 this.ind = ind;
+  //               });
+  //               final blood = tempwards[ind];
+  //               print(blood);
+  //             },
+  //             children: tempwards.map((blood) {
+  //               return Center(
+  //                 child: Text(
+  //                   '${blood}',
+  //                   style: TextStyle(
+  //                       fontSize: 20,
+  //                       fontWeight: FontWeight.bold,
+  //                       color: Colors.blue),
+  //                 ),
+  //               );
+  //             }).toList()),
+  //       ),
+  //     );
+  // Widget permwardpicker() => SizedBox(
+  //       height: 250,
+  //       child: Center(
+  //         child: CupertinoPicker(
+  //             looping: true,
+  //             itemExtent: 50,
+  //             onSelectedItemChanged: (index) {
+  //               setState(() {
+  //                 this.index = index;
+  //               });
+  //               final perm = permwards[index];
+  //               print(perm);
+  //             },
+  //             children: permwards.map((perm) {
+  //               return Center(
+  //                 child: Text(
+  //                   '${perm}',
+  //                   style: TextStyle(
+  //                       fontSize: 20,
+  //                       fontWeight: FontWeight.bold,
+  //                       color: Colors.blue),
+  //                 ),
+  //               );
+  //             }).toList()),
+  //       ),
+  //     );
 }
