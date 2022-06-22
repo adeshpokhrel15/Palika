@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 import 'package:palika/models/bloodGroup.dart';
 import 'package:palika/models/formModel.dart';
+import 'package:palika/models/genders.dart';
 import 'package:palika/providers/bloodProvider.dart';
 import 'package:palika/providers/formProvider.dart';
+import 'package:palika/providers/genderProvider.dart';
+import 'package:palika/screens/Forms/schoolprofileForm.dart';
 
 class personalForm extends StatefulWidget {
   static const routeName = 'personal-form';
@@ -67,321 +71,322 @@ class _personalFormState extends State<personalForm> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          // TextFormField(
-                          //   autovalidateMode:
-                          //       AutovalidateMode.onUserInteraction,
-                          //   controller: firstname,
-                          //   textCapitalization: TextCapitalization.words,
-                          //   validator: (val) {
-                          //     if (val!.isEmpty) {
-                          //       return 'Firstname is required';
-                          //     }
-                          //     if (val.length > 30) {
-                          //       return 'maximum user length is 30';
-                          //     }
-                          //     return null;
-                          //   },
-                          //   decoration: InputDecoration(
-                          //     border: OutlineInputBorder(
-                          //       borderRadius: BorderRadius.circular(30),
-                          //     ),
-                          //     labelText: 'First Name',
-                          //     prefixIcon: const Icon(
-                          //       Icons.person,
-                          //       color: Colors.blue,
-                          //     ),
-                          //     hintText: 'Enter your First Name',
-                          //   ),
-                          // ),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
-                          // TextFormField(
-                          //   autovalidateMode:
-                          //       AutovalidateMode.onUserInteraction,
-                          //   controller: middlename,
-                          //   textCapitalization: TextCapitalization.words,
-                          //   decoration: InputDecoration(
-                          //     border: OutlineInputBorder(
-                          //       borderRadius: BorderRadius.circular(30),
-                          //     ),
-                          //     labelText: 'Middle Name',
-                          //     prefixIcon: const Icon(
-                          //       Icons.person,
-                          //       color: Colors.blue,
-                          //     ),
-                          //     hintText: 'Enter your middle Name',
-                          //   ),
-                          // ),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
-                          // TextFormField(
-                          //   autovalidateMode:
-                          //       AutovalidateMode.onUserInteraction,
-                          //   controller: lastname,
-                          //   textCapitalization: TextCapitalization.words,
-                          //   validator: (val) {
-                          //     if (val!.isEmpty) {
-                          //       return 'FLastname is required';
-                          //     }
-                          //     if (val.length > 30) {
-                          //       return 'maximum user length is 30';
-                          //     }
-                          //     return null;
-                          //   },
-                          //   decoration: InputDecoration(
-                          //     border: OutlineInputBorder(
-                          //       borderRadius: BorderRadius.circular(30),
-                          //     ),
-                          //     labelText: 'Last Name',
-                          //     prefixIcon: const Icon(
-                          //       Icons.person,
-                          //       color: Colors.blue,
-                          //     ),
-                          //     hintText: 'Enter your Last Name',
-                          //   ),
-                          // ),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
-                          // TextFormField(
-                          //   autovalidateMode:
-                          //       AutovalidateMode.onUserInteraction,
-                          //   validator: (val) {
-                          //     if (val!.isEmpty) {
-                          //       return 'email is required';
-                          //     }
-                          //     if (!RegExp(
-                          //             "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                          //         .hasMatch(val)) {
-                          //       return 'Please a valid Email';
-                          //     }
-                          //     return null;
-                          //   },
-                          //   keyboardType: TextInputType.emailAddress,
-                          //   controller: mailController,
-                          //   decoration: InputDecoration(
-                          //       border: OutlineInputBorder(
-                          //         borderRadius: BorderRadius.circular(30),
-                          //       ),
-                          //       labelText: 'Email',
-                          //       prefixIcon: const Icon(
-                          //         Icons.email,
-                          //         color: Colors.orange,
-                          //       ),
-                          //       hintText: "Test@gmail.com"),
-                          // ),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
-                          // FutureBuilder<List<Gender>>(
-                          //   future: ApiGender().getData(),
-                          //   builder: (context, snap) {
-                          //     if (snap.hasData) {
-                          //       final List<Gender> data = snap.data!;
-                          //       return DropdownButtonFormField<Gender>(
-                          //           menuMaxHeight: 400,
-                          //           decoration: InputDecoration(
-                          //               border: OutlineInputBorder(
-                          //                 borderRadius:
-                          //                     BorderRadius.circular(30),
-                          //               ),
-                          //               labelText: 'Gender',
-                          //               prefixIcon: const Icon(
-                          //                 Icons.email,
-                          //                 color: Colors.orange,
-                          //               ),
-                          //               hintText: " Gender "),
-                          //           items: [
-                          //             ...data.map(
-                          //               (e) => DropdownMenuItem(
-                          //                 value: e,
-                          //                 child: Text(e.nepalNamegender),
-                          //               ),
-                          //             )
-                          //           ],
-                          //           onChanged: (value) {
-                          //             genderPersonal.text =
-                          //                 value!.nepalNamegender;
-                          //           });
-                          //     } else {
-                          //       return const LinearProgressIndicator();
-                          //     }
-                          //   },
-                          // ),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
-                          // Row(
-                          //   children: [
-                          //     const Text(
-                          //       'Date of Birth',
-                          //       style: TextStyle(
-                          //           fontSize: 20,
-                          //           fontWeight: FontWeight.bold,
-                          //           color: Colors.blue),
-                          //     ),
-                          //     const SizedBox(
-                          //       width: 43,
-                          //     ),
-                          //     InkWell(
-                          //       child: const Icon(
-                          //         Icons.add_circle,
-                          //         size: 30,
-                          //         color: Colors.blue,
-                          //       ),
-                          //       onTap: () {
-                          //         picker.showCupertinoDatePicker(
-                          //           context: context,
-                          //           initialDate: NepaliDateTime.now(),
-                          //           firstDate: NepaliDateTime(2000),
-                          //           lastDate: NepaliDateTime(2090),
-                          //           language: Language.english,
-                          //           dateOrder: picker.DateOrder.mdy,
-                          //           onDateChanged: (newDate) {
-                          //             setState(() {
-                          //               dobController.text =
-                          //                   newDate.toIso8601String();
-                          //             });
-                          //             dobController.text =
-                          //                 newDate.toIso8601String();
-                          //           },
-                          //         );
-                          //       },
-                          //     ),
-                          //     const SizedBox(
-                          //       width: 20,
-                          //     ),
-                          //     Container(
-                          //       width: MediaQuery.of(context).size.width * 0.35,
-                          //       height: 40,
-                          //       decoration: BoxDecoration(
-                          //         color: Colors.white,
-                          //         border: Border.all(
-                          //           color: Colors.white,
-                          //           width: 10,
-                          //         ),
-                          //         borderRadius: BorderRadius.circular(20),
-                          //       ),
-                          //       child: Center(
-                          //         child: Text(
-                          //           dobController.text,
-                          //           style: const TextStyle(
-                          //               fontSize: 20,
-                          //               fontWeight: FontWeight.bold,
-                          //               color: Colors.blue),
-                          //           textAlign: TextAlign.end,
-                          //         ),
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
-                          // TextFormField(
-                          //   autovalidateMode:
-                          //       AutovalidateMode.onUserInteraction,
-                          //   validator: (val) {
-                          //     if (val!.isEmpty) {
-                          //       return 'Please enter Age ';
-                          //     }
-                          //     return null;
-                          //   },
-                          //   keyboardType: TextInputType.phone,
-                          //   controller: ageController,
-                          //   decoration: InputDecoration(
-                          //     border: OutlineInputBorder(
-                          //       borderRadius: BorderRadius.circular(30),
-                          //     ),
-                          //     labelText: 'Age',
-                          //     prefixIcon: const Icon(
-                          //       Icons.calendar_today,
-                          //       color: Colors.lightBlue,
-                          //     ),
-                          //     hintText: "Enter your Age",
-                          //   ),
-                          // ),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
-                          // TextFormField(
-                          //   autovalidateMode:
-                          //       AutovalidateMode.onUserInteraction,
-                          //   validator: (val) {
-                          //     if (val!.isEmpty) {
-                          //       return 'Please enter handicapped id ';
-                          //     }
-                          //     return null;
-                          //   },
-                          //   keyboardType: TextInputType.emailAddress,
-                          //   controller: htiController,
-                          //   decoration: InputDecoration(
-                          //       border: OutlineInputBorder(
-                          //         borderRadius: BorderRadius.circular(30),
-                          //       ),
-                          //       labelText: 'Handicapped Type Id'),
-                          // ),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
-                          // TextFormField(
-                          //   autovalidateMode:
-                          //       AutovalidateMode.onUserInteraction,
-                          //   validator: (val) {
-                          //     if (val!.isEmpty) {
-                          //       return 'Please enter phone no ';
-                          //     }
-                          //     return null;
-                          //   },
-                          //   keyboardType: TextInputType.emailAddress,
-                          //   controller: mobileController,
-                          //   decoration: InputDecoration(
-                          //     border: OutlineInputBorder(
-                          //       borderRadius: BorderRadius.circular(30),
-                          //     ),
-                          //     labelText: 'Mobile Number',
-                          //     prefixIcon: const Icon(
-                          //       Icons.call,
-                          //       color: Colors.black,
-                          //     ),
-                          //   ),
-                          // ),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
-                          // TextFormField(
-                          //   autovalidateMode:
-                          //       AutovalidateMode.onUserInteraction,
-                          //   validator: (val) {
-                          //     if (val!.isEmpty) {
-                          //       return 'Please enter pan number ';
-                          //     }
-                          //     return null;
-                          //   },
-                          //   keyboardType: TextInputType.emailAddress,
-                          //   controller: panController,
-                          //   decoration: InputDecoration(
-                          //     border: OutlineInputBorder(
-                          //       borderRadius: BorderRadius.circular(30),
-                          //     ),
-                          //     labelText: 'Pan Number',
-                          //     prefixIcon: const Icon(
-                          //       Icons.pin,
-                          //       color: Colors.blue,
-                          //     ),
-                          //     hintText: "Enter your Pan Number",
-                          //   ),
-                          // ),
-                          // const SizedBox(
-                          //   height: 20,
-                          // ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            controller: firstname,
+                            textCapitalization: TextCapitalization.words,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Firstname is required';
+                              }
+                              if (val.length > 30) {
+                                return 'maximum user length is 30';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: 'First Name',
+                              prefixIcon: const Icon(
+                                Icons.person,
+                                color: Colors.blue,
+                              ),
+                              hintText: 'Enter your First Name',
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            controller: middlename,
+                            textCapitalization: TextCapitalization.words,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: 'Middle Name',
+                              prefixIcon: const Icon(
+                                Icons.person,
+                                color: Colors.blue,
+                              ),
+                              hintText: 'Enter your middle Name',
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            controller: lastname,
+                            textCapitalization: TextCapitalization.words,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'FLastname is required';
+                              }
+                              if (val.length > 30) {
+                                return 'maximum user length is 30';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: 'Last Name',
+                              prefixIcon: const Icon(
+                                Icons.person,
+                                color: Colors.blue,
+                              ),
+                              hintText: 'Enter your Last Name',
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'email is required';
+                              }
+                              if (!RegExp(
+                                      "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                                  .hasMatch(val)) {
+                                return 'Please a valid Email';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            controller: mailController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                labelText: 'Email',
+                                prefixIcon: const Icon(
+                                  Icons.email,
+                                  color: Colors.orange,
+                                ),
+                                hintText: "Test@gmail.com"),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          FutureBuilder<List<Gender>>(
+                            future: ApiGender().getData(),
+                            builder: (context, snap) {
+                              if (snap.hasData) {
+                                final List<Gender> data = snap.data!;
+                                return DropdownButtonFormField<Gender>(
+                                    menuMaxHeight: 400,
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30),
+                                        ),
+                                        labelText: 'Gender',
+                                        prefixIcon: const Icon(
+                                          Icons.email,
+                                          color: Colors.orange,
+                                        ),
+                                        hintText: " Gender "),
+                                    items: [
+                                      ...data.map(
+                                        (e) => DropdownMenuItem(
+                                          value: e,
+                                          child: Text(e.nepalNamegender),
+                                        ),
+                                      )
+                                    ],
+                                    onChanged: (value) {
+                                      genderPersonal.text =
+                                          value!.nepalNamegender;
+                                    });
+                              } else {
+                                return const LinearProgressIndicator();
+                              }
+                            },
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            children: [
+                              const Text(
+                                'Date of Birth',
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue),
+                              ),
+                              const SizedBox(
+                                width: 43,
+                              ),
+                              InkWell(
+                                child: const Icon(
+                                  Icons.add_circle,
+                                  size: 30,
+                                  color: Colors.blue,
+                                ),
+                                onTap: () {
+                                  // picker.showCupertinoDatePicker(
+                                  //   context: context,
+                                  //   initialDate: NepaliDateTime.now(),
+                                  //   firstDate: NepaliDateTime(2000),
+                                  //   lastDate: NepaliDateTime(2090),
+                                  //   language: Language.english,
+                                  //   dateOrder: picker.DateOrder.mdy,
+                                  //   onDateChanged: (newDate) {
+                                  //     setState(() {
+                                  //       dobController.text =
+                                  //           newDate.toIso8601String();
+                                  //     });
+                                  //     dobController.text =
+                                  //         newDate.toIso8601String();
+                                  //   },
+                                  // );
+                                },
+                              ),
+                              const SizedBox(
+                                width: 20,
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.35,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  border: Border.all(
+                                    color: Colors.white,
+                                    width: 10,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    dobController.text,
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.blue),
+                                    textAlign: TextAlign.end,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Please enter Age ';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.phone,
+                            controller: ageController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: 'Age',
+                              prefixIcon: const Icon(
+                                Icons.calendar_today,
+                                color: Colors.lightBlue,
+                              ),
+                              hintText: "Enter your Age",
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Please enter handicapped id ';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            controller: htiController,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                labelText: 'Handicapped Type Id'),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Please enter phone no ';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            controller: mobileController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: 'Mobile Number',
+                              prefixIcon: const Icon(
+                                Icons.call,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          TextFormField(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Please enter pan number ';
+                              }
+                              return null;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            controller: panController,
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: 'Pan Number',
+                              prefixIcon: const Icon(
+                                Icons.pin,
+                                color: Colors.blue,
+                              ),
+                              hintText: "Enter your Pan Number",
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           FutureBuilder<List<BloodGroup>>(
                             future: Apiblood().getData(),
                             builder: (context, snap) {
                               if (snap.hasData) {
                                 final List<BloodGroup> data = snap.data!;
+
                                 return DropdownButtonFormField<BloodGroup>(
                                     menuMaxHeight: 400,
                                     decoration: InputDecoration(
@@ -405,7 +410,7 @@ class _personalFormState extends State<personalForm> {
                                     ],
                                     onChanged: (value) {
                                       bloodgroupPersonal.text =
-                                          '${value!.bloodid}';
+                                          '${value!.bloodname}';
                                       print(bloodgroupPersonal.text);
                                     });
                               } else {
@@ -420,41 +425,25 @@ class _personalFormState extends State<personalForm> {
                             height: 50,
                             width: 150,
                             child: MaterialButton(
-                              onPressed: () async {
+                              onPressed: () {
                                 _form.currentState!.save();
                                 _form.currentState!.validate();
 
-                                FocusScope.of(context).unfocus();
-                                showDialog(
-                                    context: context,
-                                    builder: (context) => AlertDialog(
-                                          actions: [
-                                            TextButton(
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                                child: const Text('OK'))
-                                          ],
-                                          title: const Text('Success'),
-                                          contentPadding:
-                                              const EdgeInsets.all(20.0),
-                                          content: const Text(
-                                              'Addedd sucessfully in Draft'),
-                                        ));
+                                //FocusScope.of(context).unfocus();
 
                                 final personalForm = formModel(
-                                  // firstname: firstname.text.trim(),
-                                  // lastname: lastname.text.trim(),
-                                  // middlename: middlename.text.trim(),
-                                  // email: mailController.text.trim(),
-                                  // pannumber: panController.text.trim(),
-                                  // mobilenumber:
-                                  //     int.parse(mobileController.text.trim()),
-                                  // age: int.parse(ageController.text.trim()),
-                                  // handicappedidpersonal:
-                                  //     htiController.text.trim(),
-                                  //                                 gender: genderPersonal.text.trim(),
-                                  bloodgroup: bloodgroupPersonal.text.trim(),
+                                  firstname: firstname.text.trim(),
+                                  lastname: lastname.text.trim(),
+                                  middlename: middlename.text.trim(),
+                                  email: mailController.text.trim(),
+                                  pannumber: panController.text.trim(),
+                                  mobilenumber:
+                                      int.parse(mobileController.text.trim()),
+                                  age: int.parse(ageController.text.trim()),
+                                  handicappedidpersonal:
+                                      htiController.text.trim(),
+                                  gender: genderPersonal.text.trim(),
+                                  bloodgroup: bloodgroupPersonal.text,
                                 );
 
                                 var jsonData = personalForm.toJson();

@@ -48,8 +48,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home:
             // abc(),
-            //MyHomePage(),
-            settingPage(),
+            MyHomePage(),
+        //settingPage(),
         routes: {
           personalForm.routeName: (context) => personalForm(),
           addressForm.routeName: (context) => addressForm(),
