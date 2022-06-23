@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/models/districts.dart';
-import 'package:palika/models/formModel.dart';
 import 'package:palika/models/localBodies.dart';
 import 'package:palika/models/provience.dart';
 import 'package:palika/providers/districtsProvider.dart';
@@ -630,23 +629,23 @@ class _addressFormState extends State<addressForm> {
                               onPressed: () async {
                                 _form.currentState!.save();
                                 _form.currentState!.validate();
-                                final addressForm = formModel(
-                                  tempProv: tempProvController.text.trim(),
-                                  tempMuni: tempMunciController.text.trim(),
-                                  tempdistrict: tempDistController.text.trim(),
-                                  tempstreettol: tempTol.text.trim(),
-                                  tempblockno: int.parse(tempBno.text.trim()),
-                                  permProv: permProv.text.trim(),
-                                  permMuni: permMunciController.text.trim(),
-                                  permdistrict: permDist.text.trim(),
-                                  permstreettol: permTol.text.trim(),
-                                  permblocknoaddress:
-                                      int.parse(permBnoadd.text.trim()),
-                                  tempward: int.parse(
-                                      tempWardsController.text.trim()),
-                                  permpward: int.parse(
-                                      permWardsController.text.trim()),
-                                );
+                                // final addressForm = formModel(
+                                //   tempProv: tempProvController.text.trim(),
+                                //   tempMuni: tempMunciController.text.trim(),
+                                //   tempdistrict: tempDistController.text.trim(),
+                                //   tempstreettol: tempTol.text.trim(),
+                                //   permProv: permProv.text.trim(),
+                                //   permMuni: permMunciController.text.trim(),
+                                //   permdistrict: permDist.text.trim(),
+                                //   permstreettol: permTol.text.trim(),
+                                //   tempblockno: int.parse(tempBno.text.trim()),
+                                //   permblocknoaddress:
+                                //       int.parse(permBnoadd.text.trim()),
+                                //   tempward: int.parse(
+                                //       tempWardsController.text.trim()),
+                                //   permpward: int.parse(
+                                //       permWardsController.text.trim()),
+                                // );
                                 showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
@@ -663,11 +662,11 @@ class _addressFormState extends State<addressForm> {
                                           content: const Text(
                                               'Addedd sucessfully in Draft'),
                                         ));
-                                var jsonData = addressForm.toJson();
+                                //      var jsonData = addressForm.toJson();
 
-                                final response = ref
-                                    .read(formModelProvider.notifier)
-                                    .addForm(addressForm);
+                                // final response = ref
+                                //     .read(formModelProvider.notifier)
+                                //     .addForm(addressForm);
                               },
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(22.0)),

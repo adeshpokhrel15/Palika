@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:palika/models/formModel.dart';
 import 'package:palika/models/jobTypes.dart';
 import 'package:palika/providers/formProvider.dart';
 import 'package:palika/providers/jobTypesProvider.dart';
@@ -17,13 +16,13 @@ class _workingformState extends State<workingform> {
 
   final jobtype = TextEditingController();
 
-  final joborganization = TextEditingController();
+  final joborganizationController = TextEditingController();
 
-  final organizationaddress = TextEditingController();
+  final organizationaddressController = TextEditingController();
 
-  final annualincome = TextEditingController();
+  final annualincomeController = TextEditingController();
 
-  final designation = TextEditingController();
+  final designationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +88,7 @@ class _workingformState extends State<workingform> {
                                         ],
                                         onChanged: (value) {
                                           jobtype.text =
-                                              '${value!.indexjobtype}';
+                                              value!.jobtypeNepaliname;
                                         });
                                   } else {
                                     return const LinearProgressIndicator();
@@ -110,7 +109,7 @@ class _workingformState extends State<workingform> {
                                   return null;
                                 },
                                 keyboardType: TextInputType.emailAddress,
-                                controller: joborganization,
+                                controller: joborganizationController,
                                 decoration: InputDecoration(
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(30),
@@ -135,7 +134,7 @@ class _workingformState extends State<workingform> {
                                   return null;
                                 },
                                 keyboardType: TextInputType.emailAddress,
-                                controller: organizationaddress,
+                                controller: organizationaddressController,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30),
@@ -161,7 +160,7 @@ class _workingformState extends State<workingform> {
                                   return null;
                                 },
                                 keyboardType: TextInputType.emailAddress,
-                                controller: annualincome,
+                                controller: annualincomeController,
                                 decoration: InputDecoration(
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(30),
@@ -181,7 +180,7 @@ class _workingformState extends State<workingform> {
                                   return null;
                                 },
                                 keyboardType: TextInputType.emailAddress,
-                                controller: designation,
+                                controller: designationController,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30),
@@ -205,38 +204,42 @@ class _workingformState extends State<workingform> {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
 
-                                    final workingForm = formModel(
-                                        jobtype: jobtype.text.trim(),
-                                        joborganization:
-                                            joborganization.text.trim(),
-                                        organizationaddress:
-                                            organizationaddress.text.trim(),
-                                        designation: designation.text.trim(),
-                                        annualincome: double.parse(
-                                            annualincome.text.trim()));
-                                    showDialog(
-                                        context: context,
-                                        builder: (context) => AlertDialog(
-                                              actions: [
-                                                TextButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: const Text('OK'))
-                                              ],
-                                              title: const Text('Success'),
-                                              contentPadding:
-                                                  const EdgeInsets.all(20.0),
-                                              content: const Text(
-                                                  'Addedd sucessfully in Draft'),
-                                            ));
+                                    // final workingForm = formModel(
+                                    //     jobtype: jobtype.text.trim(),
+                                    //     joborganization:
+                                    //         joborganizationController.text
+                                    //             .trim(),
+                                    //     organizationaddress:
+                                    //         organizationaddressController.text
+                                    //             .trim(),
+                                    //     designation:
+                                    //         designationController.text.trim(),
+                                    //     annualincome: double.parse(
+                                    //         annualincomeController.text
+                                    //             .trim()));
+                                    // showDialog(
+                                    //     context: context,
+                                    //     builder: (context) => AlertDialog(
+                                    //           actions: [
+                                    //             TextButton(
+                                    //                 onPressed: () {
+                                    //                   Navigator.of(context)
+                                    //                       .pop();
+                                    //                 },
+                                    //                 child: const Text('OK'))
+                                    //           ],
+                                    //           title: const Text('Success'),
+                                    //           contentPadding:
+                                    //               const EdgeInsets.all(20.0),
+                                    //           content: const Text(
+                                    //               'Addedd sucessfully in Draft'),
+                                    //         ));
 
-                                    var jsonData = workingForm.toJson();
+                                    // var jsonData = workingForm.toJson();
 
-                                    final response = ref
-                                        .read(formModelProvider.notifier)
-                                        .addForm(workingForm);
+                                    // final response = ref
+                                    //     .read(formModelProvider.notifier)
+                                    //     .addForm(workingForm);
                                   },
                                   shape: RoundedRectangleBorder(
                                       borderRadius:

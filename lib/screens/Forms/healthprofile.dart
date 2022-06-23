@@ -2,7 +2,6 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:palika/models/formModel.dart';
 import 'package:palika/providers/formProvider.dart';
 
 import '../../models/bloodGroup.dart';
@@ -328,25 +327,25 @@ class _healthProfileFormState extends State<healthProfileForm> {
                       _form.currentState!.save();
                       _form.currentState!.validate();
                       FocusScope.of(context).unfocus();
-                      final healthProfile = formModel(
-                        birthplace: birthplace.text.trim(),
-                        birthweight: int.parse(birthweight.text.trim()),
-                        birthcondition: birthconditioins.text.trim(),
-                        geneticdiseasedescription:
-                            geneticdiseasedescrption.text.trim(),
-                        vaccinedetails: vaccinedetails.text.trim(),
-                        vacinedose: vaccinedoes.text.trim(),
-                        isbelowvaccinated: _checkisbelowVaccinated,
-                        iscovidvaccinated: _checkiscoVVidVaccinated,
-                        isgeneticdiseaseissue: _checkisgeneticaccinated,
-                        healthbloodgroup: bloods[ind].trim(),
-                      );
+                      // final healthProfile = formModel(
+                      //   birthplace: birthplace.text.trim(),
+                      //   birthweight: int.parse(birthweight.text.trim()),
+                      //   birthcondition: birthconditioins.text.trim(),
+                      //   geneticdiseasedescription:
+                      //       geneticdiseasedescrption.text.trim(),
+                      //   vaccinedetails: vaccinedetails.text.trim(),
+                      //   vacinedose: vaccinedoes.text.trim(),
+                      //   isbelowvaccinated: _checkisbelowVaccinated,
+                      //   iscovidvaccinated: _checkiscoVVidVaccinated,
+                      //   isgeneticdiseaseissue: _checkisgeneticaccinated,
+                      //   healthbloodgroup: bloods[ind].trim(),
+                      // );
 
-                      var jsonData = healthProfile.toJson();
+                      // var jsonData = healthProfile.toJson();
 
-                      final response = ref
-                          .read(formModelProvider.notifier)
-                          .addForm(healthProfile);
+                      // final response = ref
+                      //     .read(formModelProvider.notifier)
+                      //     .addForm(healthProfile);
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),

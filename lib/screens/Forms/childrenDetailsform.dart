@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
-import 'package:palika/models/formModel.dart';
 import 'package:palika/providers/formProvider.dart';
 
 class childrendetailsForm extends StatefulWidget {
@@ -261,34 +260,34 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                 onPressed: () async {
                                   _form.currentState!.save();
                                   _form.currentState!.validate();
-                                  final childrenDetails = formModel(
-                                    childrenFirstname: name.text.trim(),
-                                    familydetailid: familydetailid.text.trim(),
-                                    childrengender: items[index].trim(),
-                                    childrendob: dobcontroller.text.trim(),
-                                  );
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) => AlertDialog(
-                                            actions: [
-                                              TextButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: const Text('OK'))
-                                            ],
-                                            title: const Text('Success'),
-                                            contentPadding:
-                                                const EdgeInsets.all(20.0),
-                                            content: const Text(
-                                                'Addedd sucessfully in Draft'),
-                                          ));
+                                  // final childrenDetails = formModel(
+                                  //   childrenFirstname: name.text.trim(),
+                                  //   familydetailid: familydetailid.text.trim(),
+                                  //   childrengender: items[index].trim(),
+                                  //   childrendob: dobcontroller.text.trim(),
+                                  // );
+                                  // showDialog(
+                                  //     context: context,
+                                  //     builder: (context) => AlertDialog(
+                                  //           actions: [
+                                  //             TextButton(
+                                  //                 onPressed: () {
+                                  //                   Navigator.of(context).pop();
+                                  //                 },
+                                  //                 child: const Text('OK'))
+                                  //           ],
+                                  //           title: const Text('Success'),
+                                  //           contentPadding:
+                                  //               const EdgeInsets.all(20.0),
+                                  //           content: const Text(
+                                  //               'Addedd sucessfully in Draft'),
+                                  //         ));
 
-                                  var jsonData = childrenDetails.toJson();
+                                  // var jsonData = childrenDetails.toJson();
 
-                                  final response = ref
-                                      .read(formModelProvider.notifier)
-                                      .addForm(childrenDetails);
+                                  // final response = ref
+                                  //     .read(formModelProvider.notifier)
+                                  //     .addForm(childrenDetails);
                                 },
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(22.0)),

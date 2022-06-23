@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:palika/models/formModel.dart';
 import 'package:palika/models/toiletTypes.dart';
 import 'package:palika/providers/districtsProvider.dart';
 import 'package:palika/providers/formProvider.dart';
@@ -207,15 +206,15 @@ class _houseformState extends State<houseform> {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
 
-                                    final houseForm = formModel(
-                                      Houseaddress: houseaddress.text.trim(),
-                                      Blocknumber:
-                                          int.parse(blocknumber.text.trim()),
-                                      Streetname: streetname.text,
-                                      Housenumber:
-                                          int.parse(housenumber.text.trim()),
-                                      toilettypeid: toiletypeid.text.trim(),
-                                    );
+                                    // final houseForm = formModel(
+                                    //   Houseaddress: houseaddress.text.trim(),
+                                    //   Blocknumber:
+                                    //       int.parse(blocknumber.text.trim()),
+                                    //   Streetname: streetname.text,
+                                    //   Housenumber:
+                                    //       int.parse(housenumber.text.trim()),
+                                    //   toilettypeid: toiletypeid.text.trim(),
+                                    // );
                                     showDialog(
                                         context: context,
                                         builder: (context) => AlertDialog(
@@ -234,11 +233,11 @@ class _houseformState extends State<houseform> {
                                                   'Addedd sucessfully in Draft'),
                                             ));
 
-                                    var jsonData = houseForm.toJson();
+                                    // var jsonData = houseForm.toJson();
 
-                                    final response = ref
-                                        .read(formModelProvider.notifier)
-                                        .addForm(houseForm);
+                                    // final response = ref
+                                    //     .read(formModelProvider.notifier)
+                                    //     .addForm(houseForm);
                                   },
                                   shape: RoundedRectangleBorder(
                                       borderRadius:

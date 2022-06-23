@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:palika/models/formModel.dart';
 import 'package:palika/providers/formProvider.dart';
 
 class familyform extends StatefulWidget {
@@ -40,8 +39,8 @@ class _familyformState extends State<familyform> {
   final daughterMiddlename = TextEditingController();
   final daughterLastname = TextEditingController();
 
-  final totalson = TextEditingController();
-  final totaldaughter = TextEditingController();
+  final totalsonController = TextEditingController();
+  final totaldaughterController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -587,7 +586,7 @@ class _familyformState extends State<familyform> {
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 keyboardType: TextInputType.emailAddress,
-                                controller: totalson,
+                                controller: totalsonController,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30),
@@ -607,7 +606,7 @@ class _familyformState extends State<familyform> {
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 keyboardType: TextInputType.emailAddress,
-                                controller: totaldaughter,
+                                controller: totaldaughterController,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30),
@@ -631,78 +630,73 @@ class _familyformState extends State<familyform> {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
 
+                                    // final familyForm = formModel(
+                                    //   fatherFirstName:
+                                    //       fatherFirstname.text.trim(),
+                                    //   fatherMiddlename:
+                                    //       fatherMiddlename.text.trim(),
+                                    //   fatherLastname:
+                                    //       fatherLastname.text.trim(),
+                                    // motherFirstName:
+                                    //     motherFirstname.text.trim(),
+                                    // motherMiddlename:
+                                    //     motherSecondname.text.trim(),
+                                    // motherLastname:
+                                    //     motherLastname.text.trim(),
+                                    // spouseFirstName:
+                                    //     spousFirstename.text.trim(),
+                                    // spouseMiddleName:
+                                    //     spousMiddleename.text.trim(),
+                                    // spouseLastName:
+                                    //     spousLastename.text.trim(),
+                                    // grandfatherFirstname:
+                                    //     grandfatherFirstname.text.trim(),
+                                    // grandfatherMiddlename:
+                                    //     grandfatherMiddlename.text.trim(),
+                                    // grandfatherLastname:
+                                    //     grandfatherLastname.text.trim(),
+                                    // grandmotherFirstname:
+                                    //     grandmotherFirstname.text.trim(),
+                                    // grandmotherMiddlename:
+                                    //     grandfatherMiddlename.text.trim(),
+                                    // grandmotherLastname:
+                                    //     grandmotherLastname.text.trim(),
+                                    // sonFirstname: sonFirstname.text.trim(),
+                                    // sonMiddlename: sonMiddlename.text.trim(),
+                                    // sonLastname: sonLastname.text.trim(),
+                                    // daughterFirstname:
+                                    //     daughterFirstname.text.trim(),
+                                    // daughterMiddlename:
+                                    //     daughterMiddlename.text.trim(),
+                                    // daughterLastname:
+                                    //     daughterLastname.text.trim(),
+                                    // totalson: int.parse(totalsonControllers.text.trim()),
+                                    // totaldaughter:
+                                    //     int.parse(totaldaughterController.text.trim()),
+                                    // );
+                                    // showDialog(
+                                    //     context: context,
+                                    //     builder: (context) => AlertDialog(
+                                    //           actions: [
+                                    //             TextButton(
+                                    //                 onPressed: () {
+                                    //                   Navigator.of(context)
+                                    //                       .pop();
+                                    //                 },
+                                    //                 child: const Text('OK'))
+                                    //           ],
+                                    //           title: const Text('Success'),
+                                    //           contentPadding:
+                                    //               const EdgeInsets.all(20.0),
+                                    //           content: const Text(
+                                    //               'Addedd sucessfully in Draft'),
+                                    //         ));
 
-                                    final familyForm = formModel(
-                                      fatherFirstName:
-                                          fatherFirstname.text.trim(),
-                                      fatherMiddlename:
-                                          fatherMiddlename.text.trim(),
-                                      fatherLastname:
-                                          fatherLastname.text.trim(),
-                                      motherFirstName:
-                                          motherFirstname.text.trim(),
-                                      motherMiddlename:
-                                          motherSecondname.text.trim(),
-                                      motherLastname:
-                                          motherLastname.text.trim(),
-                                      spouseFirstName:
-                                          spousFirstename.text.trim(),
-                                      spouseMiddleName:
-                                          spousMiddleename.text.trim(),
-                                      spouseLastName:
-                                          spousLastename.text.trim(),
-                                      grandfatherFirstname:
-                                          grandfatherFirstname.text.trim(),
-                                      grandfatherMiddlename:
-                                          grandfatherMiddlename.text.trim(),
-                                      grandfatherLastname:
-                                          grandfatherLastname.text.trim(),
-                                      grandmotherFirstname:
-                                          grandmotherFirstname.text.trim(),
-                                      grandmotherMiddlename:
-                                          grandfatherMiddlename.text.trim(),
-                                      grandmotherLastname:
-                                          grandmotherLastname.text.trim(),
-                                      sonFirstname: sonFirstname.text.trim(),
-                                      sonMiddlename: sonMiddlename.text.trim(),
-                                      sonLastname: sonLastname.text.trim(),
-                                      daughterFirstname:
-                                          daughterFirstname.text.trim(),
-                                      daughterMiddlename:
-                                          daughterMiddlename.text.trim(),
-                                      daughterLastname:
-                                          daughterLastname.text.trim(),
-                                      totalson: int.parse(totalson.text.trim()),
-                                      totaldaughter:
-                                          int.parse(totaldaughter.text.trim()),
-                                    );
-                                     showDialog(
-                                        context: context,
-                                        builder: (context) => AlertDialog(
-                                              actions: [
-                                                TextButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: const Text('OK'))
-                                              ],
-                                              title: const Text('Success'),
-                                              contentPadding:
-                                                  const EdgeInsets.all(20.0),
-                                              content: const Text(
-                                                  'Addedd sucessfully in Draft'),
-                                            ));
+                                    // var jsonData = familyForm.toJson();
 
-                                    var jsonData = familyForm.toJson();
-
-
-
-
-
-                                    final response = ref
-                                        .read(formModelProvider.notifier)
-                                        .addForm(familyForm);
+                                    // final response = ref
+                                    //     .read(formModelProvider.notifier)
+                                    //     .addForm(familyForm);
                                   },
                                   shape: RoundedRectangleBorder(
                                       borderRadius:

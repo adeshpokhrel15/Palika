@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/models/ecaInterested.dart';
-import 'package:palika/models/formModel.dart';
+
 import 'package:palika/providers/ecaInterested.dart';
 import 'package:palika/providers/formProvider.dart';
 
@@ -52,43 +52,6 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
             child: ListView(
               padding: EdgeInsets.all(10),
               children: [
-                FutureBuilder<List<EcainterestedField>>(
-                  future: ApiecaInterested().getData(),
-                  builder: (context, snap) {
-                    if (snap.hasData) {
-                      final List<EcainterestedField> data = snap.data!;
-                      return DropdownButtonFormField<EcainterestedField>(
-                          menuMaxHeight: 400,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              labelText: ' Eca Interested Field',
-                              prefixIcon: const Icon(
-                                Icons.email,
-                                color: Colors.orange,
-                              ),
-                              hintText: " Eca Interested Field "),
-                          items: [
-                            ...data.map(
-                              (e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e.ecainterestedFieldNepaliname),
-                              ),
-                            )
-                          ],
-                          onChanged: (value) {
-                            interestedfield.text =
-                                '${value!.indexecainterestedField}';
-                          });
-                    } else {
-                      return const LinearProgressIndicator();
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 10,
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -160,6 +123,43 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
                 SizedBox(
                   height: 20,
                 ),
+                FutureBuilder<List<EcainterestedField>>(
+                  future: ApiecaInterested().getData(),
+                  builder: (context, snap) {
+                    if (snap.hasData) {
+                      final List<EcainterestedField> data = snap.data!;
+                      return DropdownButtonFormField<EcainterestedField>(
+                          menuMaxHeight: 400,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: ' Eca Interested Field',
+                              prefixIcon: const Icon(
+                                Icons.email,
+                                color: Colors.orange,
+                              ),
+                              hintText: " Eca Interested Field "),
+                          items: [
+                            ...data.map(
+                              (e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e.ecainterestedFieldNepaliname),
+                              ),
+                            )
+                          ],
+                          onChanged: (value) {
+                            interestedfield.text =
+                                '${value!.indexecainterestedField}';
+                          });
+                    } else {
+                      return const LinearProgressIndicator();
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 Container(
                   height: 50,
                   width: 80,
@@ -168,32 +168,32 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
                       _form.currentState!.save();
                       _form.currentState!.validate();
 
-                      final extraForm = formModel(
-                        interestedfieldid: interestedfield.text.trim(),
-                        professionalstatus: professionalstatus.text.trim(),
-                        durationofactivities: durationofactivities.text.trim(),
-                        istakingtraining: checktraining,
-                      );
-                      showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                actions: [
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text('OK'))
-                                ],
-                                title: const Text('Success'),
-                                contentPadding: const EdgeInsets.all(20.0),
-                                content:
-                                    const Text('Addedd sucessfully in Draft'),
-                              ));
-                      var jsonData = extraForm.toJson();
+                      // final extraForm = formModel(
+                      //   interestedfieldid: interestedfield.text.trim(),
+                      //   professionalstatus: professionalstatus.text.trim(),
+                      //   durationofactivities: durationofactivities.text.trim(),
+                      //   istakingtraining: checktraining,
+                      // );
+                      // showDialog(
+                      //     context: context,
+                      //     builder: (context) => AlertDialog(
+                      //           actions: [
+                      //             TextButton(
+                      //                 onPressed: () {
+                      //                   Navigator.of(context).pop();
+                      //                 },
+                      //                 child: const Text('OK'))
+                      //           ],
+                      //           title: const Text('Success'),
+                      //           contentPadding: const EdgeInsets.all(20.0),
+                      //           content:
+                      //               const Text('Addedd sucessfully in Draft'),
+                      //         ));
+                      // var jsonData = extraForm.toJson();
 
-                      final response = ref
-                          .read(formModelProvider.notifier)
-                          .addForm(extraForm);
+                      // final response = ref
+                      //     .read(formModelProvider.notifier)
+                      //     .addForm(extraForm);
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),

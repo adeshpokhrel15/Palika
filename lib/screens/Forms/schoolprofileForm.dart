@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/models/childrenSchoolSchemes.dart';
-import 'package:palika/models/formModel.dart';
 import 'package:palika/models/schoolTypes.dart';
 import 'package:palika/providers/childrenSchemeType.dart';
 import 'package:palika/providers/formProvider.dart';
@@ -127,32 +126,6 @@ class schoolprofile extends StatelessWidget {
                                     AutovalidateMode.onUserInteraction,
                                 validator: (val) {
                                   if (val!.isEmpty) {
-                                    return 'School type id is required';
-                                  }
-
-                                  return null;
-                                },
-                                keyboardType: TextInputType.emailAddress,
-                                controller: schooltypeid,
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30),
-                                    ),
-                                    labelText: 'School type id',
-                                    prefixIcon: Icon(
-                                      Icons.email,
-                                      color: Colors.orange,
-                                    ),
-                                    hintText: "School type id"),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              TextFormField(
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                validator: (val) {
-                                  if (val!.isEmpty) {
                                     return 'Dress code is required ';
                                   }
                                   return null;
@@ -245,38 +218,38 @@ class schoolprofile extends StatelessWidget {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
 
-                                    final schoolprofileForm = formModel(
-                                      schoolname: schoolname.text.trim(),
-                                      schooltypeid: schooltypeid.text.trim(),
-                                      dresscode: dresscode.text.trim(),
-                                      dresscondition:
-                                          dresscondition.text.trim(),
-                                      childenschoolschemeid:
-                                          childrenschemaid.text.trim(),
-                                    );
-                                      showDialog(
-                                        context: context,
-                                        builder: (context) => AlertDialog(
-                                              actions: [
-                                                TextButton(
-                                                    onPressed: () {
-                                                      Navigator.of(context)
-                                                          .pop();
-                                                    },
-                                                    child: const Text('OK'))
-                                              ],
-                                              title: const Text('Success'),
-                                              contentPadding:
-                                                  const EdgeInsets.all(20.0),
-                                              content: const Text(
-                                                  'Addedd sucessfully in Draft'),
-                                            ));
+                                    // final schoolprofileForm = formModel(
+                                    //   schoolname: schoolname.text.trim(),
+                                    //   schooltypeid: schooltypeid.text.trim(),
+                                    //   dresscode: dresscode.text.trim(),
+                                    //   dresscondition:
+                                    //       dresscondition.text.trim(),
+                                    //   childenschoolschemeid:
+                                    //       childrenschemaid.text.trim(),
+                                    // );
+                                    // showDialog(
+                                    //     context: context,
+                                    //     builder: (context) => AlertDialog(
+                                    //           actions: [
+                                    //             TextButton(
+                                    //                 onPressed: () {
+                                    //                   Navigator.of(context)
+                                    //                       .pop();
+                                    //                 },
+                                    //                 child: const Text('OK'))
+                                    //           ],
+                                    //           title: const Text('Success'),
+                                    //           contentPadding:
+                                    //               const EdgeInsets.all(20.0),
+                                    //           content: const Text(
+                                    //               'Addedd sucessfully in Draft'),
+                                    //         ));
 
-                                    var jsonData = schoolprofileForm.toJson();
+                                    // var jsonData = schoolprofileForm.toJson();
 
-                                    final response = ref
-                                        .read(formModelProvider.notifier)
-                                        .addForm(schoolprofileForm);
+                                    // final response = ref
+                                    //     .read(formModelProvider.notifier)
+                                    //     .addForm(schoolprofileForm);
                                   },
                                   shape: RoundedRectangleBorder(
                                       borderRadius:

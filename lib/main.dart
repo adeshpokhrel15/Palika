@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:palika/hawa.dart';
-import 'package:palika/models/formModel.dart';
+import 'package:palika/models/Hive/personalhive.dart';
 import 'package:palika/screens/Forms/addressform.dart';
 import 'package:palika/screens/Forms/appearenceform.dart';
 import 'package:palika/screens/Forms/businessprofileForm.dart';
@@ -22,20 +21,21 @@ import 'package:palika/screens/Forms/personalform.dart';
 import 'package:palika/screens/Forms/schoolprofileForm.dart';
 import 'package:palika/screens/Forms/workingform.dart';
 import 'package:palika/screens/buttomNavigationbar.dart';
-import 'package:palika/screens/settings.dart';
 
-final boxB = Provider<List<formModel>>((ref) => []);
+//final boxB = Provider<List<formModel>>((ref) => []);
+// final boxB = Provider<List<personalHiveModel>>((ref) => []);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter(); //hive initalize
-  Hive.registerAdapter(formModelAdapter()); // hive register
-  final box = await Hive.openBox<formModel>('FormModel'); //hive open box
+//  Hive.registerAdapter(formModelAdapter()); // hive register
+//  final box = await Hive.openBox<personalHiveModel>(
+  //    'PersonalHiveModel'); //hive open box
   // await Hive.openBox<Transistion>('tempTrans');
   runApp(
     ProviderScope(
-      overrides: [boxB.overrideWithValue(box.values.toList())],
+      //   overrides: [boxB.overrideWithValue(box.values.toList())],
       child: ProviderScope(child: MyApp()),
     ),
   );

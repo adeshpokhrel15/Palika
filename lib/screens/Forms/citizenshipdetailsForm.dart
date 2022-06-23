@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
-import 'package:palika/models/formModel.dart';
 import 'package:palika/providers/formProvider.dart';
 
 class citizendetailsForm extends StatefulWidget {
@@ -215,13 +214,13 @@ class _citizendetailsFormState extends State<citizendetailsForm> {
                                   _form.currentState!.save();
                                   _form.currentState!.validate();
 
-                                  final citizenshipForm = formModel(
-                                    citizenshipnumber:
-                                        citizenshipnumber.text.trim(),
-                                    issuedat: issuedat.text.trim(),
-                                    verifiedby: verifiedby.text.trim(),
-                                    issueddate: issueddate.text.trim(),
-                                  );
+                                  // final citizenshipForm = formModel(
+                                  //   citizenshipnumber:
+                                  //       citizenshipnumber.text.trim(),
+                                  //   issuedat: issuedat.text.trim(),
+                                  //   verifiedby: verifiedby.text.trim(),
+                                  //   issueddate: issueddate.text.trim(),
+                                  // );
                                   showDialog(
                                       context: context,
                                       builder: (context) => AlertDialog(
@@ -239,11 +238,11 @@ class _citizendetailsFormState extends State<citizendetailsForm> {
                                                 'Addedd sucessfully in Draft'),
                                           ));
 
-                                  var jsonData = citizenshipForm.toJson();
+                                  // var jsonData = citizenshipForm.toJson();
 
-                                  final response = ref
-                                      .read(formModelProvider.notifier)
-                                      .addForm(citizenshipForm);
+                                  // final response = ref
+                                  //     .read(formModelProvider.notifier)
+                                  //     .addForm(citizenshipForm);
                                 },
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(22.0)),

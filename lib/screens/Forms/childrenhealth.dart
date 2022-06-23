@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/models/bloodGroup.dart';
-import 'package:palika/models/formModel.dart';
 import 'package:palika/providers/bloodProvider.dart';
 import 'package:palika/providers/formProvider.dart';
 
@@ -463,47 +462,47 @@ class _childrenhealthProfileState extends State<childrenhealthProfile> {
                       _form.currentState!.save();
                       _form.currentState!.validate();
 
-                      final childrenHealth = formModel(
-                        childrenbirthplace: birthplace.text.trim(),
-                        chilrenbirthweight: int.parse(birthweight.text.trim()),
-                        childrenbirthcondition: birthconditioins.text.trim(),
-                        childrengeneticdiseasedescription:
-                            geneticdiseasedescrption.text.trim(),
-                        childrenvaccinedetails: vaccinedetails.text.trim(),
-                        childrenvacinedose: vaccinedoes.text.trim(),
-                        childrenisBCGvaccinated: _checkBCGVaccinated,
-                        childrenisMRvaccinated: _checkMRVaccinated,
-                        childrenisJEvaccinated: _checkJEVaccinated,
-                        childrenisTDvaccinated: _checkTDVaccinated,
-                        childrenisgeneticdiseaseissue: _checkGeneticVaccinated,
-                        childreniscovidvaccinated: _checkCovidVaccinated,
-                        childrenisDPTHEPBvaccinated: _checkDPTHEPBVaccinated,
-                        childrenisOPVvaccinated: _checkOPVVaccinated,
-                        childrenisPCVvaccinated: _checkPCVVaccinated,
-                        childrenisIPVvaccinated: _checkIPVVaccinated,
-                        childrenbloodgroup: bloods[ind].trim(),
-                      );
-                      showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                actions: [
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text('OK'))
-                                ],
-                                title: const Text('Success'),
-                                contentPadding: const EdgeInsets.all(20.0),
-                                content:
-                                    const Text('Addedd sucessfully in Draft'),
-                              ));
+                      // final childrenHealth = formModel(
+                      //   childrenbirthplace: birthplace.text.trim(),
+                      //   chilrenbirthweight: int.parse(birthweight.text.trim()),
+                      //   childrenbirthcondition: birthconditioins.text.trim(),
+                      //   childrengeneticdiseasedescription:
+                      //       geneticdiseasedescrption.text.trim(),
+                      //   childrenvaccinedetails: vaccinedetails.text.trim(),
+                      //   childrenvacinedose: vaccinedoes.text.trim(),
+                      //   childrenisBCGvaccinated: _checkBCGVaccinated,
+                      //   childrenisMRvaccinated: _checkMRVaccinated,
+                      //   childrenisJEvaccinated: _checkJEVaccinated,
+                      //   childrenisTDvaccinated: _checkTDVaccinated,
+                      //   childrenisgeneticdiseaseissue: _checkGeneticVaccinated,
+                      //   childreniscovidvaccinated: _checkCovidVaccinated,
+                      //   childrenisDPTHEPBvaccinated: _checkDPTHEPBVaccinated,
+                      //   childrenisOPVvaccinated: _checkOPVVaccinated,
+                      //   childrenisPCVvaccinated: _checkPCVVaccinated,
+                      //   childrenisIPVvaccinated: _checkIPVVaccinated,
+                      //   childrenbloodgroup: bloods[ind].trim(),
+                      // );
+                      // showDialog(
+                      //     context: context,
+                      //     builder: (context) => AlertDialog(
+                      //           actions: [
+                      //             TextButton(
+                      //                 onPressed: () {
+                      //                   Navigator.of(context).pop();
+                      //                 },
+                      //                 child: const Text('OK'))
+                      //           ],
+                      //           title: const Text('Success'),
+                      //           contentPadding: const EdgeInsets.all(20.0),
+                      //           content:
+                      //               const Text('Addedd sucessfully in Draft'),
+                      //         ));
 
-                      var jsonData = childrenHealth.toJson();
+                      // var jsonData = childrenHealth.toJson();
 
-                      final response = ref
-                          .read(formModelProvider.notifier)
-                          .addForm(childrenHealth);
+                      // final response = ref
+                      //     .read(formModelProvider.notifier)
+                      //     .addForm(childrenHealth);
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 //import 'package:grouped_checkbox/grouped_checkbox.dart';
-import 'package:palika/models/formModel.dart';
 import 'package:palika/providers/formProvider.dart';
 
 class foodconsumptionProfile extends StatefulWidget {
@@ -159,33 +158,33 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                       _form.currentState!.save();
                       _form.currentState!.validate();
 
-                      final foodconsumptionProfileForm = formModel(
-                          foodconsumptiontiming: foodtiming.text.trim(),
-                          regularmealdescription:
-                              regulardescription.text.trim(),
-                          isbalanceddiet: checkBalnced,
-                          isorganic: checkOrganic);
-                      showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                actions: [
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      child: const Text('OK'))
-                                ],
-                                title: const Text('Success'),
-                                contentPadding: const EdgeInsets.all(20.0),
-                                content:
-                                    const Text('Addedd sucessfully in Draft'),
-                              ));
+                      // final foodconsumptionProfileForm = formModel(
+                      //     foodconsumptiontiming: foodtiming.text.trim(),
+                      //     regularmealdescription:
+                      //         regulardescription.text.trim(),
+                      //     isbalanceddiet: checkBalnced,
+                      //     isorganic: checkOrganic);
+                      // showDialog(
+                      //     context: context,
+                      //     builder: (context) => AlertDialog(
+                      //           actions: [
+                      //             TextButton(
+                      //                 onPressed: () {
+                      //                   Navigator.of(context).pop();
+                      //                 },
+                      //                 child: const Text('OK'))
+                      //           ],
+                      //           title: const Text('Success'),
+                      //           contentPadding: const EdgeInsets.all(20.0),
+                      //           content:
+                      //               const Text('Addedd sucessfully in Draft'),
+                      //         ));
 
-                      var jsonData = foodconsumptionProfileForm.toJson();
+                      // var jsonData = foodconsumptionProfileForm.toJson();
 
-                      final response = ref
-                          .read(formModelProvider.notifier)
-                          .addForm(foodconsumptionProfileForm);
+                      // final response = ref
+                      //     .read(formModelProvider.notifier)
+                      //     .addForm(foodconsumptionProfileForm);
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),
