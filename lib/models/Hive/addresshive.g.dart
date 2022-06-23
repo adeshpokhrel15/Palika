@@ -17,18 +17,18 @@ class AddressHiveModelAdapter extends TypeAdapter<AddressHiveModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return AddressHiveModel(
-      tempProv: fields[1] as String?,
-      tempdistrict: fields[2] as String?,
-      tempMuni: fields[3] as String?,
-      tempward: fields[4] as int?,
-      tempstreettol: fields[5] as String?,
-      tempblockno: fields[6] as int?,
-      permProv: fields[7] as String?,
-      permdistrict: fields[8] as String?,
-      permMuni: fields[9] as String?,
-      permpward: fields[10] as int?,
-      permstreettol: fields[11] as String?,
-      permblocknoaddress: fields[12] as int?,
+      tempProv: fields[0] as String?,
+      tempdistrict: fields[1] as String?,
+      tempMuni: fields[2] as String?,
+      tempward: fields[3] as int?,
+      tempstreettol: fields[4] as String?,
+      tempblockno: fields[5] as int?,
+      permProv: fields[6] as String?,
+      permdistrict: fields[7] as String?,
+      permMuni: fields[8] as String?,
+      permpward: fields[9] as int?,
+      permstreettol: fields[10] as String?,
+      permblocknoaddress: fields[11] as int?,
     );
   }
 
@@ -36,29 +36,29 @@ class AddressHiveModelAdapter extends TypeAdapter<AddressHiveModel> {
   void write(BinaryWriter writer, AddressHiveModel obj) {
     writer
       ..writeByte(12)
-      ..writeByte(1)
+      ..writeByte(0)
       ..write(obj.tempProv)
-      ..writeByte(2)
+      ..writeByte(1)
       ..write(obj.tempdistrict)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.tempMuni)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.tempward)
-      ..writeByte(5)
+      ..writeByte(4)
       ..write(obj.tempstreettol)
-      ..writeByte(6)
+      ..writeByte(5)
       ..write(obj.tempblockno)
-      ..writeByte(7)
+      ..writeByte(6)
       ..write(obj.permProv)
-      ..writeByte(8)
+      ..writeByte(7)
       ..write(obj.permdistrict)
-      ..writeByte(9)
+      ..writeByte(8)
       ..write(obj.permMuni)
-      ..writeByte(10)
+      ..writeByte(9)
       ..write(obj.permpward)
-      ..writeByte(11)
+      ..writeByte(10)
       ..write(obj.permstreettol)
-      ..writeByte(12)
+      ..writeByte(11)
       ..write(obj.permblocknoaddress);
   }
 

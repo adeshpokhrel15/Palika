@@ -4,40 +4,40 @@ part 'addresshive.g.dart';
 
 @HiveType(typeId: 1)
 class AddressHiveModel extends HiveObject {
-  @HiveField(1)
+  @HiveField(0)
   String? tempProv;
 
-  @HiveField(2)
+  @HiveField(1)
   String? tempdistrict;
 
-  @HiveField(3)
+  @HiveField(2)
   String? tempMuni;
 
-  @HiveField(4)
+  @HiveField(3)
   int? tempward;
 
-  @HiveField(5)
+  @HiveField(4)
   String? tempstreettol;
 
-  @HiveField(6)
+  @HiveField(5)
   int? tempblockno;
 
-  @HiveField(7)
+  @HiveField(6)
   String? permProv;
 
-  @HiveField(8)
+  @HiveField(7)
   String? permdistrict;
 
-  @HiveField(9)
+  @HiveField(8)
   String? permMuni;
 
-  @HiveField(10)
+  @HiveField(9)
   int? permpward;
 
-  @HiveField(11)
+  @HiveField(10)
   String? permstreettol;
 
-  @HiveField(12)
+  @HiveField(11)
   int? permblocknoaddress;
 
   AddressHiveModel({
