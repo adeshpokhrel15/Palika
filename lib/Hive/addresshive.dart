@@ -2,9 +2,9 @@ import 'package:hive/hive.dart';
 
 part 'addresshive.g.dart';
 
-@HiveType(typeId: 1)
-class AddressHiveModel extends HiveObject {
-  @HiveField(0)
+@HiveType(typeId: )
+class PersonalHiveModel extends HiveObject {
+ @HiveField(0)
   String? tempProv;
 
   @HiveField(1)
@@ -40,8 +40,9 @@ class AddressHiveModel extends HiveObject {
   @HiveField(11)
   int? permblocknoaddress;
 
-  AddressHiveModel({
-    this.tempProv,
+
+  PersonalHiveModel({
+   this.tempProv,
     this.tempdistrict,
     this.tempMuni,
     this.tempward,
@@ -55,7 +56,7 @@ class AddressHiveModel extends HiveObject {
     this.permblocknoaddress,
   });
   Map<String, dynamic> toJson() => {
-        "permanent_province": permProv,
+     "permanent_province": permProv,
         "permanent_district": permdistrict,
         "permanent_vdc_municipality": permMuni,
         "permanent_ward_no": permpward,

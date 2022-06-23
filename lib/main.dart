@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:palika/models/Hive/personalhive.dart';
 import 'package:palika/screens/Forms/addressform.dart';
 import 'package:palika/screens/Forms/appearenceform.dart';
 import 'package:palika/screens/Forms/businessprofileForm.dart';

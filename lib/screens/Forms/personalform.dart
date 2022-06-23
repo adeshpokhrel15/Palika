@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nepali_utils/nepali_utils.dart';
-import 'package:palika/models/Hive/personalhive.dart';
 
 import 'package:palika/models/bloodGroup.dart';
 
