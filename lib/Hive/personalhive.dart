@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 
 part 'personalhive.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 14)
 class PersonalHiveModel extends HiveObject {
   @HiveField(0)
   String? firstNamepersonal;
