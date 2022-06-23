@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:palika/Hive/addresshive.dart';
+import 'package:palika/Hive/appearencehive.dart';
 import 'package:palika/screens/Forms/addressform.dart';
 import 'package:palika/screens/Forms/appearenceform.dart';
 import 'package:palika/screens/Forms/businessprofileForm.dart';
@@ -21,7 +23,9 @@ import 'package:palika/screens/Forms/schoolprofileForm.dart';
 import 'package:palika/screens/Forms/workingform.dart';
 import 'package:palika/screens/buttomNavigationbar.dart';
 
-//final boxB = Provider<List<formModel>>((ref) => []);
+final boxA = Provider<List<AddressHiveModel>>((ref) => []);
+final boxAp = Provider<List<AppearenceHiveModel>>((ref) => []);
+
 // final boxB = Provider<List<personalHiveModel>>((ref) => []);
 
 void main() async {
