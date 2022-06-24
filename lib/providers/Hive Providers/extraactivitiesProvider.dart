@@ -17,7 +17,7 @@ class ExtraHiveModelProvider extends StateNotifier<List<ExtraHiveModel>> {
   StateNotifierProviderRef ref;
 
   void addForm(ExtraHiveModel useform) async {
-    final boxExpenses = await Hive.openBox<ExtraHiveModel>('extrahivemodel');
+    final boxExtra = await Hive.openBox<ExtraHiveModel>('extrahivemodel');
     if (state.isEmpty) {
       final useForm = ExtraHiveModel(
         durationofactivities: useform.durationofactivities,
