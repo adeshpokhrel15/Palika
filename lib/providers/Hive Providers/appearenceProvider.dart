@@ -29,12 +29,12 @@ class AppearenceHiveModelProvider
   }
 
   void clearAll() {
-    Hive.box<AddressHiveModel>('addresshivemodel').clear();
+    Hive.box<AppearenceHiveModel>('appearencehivemodel').clear();
   }
 
   @override
   void dispose() {
-    Hive.box('addresshivemodel').close();
+    Hive.box('appearencehivemodel').close();
     super.dispose();
   }
 }

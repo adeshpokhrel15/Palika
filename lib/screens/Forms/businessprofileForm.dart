@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/Hive/businesshive.dart';
 import 'package:palika/models/businessTypes.dart';
+import 'package:palika/providers/Hive%20Providers/businessProvider.dart';
 import 'package:palika/providers/businessProvider.dart';
 import 'package:palika/providers/formProvider.dart';
 
@@ -303,48 +305,49 @@ class businessprofile extends StatelessWidget {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
 
-                                    // final businessprofileForm = formModel(
-                                    //   businessorg: businessorg.text.trim(),
-                                    //   businesstypeid:
-                                    //       businesstypeid.text.trim(),
-                                    //   orgname: orgname.text.trim(),
-                                    //   totalinvestment: int.parse(
-                                    //     totalinvestment.text.trim(),
-                                    //   ),
-                                    //   annualxpense: double.parse(
-                                    //       annualexpense.text.trim()),
-                                    //   annualincomeorg: int.parse(
-                                    //       annualincomeorg.text.trim()),
-                                    //   totalnostaff: int.parse(
-                                    //     totalnostaff.text.trim(),
-                                    //   ),
-                                    //   businessarea: businessarea.text.trim(),
-                                    //   businessproduct:
-                                    //       businessproduct.text.trim(),
-                                    // );
-                                    // showDialog(
-                                    //     context: context,
-                                    //     builder: (context) => AlertDialog(
-                                    //           actions: [
-                                    //             TextButton(
-                                    //                 onPressed: () {
-                                    //                   Navigator.of(context)
-                                    //                       .pop();
-                                    //                 },
-                                    //                 child: const Text('OK'))
-                                    //           ],
-                                    //           title: const Text('Success'),
-                                    //           contentPadding:
-                                    //               const EdgeInsets.all(20.0),
-                                    //           content: const Text(
-                                    //               'Addedd sucessfully in Draft'),
-                                    //         ));
+                                    final businessprofileForm =
+                                        BusinessHiveModel(
+                                      businessorg: businessorg.text.trim(),
+                                      businesstypeid:
+                                          businesstypeid.text.trim(),
+                                      orgname: orgname.text.trim(),
+                                      totalinvestment: int.parse(
+                                        totalinvestment.text.trim(),
+                                      ),
+                                      annualxpense:
+                                          int.parse(annualexpense.text.trim()),
+                                      annualincomeorg: double.parse(
+                                          annualincomeorg.text.trim()),
+                                      totalnostaff: int.parse(
+                                        totalnostaff.text.trim(),
+                                      ),
+                                      businessarea: businessarea.text.trim(),
+                                      businessproduct:
+                                          businessproduct.text.trim(),
+                                    );
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: const Text('OK'))
+                                              ],
+                                              title: const Text('Success'),
+                                              contentPadding:
+                                                  const EdgeInsets.all(20.0),
+                                              content: const Text(
+                                                  'Addedd sucessfully in Draft'),
+                                            ));
 
-                                    // var jsonData = businessprofileForm.toJson();
+                                    var jsonData = businessprofileForm.toJson();
 
-                                    // final response = ref
-                                    //     .read(formModelProvider.notifier)
-                                    //     .addForm(businessprofileForm);
+                                    final response = ref
+                                        .read(businessModelProvider.notifier)
+                                        .addForm(businessprofileForm);
                                   },
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
