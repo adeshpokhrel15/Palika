@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/Hive/workinghive.dart';
 import 'package:palika/models/jobTypes.dart';
+import 'package:palika/providers/Hive%20Providers/workingProvider.dart';
 import 'package:palika/providers/formProvider.dart';
 import 'package:palika/providers/jobTypesProvider.dart';
 
@@ -204,42 +206,42 @@ class _workingformState extends State<workingform> {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
 
-                                    // final workingForm = formModel(
-                                    //     jobtype: jobtype.text.trim(),
-                                    //     joborganization:
-                                    //         joborganizationController.text
-                                    //             .trim(),
-                                    //     organizationaddress:
-                                    //         organizationaddressController.text
-                                    //             .trim(),
-                                    //     designation:
-                                    //         designationController.text.trim(),
-                                    //     annualincome: double.parse(
-                                    //         annualincomeController.text
-                                    //             .trim()));
-                                    // showDialog(
-                                    //     context: context,
-                                    //     builder: (context) => AlertDialog(
-                                    //           actions: [
-                                    //             TextButton(
-                                    //                 onPressed: () {
-                                    //                   Navigator.of(context)
-                                    //                       .pop();
-                                    //                 },
-                                    //                 child: const Text('OK'))
-                                    //           ],
-                                    //           title: const Text('Success'),
-                                    //           contentPadding:
-                                    //               const EdgeInsets.all(20.0),
-                                    //           content: const Text(
-                                    //               'Addedd sucessfully in Draft'),
-                                    //         ));
+                                    final workingForm = WorkingHiveModel(
+                                        jobtype: jobtype.text.trim(),
+                                        joborganization:
+                                            joborganizationController.text
+                                                .trim(),
+                                        organizationaddress:
+                                            organizationaddressController.text
+                                                .trim(),
+                                        designation:
+                                            designationController.text.trim(),
+                                        annualincome: double.parse(
+                                            annualincomeController.text
+                                                .trim()));
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: const Text('OK'))
+                                              ],
+                                              title: const Text('Success'),
+                                              contentPadding:
+                                                  const EdgeInsets.all(20.0),
+                                              content: const Text(
+                                                  'Addedd sucessfully in Draft'),
+                                            ));
 
-                                    // var jsonData = workingForm.toJson();
+                                    var jsonData = workingForm.toJson();
 
-                                    // final response = ref
-                                    //     .read(formModelProvider.notifier)
-                                    //     .addForm(workingForm);
+                                    final response = ref
+                                        .read(workingHiveModelProvider.notifier)
+                                        .addForm(workingForm);
                                   },
                                   shape: RoundedRectangleBorder(
                                       borderRadius:

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/Hive/schoolhive.dart';
 import 'package:palika/models/childrenSchoolSchemes.dart';
 import 'package:palika/models/schoolTypes.dart';
+import 'package:palika/providers/Hive%20Providers/schoolProvider.dart';
 import 'package:palika/providers/childrenSchemeType.dart';
 import 'package:palika/providers/formProvider.dart';
 import 'package:palika/providers/schooltypeProvider.dart';
@@ -218,38 +220,38 @@ class schoolprofile extends StatelessWidget {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
 
-                                    // final schoolprofileForm = formModel(
-                                    //   schoolname: schoolname.text.trim(),
-                                    //   schooltypeid: schooltypeid.text.trim(),
-                                    //   dresscode: dresscode.text.trim(),
-                                    //   dresscondition:
-                                    //       dresscondition.text.trim(),
-                                    //   childenschoolschemeid:
-                                    //       childrenschemaid.text.trim(),
-                                    // );
-                                    // showDialog(
-                                    //     context: context,
-                                    //     builder: (context) => AlertDialog(
-                                    //           actions: [
-                                    //             TextButton(
-                                    //                 onPressed: () {
-                                    //                   Navigator.of(context)
-                                    //                       .pop();
-                                    //                 },
-                                    //                 child: const Text('OK'))
-                                    //           ],
-                                    //           title: const Text('Success'),
-                                    //           contentPadding:
-                                    //               const EdgeInsets.all(20.0),
-                                    //           content: const Text(
-                                    //               'Addedd sucessfully in Draft'),
-                                    //         ));
+                                    final schoolprofileForm = SchoolHiveModel(
+                                      schoolname: schoolname.text.trim(),
+                                      schooltypeid: schooltypeid.text.trim(),
+                                      dresscode: dresscode.text.trim(),
+                                      dresscondition:
+                                          dresscondition.text.trim(),
+                                      childenschoolschemeid:
+                                          childrenschemaid.text.trim(),
+                                    );
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: const Text('OK'))
+                                              ],
+                                              title: const Text('Success'),
+                                              contentPadding:
+                                                  const EdgeInsets.all(20.0),
+                                              content: const Text(
+                                                  'Addedd sucessfully in Draft'),
+                                            ));
 
-                                    // var jsonData = schoolprofileForm.toJson();
+                                    var jsonData = schoolprofileForm.toJson();
 
-                                    // final response = ref
-                                    //     .read(formModelProvider.notifier)
-                                    //     .addForm(schoolprofileForm);
+                                    final response = ref
+                                        .read(schoolHiveModelProvider.notifier)
+                                        .addForm(schoolprofileForm);
                                   },
                                   shape: RoundedRectangleBorder(
                                       borderRadius:

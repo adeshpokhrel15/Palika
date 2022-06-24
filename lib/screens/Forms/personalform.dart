@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nepali_utils/nepali_utils.dart';
+import 'package:palika/Hive/personalhive.dart';
 
 import 'package:palika/models/bloodGroup.dart';
 
 import 'package:palika/models/genders.dart';
+import 'package:palika/providers/Hive%20Providers/personalProvider.dart';
 import 'package:palika/providers/bloodProvider.dart';
 import 'package:palika/providers/formProvider.dart';
 import 'package:palika/providers/genderProvider.dart';
@@ -447,24 +449,24 @@ class _personalFormState extends State<personalForm> {
                                               'Addedd sucessfully in Draft'),
                                         ));
 
-                                // final personalForm = personalHiveModel(
-                                //   firstNamepersonal: firstname.text.trim(),
-                                //   lastNamepersonal: lastname.text.trim(),
-                                //   middleNamepersonal: middlename.text.trim(),
-                                //   emailpersonal: mailController.text.trim(),
-                                //   pannumberpersonal: panController.text.trim(),
-                                //   mobilenumberpersonal:
-                                //       int.parse(mobileController.text.trim()),
-                                //   agepersonal:
-                                //       int.parse(ageController.text.trim()),
-                                //   handicappedIDPersonal:
-                                //       htiController.text.trim(),
-                                //   genderpersonal: genderPersonal.text.trim(),
-                                //   bloodgroupPersonal: bloodgroupPersonal.text,
-                                //   dateofbirthpersonal: dobController.text,
-                                // );
+                                final personalForm = PersonalHiveModel(
+                                  firstNamepersonal: firstname.text.trim(),
+                                  lastNamepersonal: lastname.text.trim(),
+                                  middleNamepersonal: middlename.text.trim(),
+                                  emailpersonal: mailController.text.trim(),
+                                  pannumberpersonal: panController.text.trim(),
+                                  mobilenumberpersonal:
+                                      int.parse(mobileController.text.trim()),
+                                  agepersonal:
+                                      int.parse(ageController.text.trim()),
+                                  handicappedIDPersonal:
+                                      htiController.text.trim(),
+                                  genderpersonal: genderPersonal.text.trim(),
+                                  bloodgroupPersonal: bloodgroupPersonal.text,
+                                  dateofbirthpersonal: dobController.text,
+                                );
 
-                                //          var jsonData = personalForm.toJson();
+                                var jsonData = personalForm.toJson();
                                 //     print(jsonData);
 
                                 // var url = Uri.parse(
@@ -485,9 +487,9 @@ class _personalFormState extends State<personalForm> {
                                 // );
                                 //       print(response.body);
 
-                                // final response1 = ref
-                                //     .read(formModelProvider.notifier)
-                                //     .addForm(personalForm);
+                                final response1 = ref
+                                    .read(personalHiveModelProvider.notifier)
+                                    .addForm(personalForm);
                               },
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(22.0)),
