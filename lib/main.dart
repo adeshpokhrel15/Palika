@@ -82,6 +82,31 @@ void main() async {
   Hive.registerAdapter(SchoolHiveModelAdapter());
   Hive.registerAdapter(WorkingHiveModelAdapter());
 
+  final boxPersonal1 =
+      await Hive.openBox<PersonalHiveModel>('personalhivemodel');
+  final boxAddress1 = await Hive.openBox<AddressHiveModel>('addresshivemodel');
+  final boxAppearence1 =
+      await Hive.openBox<AppearenceHiveModel>('appearencehivemodel');
+  final boxBussiness1 =
+      await Hive.openBox<BusinessHiveModel>('businesshivemodel');
+  final boxChildhealth1 =
+      await Hive.openBox<ChildHealthHiveModel>('childhealthhivemodel');
+  final boxChilddetails1 =
+      await Hive.openBox<ChildDetailsHiveModel>('childdetailshivemodel');
+  final boxCitizen1 =
+      await Hive.openBox<CitizensHiveModel>('citizenshivemodel');
+  final boxEthcities1 =
+      await Hive.openBox<EthencitiesHiveModel>('ethencitieshivemodel');
+  final boxExpenss1 = await Hive.openBox<ExpenssHiveModel>('expensshivemodel');
+  final boxExtra1 = await Hive.openBox<ExtraHiveModel>('extrahivemodel');
+  final boxFamily1 = await Hive.openBox<FamilyModel>('familyhivemodel');
+  final boxFood1 = await Hive.openBox<Foodmodel>('foodhivemodel');
+  final boxGoogle1 = await Hive.openBox<GoogleHiveModel>('googlehivemodel');
+  final boxHealth1 = await Hive.openBox<HealthHiveModel>('healthhivemodel');
+  final boxHouse1 = await Hive.openBox<Housemodel>('househivemodel');
+  final boxSchool1 = await Hive.openBox<SchoolHiveModel>('schoolhivemodel');
+  final boxWorking1 = await Hive.openBox<WorkingHiveModel>('workinghivemodel');
+
 //  final box = await Hive.openBox<personalHiveModel>(
   //    'PersonalHiveModel'); //hive open box
   // await Hive.openBox<Transistion>('tempTrans');
