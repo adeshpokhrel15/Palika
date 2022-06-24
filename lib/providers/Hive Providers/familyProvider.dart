@@ -1,11 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:palika/Hive/addresshive.dart';
-import 'package:palika/Hive/appearencehive.dart';
-import 'package:palika/Hive/citizenshive.dart';
-import 'package:palika/Hive/ethencitieshive.dart';
-import 'package:palika/Hive/expensshive.dart';
-import 'package:palika/Hive/extrahive.dart';
 import 'package:palika/Hive/familyhive.dart';
 import 'package:palika/main.dart';
 
