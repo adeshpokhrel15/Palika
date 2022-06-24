@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/Hive/ethencitieshive.dart';
 import 'package:palika/models/ethnicGroup.dart';
 import 'package:palika/models/nationalities.dart';
 import 'package:palika/models/religions.dart';
+import 'package:palika/providers/Hive%20Providers/ethencitiesProvider.dart';
 import 'package:palika/providers/ethinicGroup.dart';
 import 'package:palika/providers/formProvider.dart';
 import 'package:palika/providers/nationalities.dart';
@@ -206,36 +208,38 @@ class ethencitiesform extends StatelessWidget {
                                   onPressed: () async {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
-                                    // final ethencitiesForm = formModel(
-                                    //   nationalismandreligion:
-                                    //       natrel.text.trim(),
-                                    //   nationality: nationality.text.trim(),
-                                    //   religion: religion.text.trim(),
-                                    //   ethnicgroup: ethnicgroup.text.trim(),
-                                    // );
-                                    // showDialog(
-                                    //     context: context,
-                                    //     builder: (context) => AlertDialog(
-                                    //           actions: [
-                                    //             TextButton(
-                                    //                 onPressed: () {
-                                    //                   Navigator.of(context)
-                                    //                       .pop();
-                                    //                 },
-                                    //                 child: const Text('OK'))
-                                    //           ],
-                                    //           title: const Text('Success'),
-                                    //           contentPadding:
-                                    //               const EdgeInsets.all(20.0),
-                                    //           content: const Text(
-                                    //               'Addedd sucessfully in Draft'),
-                                    //         ));
+                                    final ethencitiesForm =
+                                        EthencitiesHiveModel(
+                                      nationalismandreligion:
+                                          natrel.text.trim(),
+                                      nationality: nationality.text.trim(),
+                                      religion: religion.text.trim(),
+                                      ethnicgroup: ethnicgroup.text.trim(),
+                                    );
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: const Text('OK'))
+                                              ],
+                                              title: const Text('Success'),
+                                              contentPadding:
+                                                  const EdgeInsets.all(20.0),
+                                              content: const Text(
+                                                  'Addedd sucessfully in Draft'),
+                                            ));
 
-                                    // var jsonData = ethencitiesForm.toJson();
+                                    var jsonData = ethencitiesForm.toJson();
 
-                                    // final response = ref
-                                    //     .read(formModelProvider.notifier)
-                                    //     .addForm(ethencitiesForm);
+                                    final response = ref
+                                        .read(ethencitiesHiveModelProvider
+                                            .notifier)
+                                        .addForm(ethencitiesForm);
                                   },
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
