@@ -6,17 +6,18 @@ import 'package:palika/Hive/citizenshive.dart';
 import 'package:palika/Hive/ethencitieshive.dart';
 import 'package:palika/main.dart';
 
-final citizenHiveModelProvider =
-    StateNotifierProvider<CitizenHiveModelProvider, List<EthencitiesHiveModel>>(
-        (ref) => CitizenHiveModelProvider(ref: ref));
+final ethencitiesHiveModelProvider = StateNotifierProvider<
+        EthencitiesHiveModelProvider, List<EthencitiesHiveModel>>(
+    (ref) => EthencitiesHiveModelProvider(ref: ref));
 
-class CitizenHiveModelProvider
+class EthencitiesHiveModelProvider
     extends StateNotifier<List<EthencitiesHiveModel>> {
-  CitizenHiveModelProvider({required this.ref}) : super(ref.read(boxCitizen));
+  EthencitiesHiveModelProvider({required this.ref})
+      : super(ref.read(boxEthcities));
   StateNotifierProviderRef ref;
 
   void addForm(EthencitiesHiveModel useform) async {
-    final boxCitizen =
+    final boxEthencities =
         await Hive.openBox<EthencitiesHiveModel>('ethencitieshivemodel');
     if (state.isEmpty) {
       final useForm = EthencitiesHiveModel(

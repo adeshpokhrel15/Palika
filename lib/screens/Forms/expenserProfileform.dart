@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/Hive/expensshive.dart';
 import 'package:palika/models/expenseCategory.dart';
+import 'package:palika/providers/Hive%20Providers/expensesProvider.dart';
 import 'package:palika/providers/expenseCategory.dart';
 import 'package:palika/providers/formProvider.dart';
 
@@ -214,40 +216,41 @@ class _expensesprofileformState extends State<expensesprofileform> {
                                     _form.currentState!.save();
                                     _form.currentState!.validate();
 
-                                    // final expensesForm = formModel(
-                                    //   totalmonthlyincome: int.parse(
-                                    //     totalmonthincome.text.trim(),
-                                    //   ),
-                                    //   incomesource: incomesource.text.trim(),
-                                    //   incomesourceman:
-                                    //       incomesourcemain.text.trim(),
-                                    //   expensecategory:
-                                    //       expensecategory.text.trim(),
-                                    //   totalexpense: double.parse(
-                                    //       totalexpense.text.trim()),
-                                    // );
-                                    // showDialog(
-                                    //     context: context,
-                                    //     builder: (context) => AlertDialog(
-                                    //           actions: [
-                                    //             TextButton(
-                                    //                 onPressed: () {
-                                    //                   Navigator.of(context)
-                                    //                       .pop();
-                                    //                 },
-                                    //                 child: const Text('OK'))
-                                    //           ],
-                                    //           title: const Text('Success'),
-                                    //           contentPadding:
-                                    //               const EdgeInsets.all(20.0),
-                                    //           content: const Text(
-                                    //               'Addedd sucessfully in Draft'),
-                                    //         ));
-                                    // var jsonData = expensesForm.toJson();
+                                    final expensesForm = ExpenssHiveModel(
+                                      totalmonthlyincome: int.parse(
+                                        totalmonthincome.text.trim(),
+                                      ),
+                                      incomesource: incomesource.text.trim(),
+                                      incomesourceman:
+                                          incomesourcemain.text.trim(),
+                                      expensecategory:
+                                          expensecategory.text.trim(),
+                                      totalexpense: double.parse(
+                                          totalexpense.text.trim()),
+                                    );
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => AlertDialog(
+                                              actions: [
+                                                TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .pop();
+                                                    },
+                                                    child: const Text('OK'))
+                                              ],
+                                              title: const Text('Success'),
+                                              contentPadding:
+                                                  const EdgeInsets.all(20.0),
+                                              content: const Text(
+                                                  'Addedd sucessfully in Draft'),
+                                            ));
+                                    var jsonData = expensesForm.toJson();
 
-                                    // final response = ref
-                                    //     .read(formModelProvider.notifier)
-                                    //     .addForm(expensesForm);
+                                    final response = ref
+                                        .read(
+                                            expensesHiveModelProvider.notifier)
+                                        .addForm(expensesForm);
                                   },
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
