@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:palika/Hive/googlehive.dart';
+import 'package:palika/providers/Hive%20Providers/googleMapProvider.dart';
 import 'package:palika/providers/formProvider.dart';
 import 'package:palika/screens/google_map.dart';
 
@@ -126,10 +128,10 @@ class _googlemapProfileState extends State<googlemapProfile> {
                       _form.currentState!.save();
                       _form.currentState!.validate();
 
-                      // final googleForm = formModel(
-                      //   latitude: double.parse(latitude.text.trim()),
-                      //   longitude: double.parse(longitude.text.trim()),
-                      //    );
+                      final googleForm = GoogleHiveModel(
+                        latitude: double.parse(latitude.text.trim()),
+                        longitude: double.parse(longitude.text.trim()),
+                      );
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
@@ -145,11 +147,11 @@ class _googlemapProfileState extends State<googlemapProfile> {
                                 content:
                                     const Text('Addedd sucessfully in Draft'),
                               ));
-                      // var jsonData = googleForm.toJson();
+                      var jsonData = googleForm.toJson();
 
-                      // final response = ref
-                      //     .read(formModelProvider.notifier)
-                      //     .addForm(googleForm);
+                      final response = ref
+                          .read(googleHiveModelProvider.notifier)
+                          .addForm(googleForm);
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),
