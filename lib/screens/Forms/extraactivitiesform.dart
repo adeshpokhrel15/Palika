@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/Hive/extrahive.dart';
 import 'package:palika/models/ecaInterested.dart';
+import 'package:palika/providers/Hive%20Providers/extraactivitiesProvider.dart';
 
 import 'package:palika/providers/ecaInterested.dart';
 import 'package:palika/providers/formProvider.dart';
@@ -168,32 +170,32 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
                       _form.currentState!.save();
                       _form.currentState!.validate();
 
-                      // final extraForm = formModel(
-                      //   interestedfieldid: interestedfield.text.trim(),
-                      //   professionalstatus: professionalstatus.text.trim(),
-                      //   durationofactivities: durationofactivities.text.trim(),
-                      //   istakingtraining: checktraining,
-                      // );
-                      // showDialog(
-                      //     context: context,
-                      //     builder: (context) => AlertDialog(
-                      //           actions: [
-                      //             TextButton(
-                      //                 onPressed: () {
-                      //                   Navigator.of(context).pop();
-                      //                 },
-                      //                 child: const Text('OK'))
-                      //           ],
-                      //           title: const Text('Success'),
-                      //           contentPadding: const EdgeInsets.all(20.0),
-                      //           content:
-                      //               const Text('Addedd sucessfully in Draft'),
-                      //         ));
-                      // var jsonData = extraForm.toJson();
+                      final extraForm = ExtraHiveModel(
+                        interestedfieldid: interestedfield.text.trim(),
+                        professionalstatus: professionalstatus.text.trim(),
+                        durationofactivities: durationofactivities.text.trim(),
+                        istakingtraining: checktraining,
+                      );
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: const Text('OK'))
+                                ],
+                                title: const Text('Success'),
+                                contentPadding: const EdgeInsets.all(20.0),
+                                content:
+                                    const Text('Addedd sucessfully in Draft'),
+                              ));
+                      var jsonData = extraForm.toJson();
 
-                      // final response = ref
-                      //     .read(formModelProvider.notifier)
-                      //     .addForm(extraForm);
+                      final response = ref
+                          .read(extraHiveModelProvider.notifier)
+                          .addForm(extraForm);
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),
