@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:palika/Hive/appearencehive.dart';
 import 'package:palika/models/skinColor.dart';
+import 'package:palika/providers/Hive%20Providers/appearenceProvider.dart';
 import 'package:palika/providers/formProvider.dart';
 import 'package:palika/providers/skinColor.dart';
 
@@ -140,11 +142,11 @@ class _appearenceProfileState extends State<appearenceProfile> {
                     onPressed: () async {
                       _form.currentState!.save();
                       _form.currentState!.validate();
-                      // final appearenceprofileForm = formModel(
-                      //   skincolor: skincolor.text.trim(),
-                      //   handicappedtypeid: handicapedid.text.trim(),
-                      //   ishandicap: isChecked,
-                      // );
+                      final appearenceprofileForm = AppearenceHiveModel(
+                        skincolor: skincolor.text.trim(),
+                        handicappedtypeid: handicapedid.text.trim(),
+                        ishandicap: isChecked,
+                      );
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
@@ -160,11 +162,11 @@ class _appearenceProfileState extends State<appearenceProfile> {
                                 content:
                                     const Text('Addedd sucessfully in Draft'),
                               ));
-                      // var jsonData = appearenceprofileForm.toJson();
+                      var jsonData = appearenceprofileForm.toJson();
 
-                      // final response = ref
-                      //     .read(formModelProvider.notifier)
-                      //     .addForm(appearenceprofileForm);
+                      final response = ref
+                          .read(appearenceModelProvider.notifier)
+                          .addForm(appearenceprofileForm);
                     },
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),
