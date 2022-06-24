@@ -20,7 +20,14 @@ class ChilddetailHiveModelProvider
     final boxAppearence =
         await Hive.openBox<ChildDetailsHiveModel>('childdetailshivemodel');
     if (state.isEmpty) {
-      final useForm = ChildDetailsHiveModel();
+      final useForm = ChildDetailsHiveModel(
+        childrenFirstname: useform.childrenFirstname,
+        childrenLastname: useform.childrenLastname,
+        childrenMiddlename: useform.childrenMiddlename,
+        childrendob: useform.childrendob,
+        childrengender: useform.childrengender,
+        familydetailid: useform.familydetailid,
+      );
 
       state = [...state, useForm];
     }
