@@ -62,7 +62,26 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Hive.initFlutter(); //hive initalize
+
 //  Hive.registerAdapter(formModelAdapter()); // hive register
+  Hive.registerAdapter(AddressHiveModelAdapter());
+  Hive.registerAdapter(AppearenceHiveModelAdapter());
+  Hive.registerAdapter(BusinessHiveModelAdapter());
+  Hive.registerAdapter(ChildHealthHiveModelAdapter());
+  Hive.registerAdapter(CitizensHiveModelAdapter());
+  Hive.registerAdapter(EthencitiesHiveModelAdapter());
+  Hive.registerAdapter(ExpenssHiveModelAdapter());
+  Hive.registerAdapter(ExtraHiveModelAdapter());
+  Hive.registerAdapter(FamilyModelAdapter());
+  Hive.registerAdapter(FoodmodelAdapter());
+  Hive.registerAdapter(GoogleHiveModelAdapter());
+  Hive.registerAdapter(HealthHiveModelAdapter());
+  Hive.registerAdapter(HousemodelAdapter());
+  Hive.registerAdapter(ChildDetailsHiveModelAdapter());
+  Hive.registerAdapter(PersonalHiveModelAdapter());
+  Hive.registerAdapter(SchoolHiveModelAdapter());
+  Hive.registerAdapter(WorkingHiveModelAdapter());
+
 //  final box = await Hive.openBox<personalHiveModel>(
   //    'PersonalHiveModel'); //hive open box
   // await Hive.openBox<Transistion>('tempTrans');
