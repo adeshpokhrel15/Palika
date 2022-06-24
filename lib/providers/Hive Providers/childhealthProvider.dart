@@ -16,7 +16,7 @@ class ChildhealthHiveModelProvider
   StateNotifierProviderRef ref;
 
   void addForm(ChildHealthHiveModel useform) async {
-    final boxAppearence =
+    final boxChildhealth =
         await Hive.openBox<ChildHealthHiveModel>('childhealthhivemodel');
     if (state.isEmpty) {
       final useForm = ChildHealthHiveModel(
@@ -25,19 +25,19 @@ class ChildhealthHiveModelProvider
         childrenbloodgroup: useform.childrenbloodgroup,
         childrengeneticdiseasedescription:
             useform.childrengeneticdiseasedescription,
-            childrenisBCGvaccinated: useform.childrenisBCGvaccinated,
-            childrenisDPTHEPBvaccinated: useform.childrenisDPTHEPBvaccinated,
-            childrenisIPVvaccinated: useform.childrenisIPVvaccinated,
-            childrenisJEvaccinated: useform.childrenisJEvaccinated,
-            childrenisMRvaccinated: useform.childrenisMRvaccinated,
-            childrenisOPVvaccinated: useform.childrenisOPVvaccinated,
-            childrenisPCVvaccinated: useform.childrenisPCVvaccinated,
-            childrenisTDvaccinated: useform.childrenisTDvaccinated,
-            childreniscovidvaccinated: useform.childreniscovidvaccinated,
-            childrenisgeneticdiseaseissue: useform.childrenisgeneticdiseaseissue,
-            childrenvaccinedetails: useform.childrenvaccinedetails,
-            childrenvacinedose: useform.childrenvacinedose,
-            chilrenbirthweight: useform.chilrenbirthweight,
+        childrenisBCGvaccinated: useform.childrenisBCGvaccinated,
+        childrenisDPTHEPBvaccinated: useform.childrenisDPTHEPBvaccinated,
+        childrenisIPVvaccinated: useform.childrenisIPVvaccinated,
+        childrenisJEvaccinated: useform.childrenisJEvaccinated,
+        childrenisMRvaccinated: useform.childrenisMRvaccinated,
+        childrenisOPVvaccinated: useform.childrenisOPVvaccinated,
+        childrenisPCVvaccinated: useform.childrenisPCVvaccinated,
+        childrenisTDvaccinated: useform.childrenisTDvaccinated,
+        childreniscovidvaccinated: useform.childreniscovidvaccinated,
+        childrenisgeneticdiseaseissue: useform.childrenisgeneticdiseaseissue,
+        childrenvaccinedetails: useform.childrenvaccinedetails,
+        childrenvacinedose: useform.childrenvacinedose,
+        chilrenbirthweight: useform.chilrenbirthweight,
       );
 
       state = [...state, useForm];

@@ -17,7 +17,7 @@ class ChilddetailHiveModelProvider
   StateNotifierProviderRef ref;
 
   void addForm(ChildDetailsHiveModel useform) async {
-    final boxAppearence =
+    final boxChilddetails =
         await Hive.openBox<ChildDetailsHiveModel>('childdetailshivemodel');
     if (state.isEmpty) {
       final useForm = ChildDetailsHiveModel(
