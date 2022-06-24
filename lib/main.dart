@@ -112,7 +112,25 @@ void main() async {
   // await Hive.openBox<Transistion>('tempTrans');
   runApp(
     ProviderScope(
-      //   overrides: [boxB.overrideWithValue(box.values.toList())],
+      overrides: [
+        boxAddress.overrideWithValue(boxAddress1.values.toList()),
+        boxPersonal.overrideWithValue(boxPersonal1.values.toList()),
+        boxAppearence.overrideWithValue(boxAppearence1.values.toList()),
+        boxBussiness.overrideWithValue(boxBussiness1.values.toList()),
+        boxChildhealth.overrideWithValue(boxChildhealth1.values.toList()),
+        boxChilddetails.overrideWithValue(boxChilddetails1.values.toList()),
+        boxCitizen.overrideWithValue(boxCitizen1.values.toList()),
+        boxEthcities.overrideWithValue(boxEthcities1.values.toList()),
+        boxExpenss.overrideWithValue(boxExpenss1.values.toList()),
+        boxExtra.overrideWithValue(boxExtra1.values.toList()),
+        boxFamily.overrideWithValue(boxFamily1.values.toList()),
+        boxFood.overrideWithValue(boxFood1.values.toList()),
+        boxGoogle.overrideWithValue(boxGoogle1.values.toList()),
+        boxHealth.overrideWithValue(boxHealth1.values.toList()),
+        boxHouse.overrideWithValue(boxHouse1.values.toList()),
+        boxSchool.overrideWithValue(boxSchool1.values.toList()),
+        boxWorking.overrideWithValue(boxWorking1.values.toList()),
+      ],
       child: ProviderScope(child: MyApp()),
     ),
   );
