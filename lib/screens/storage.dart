@@ -4,10 +4,24 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
-import 'package:palika/providers/formProvider.dart';
+import 'package:palika/Hive/addresshive.dart';
+import 'package:palika/Hive/ethencitieshive.dart';
+import 'package:palika/Hive/familyhive.dart';
+import 'package:palika/Hive/personalhive.dart';
+import 'package:palika/Hive/workinghive.dart';
+import 'package:palika/providers/Hive%20Providers/citizenProvider.dart';
+import 'package:palika/providers/Hive%20Providers/ethencitiesProvider.dart';
+import 'package:palika/providers/Hive%20Providers/expensesProvider.dart';
+import 'package:palika/providers/Hive%20Providers/familyProvider.dart';
+import 'package:palika/providers/Hive%20Providers/foodConsumptionProvider.dart';
+import 'package:palika/providers/Hive%20Providers/personalProvider.dart';
+
+import '../providers/Hive Providers/addressProvider.dart';
+import '../providers/Hive Providers/houseProvider.dart';
+import '../providers/Hive Providers/workingProvider.dart';
 
 class storage extends StatelessWidget {
-  // Box<formModel> _boxx = Hive.box('FormModel');
+  // Box<AddressModel> _boxx = Hive.box('AddressModel');
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +31,22 @@ class storage extends StatelessWidget {
               title: const Text('Draft'),
             ),
             body: Consumer(builder: ((context, ref, child) {
-              // final formdetails = ref.watch(formModelProvider);
-              // final formdetails = _boxx.values.toList();
+              final personalDetails = ref.watch(personalHiveModelProvider);
+              final addressDetails = ref.watch(addressModelProvider);
+              final familyDetails = ref.watch(familyHiveModelProvider);
+              final workingDetails = ref.watch(workingHiveModelProvider);
+              final ethencitiesDetails =
+                  ref.watch(ethencitiesHiveModelProvider);
+              final expensesDetails = ref.watch(expensesHiveModelProvider);
+              final foodDetails = ref.watch(foodHiveModelProvider);
+              final houseDetails = ref.watch(houseHiveModelProvider);
+              final citizenshipDetails = ref.watch(citizenHiveModelProvider);
+
               return ListView(
                 children: [
                   const Center(
                     child: Text(
-                      'Personal Form',
+                      'Personal Address',
                       style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
@@ -33,41 +56,45 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(personalDetails,
                       //     title: 'First Name',
-                      //     details: formdetails[0].firstname!),
-                      // FormCallMethod(formdetails,
+                      //     details: personalDetails[0].firstNamepersonal!),
+                      // AddressCallMethod(personalDetails,
                       //     title: 'Middle Name',
-                      //     details: formdetails[0].middlename!),
-                      // FormCallMethod(formdetails,
+                      //     details: personalDetails[0].middleNamepersonal!),
+                      // AddressCallMethod(personalDetails,
                       //     title: 'Last Name',
-                      //     details: formdetails[0].lastname!),
-                      // FormCallMethod(formdetails,
-                      //     title: 'Gender', details: formdetails[0].gender!),
-                      // FormCallMethod(formdetails,
+                      //     details: personalDetails[0].lastNamepersonal!),
+                      // AddressCallMethod(personalDetails,
+                      //     title: 'Gender',
+                      //     details: personalDetails[0].genderpersonal!),
+                      // AddressCallMethod(personalDetails,
                       //     title: 'Date of Birth',
-                      //     details: formdetails[0].dateofbirthpersonal!),
-                      // FormCallMethod(formdetails,
+                      //     details: personalDetails[0].dateofbirthpersonal!),
+                      // AddressCallMethod(personalDetails,
                       //     title: 'Blood Group',
-                      //     details: formdetails[0].bloodgroup!),
-                      // FormCallMethod(formdetails,
-                      //     title: 'Email', details: formdetails[0].email!),
-                      // FormCallMethod(formdetails,
-                      //     title: 'Age', details: '${formdetails[0].age!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: personalDetails[0].bloodgroupPersonal!),
+                      // AddressCallMethod(personalDetails,
+                      //     title: 'Email',
+                      //     details: personalDetails[0].emailpersonal!),
+                      // AddressCallMethod(personalDetails,
+                      //     title: 'Age',
+                      //     details: '${personalDetails[0].agepersonal!}'),
+                      // AddressCallMethod(personalDetails,
                       //     title: 'Handicapped Type Id',
-                      //     details: formdetails[0].handicappedidpersonal!),
-                      // FormCallMethod(formdetails,
+                      //     details: personalDetails[0].handicappedIDPersonal!),
+                      // AddressCallMethod(personalDetails,
                       //     title: 'Mobile Number',
-                      //     details: '${formdetails[0].mobilenumber!}'),
-                      // FormCallMethod(formdetails,
+                      //     details:
+                      //         '${personalDetails[0].mobilenumberpersonal!}'),
+                      // AddressCallMethod(personalDetails,
                       //     title: 'Pan Number',
-                      //     details: formdetails[0].pannumber!),
+                      //     details: personalDetails[0].pannumberpersonal!),
                     ]),
                   ),
                   const Center(
                     child: Text(
-                      'Address Form',
+                      'Address Address',
                       style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
@@ -77,42 +104,42 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Temporary Province',
-                      //     details: formdetails[0].tempProv!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].tempProv!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Temporary Municipality',
-                      //     details: formdetails[0].tempMuni!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].tempMuni!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Temporary District',
-                      //     details: formdetails[0].tempdistrict!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].tempdistrict!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Temporary Street/Tol',
-                      //     details: formdetails[0].tempstreettol!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].tempstreettol!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Temporary Block No.',
-                      //     details: '${formdetails[0].tempblockno!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].tempblockno!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Temporary Ward No.',
-                      //     details: '${formdetails[0].tempward!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].tempward!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Permanent Province',
-                      //     details: formdetails[0].permProv!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].permProv!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Permanent Municipality',
-                      //     details: formdetails[0].tempMuni!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].tempMuni!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Permanent District',
-                      //     details: formdetails[0].permdistrict!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].permdistrict!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Permanent Street/Tol',
-                      //     details: formdetails[0].permstreettol!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].permstreettol!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Permanent Block No.',
-                      //     details: '${formdetails[0].permblocknoaddress!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].permblocknoaddress!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Temporary Ward No.',
-                      //     details: '${formdetails[0].permpward!}'),
+                      //     details: '${addressDetails[0].permpward!}'),
                     ]),
                   ),
                   const Center(
@@ -127,75 +154,75 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Father First Name',
-                      //     details: formdetails[0].fatherFirstName),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].fatherFirstName!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Father Middle Name',
-                      //     details: formdetails[0].fatherMiddlename!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].fatherMiddlename!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Father Last Name',
-                      //     details: formdetails[0].fatherLastname),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].fatherLastname!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Mother First Name',
-                      //     details: formdetails[0].motherFirstName),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].motherFirstName!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Mother Middle Name',
-                      //     details: formdetails[0].motherMiddlename),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].motherMiddlename!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Mother Last Name',
-                      //     details: formdetails[0].motherLastname),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].motherLastname!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Spouse First Name',
-                      //     details: formdetails[0].spouseFirstName!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].spouseFirstName!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Spouse Middle Name',
-                      //     details: formdetails[0].spouseMiddleName!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].spouseMiddleName!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Spouse Last Name',
-                      //     details: formdetails[0].spouseLastName!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].spouseLastName!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Grand Father First Name',
-                      //     details: formdetails[0].grandfatherFirstname!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].grandfatherFirstname!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Grand Father Middle Name',
-                      //     details: formdetails[0].grandfatherMiddlename!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].grandfatherMiddlename!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Grand Father Last Name',
-                      //     details: formdetails[0].grandfatherLastname!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].grandfatherLastname!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Grand Mother First Name',
-                      //     details: formdetails[0].grandmotherFirstname!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].grandmotherFirstname!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Grand Mother Middle Name',
-                      //     details: formdetails[0].grandmotherMiddlename!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].grandmotherMiddlename!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Grand Mother Last Name',
-                      //     details: formdetails[0].grandmotherLastname!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].grandmotherLastname!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Son First Name',
-                      //     details: formdetails[0].sonFirstname!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].sonFirstname!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Son Middle Name',
-                      //     details: formdetails[0].sonMiddlename!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].sonMiddlename!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Son Last Name',
-                      //     details: formdetails[0].sonLastname!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].sonLastname!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Daughter First Name',
-                      //     details: formdetails[0].daughterFirstname!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].daughterFirstname!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Daughter Middle Name',
-                      //     details: formdetails[0].daughterMiddlename!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].daughterMiddlename!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Daughter Last Name',
-                      //     details: formdetails[0].daughterLastname!),
-                      // FormCallMethod(formdetails,
+                      //     details: familyDetails[0].daughterLastname!),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Total Son',
-                      //     details: '${formdetails[0].totalson!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${familyDetails[0].totalson!}'),
+                      // FamilyCallMethod(familyDetails,
                       //     title: 'Total Daughter',
-                      //     details: '${formdetails[0].totaldaughter!}'),
+                      //     details: '${familyDetails[0].totaldaughter!}'),
                     ]),
                   ),
                   const Center(
@@ -210,23 +237,24 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
-                      //     title: 'Job Type', details: formdetails[0].jobtype),
-                      // FormCallMethod(formdetails,
+                      // WorkingCallMethod(workingDetails,
+                      //     title: 'Job Type',
+                      //     details: workingDetails[0].jobtype!),
+                      // WorkingCallMethod(workingDetails,
                       //     title: 'Job Organization',
-                      //     details: formdetails[0].joborganization),
-                      // FormCallMethod(formdetails,
+                      //     details: workingDetails[0].joborganization!),
+                      // WorkingCallMethod(workingDetails,
                       //     title: 'Organization Address',
-                      //     details: formdetails[0].organizationaddress),
-                      // FormCallMethod(formdetails,
+                      //     details: workingDetails[0].organizationaddress!),
+                      // WorkingCallMethod(workingDetails,
                       //     title: 'Designation',
-                      //     details: formdetails[0].designation),
-                      // FormCallMethod(formdetails,
+                      //     details: workingDetails[0].designation!),
+                      // WorkingCallMethod(workingDetails,
                       //     title: 'Annual Income',
-                      //     details: '${formdetails[0].annualincome}'),
+                      //     details: '${workingDetails[0].annualincome!}'),
                     ]),
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Etencities Details',
                       style: TextStyle(
@@ -238,17 +266,19 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // EthnicitiesCallMethod(ethencitiesDetails,
                       //     title: 'Nationalism or Religion',
-                      //     details: formdetails[0].nationalismandreligion!),
-                      // FormCallMethod(formdetails,
+                      //     details:
+                      //         ethencitiesDetails[0].nationalismandreligion!),
+                      // EthnicitiesCallMethod(ethencitiesDetails,
                       //     title: 'Nationality',
-                      //     details: formdetails[0].nationality!),
-                      // FormCallMethod(formdetails,
-                      //     title: 'Religion', details: formdetails[0].religion!),
-                      // FormCallMethod(formdetails,
+                      //     details: ethencitiesDetails[0].nationality!),
+                      // EthnicitiesCallMethod(ethencitiesDetails,
+                      //     title: 'Religion',
+                      //     details: ethencitiesDetails[0].religion!),
+                      // EthnicitiesCallMethod(ethencitiesDetails,
                       //     title: 'Ethnic Group',
-                      //     details: formdetails[0].ethnicgroup!),
+                      //     details: ethencitiesDetails[0].ethnicgroup!),
                     ]),
                   ),
                   Center(
@@ -263,21 +293,21 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Total Month Income',
-                      //     details: '${formdetails[0].totalmonthlyincome!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].totalmonthlyincome!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Income Source',
-                      //     details: formdetails[0].incomesource!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].incomesource!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Income Source Mainly',
-                      //     details: formdetails[0].incomesourceman!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].incomesourceman!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Expense Category  ',
-                      //     details: formdetails[0].expensecategory!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].expensecategory!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Total Expense',
-                      //     details: '${formdetails[0].totalexpense!}'),
+                      //     details: '${addressDetails[0].totalexpense!}'),
                     ]),
                   ),
                   Center(
@@ -292,19 +322,19 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is Organic?',
-                      //     details: '${formdetails[0].isorganic!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].isorganic!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Food Consumption Timing',
-                      //     details: formdetails[0].foodconsumptiontiming!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].foodconsumptiontiming!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is Balanced Diet?',
-                      //     details: '${formdetails[0].isbalanceddiet!}'),
-                      // FormCallMethod(
-                      //   formdetails,
+                      //     details: '${addressDetails[0].isbalanceddiet!}'),
+                      // AddressCallMethod(
+                      //   addressDetails,
                       //   title: 'Regular Meal Description',
-                      //   details: formdetails[0].regularmealdescription!,
+                      //   details: addressDetails[0].regularmealdescription!,
                       // ),
                     ]),
                   ),
@@ -323,21 +353,21 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'House Address',
-                      //     details: formdetails[0].Houseaddress!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].Houseaddress!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Block Number',
-                      //     details: '${formdetails[0].Blocknumber!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].Blocknumber!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Street Name',
-                      //     details: formdetails[0].Streetname!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].Streetname!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'House Number',
-                      //     details: '${formdetails[0].Housenumber!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].Housenumber!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Total Type Id',
-                      //     details: formdetails[0].toilettypeid!),
+                      //     details: addressDetails[0].toilettypeid!),
                     ]),
                   ),
                   Center(
@@ -352,33 +382,33 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Business Org',
-                      //     details: formdetails[0].businessorg!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].businessorg!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Business Type Id',
-                      //     details: formdetails[0].businesstypeid!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].businesstypeid!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Organization Name',
-                      //     details: formdetails[0].orgname!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].orgname!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Total Investment',
-                      //     details: '${formdetails[0].totalinvestment!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].totalinvestment!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Annual Income',
-                      //     details: '${formdetails[0].annualincomeorg!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].annualincomeorg!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Annual Expenses',
-                      //     details: '${formdetails[0].annualxpense!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].annualxpense!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Total No. of Staff',
-                      //     details: '${formdetails[0].totalnostaff!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].totalnostaff!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Business Area',
-                      //     details: formdetails[0].businessarea!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].businessarea!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Business Product',
-                      //     details: formdetails[0].businessproduct!),
+                      //     details: addressDetails[0].businessproduct!),
                     ]),
                   ),
                   Center(
@@ -393,21 +423,21 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'School Name',
-                      //     details: formdetails[0].schoolname!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].schoolname!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'School Type Id',
-                      //     details: formdetails[0].schooltypeid!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].schooltypeid!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Dress Code',
-                      //     details: formdetails[0].dresscode!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].dresscode!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Dress Conditions',
-                      //     details: formdetails[0].dresscondition!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].dresscondition!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Children Schema Id',
-                      //     details: formdetails[0].childenschoolschemeid!),
+                      //     details: addressDetails[0].childenschoolschemeid!),
                     ]),
                   ),
                   Center(
@@ -422,16 +452,16 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Skin Color',
-                      //     details: formdetails[0].skincolor!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].skincolor!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is Handicap?',
-                      //     details: '${formdetails[0].ishandicap!}'),
-                      // FormCallMethod(
-                      //   formdetails,
+                      //     details: '${addressDetails[0].ishandicap!}'),
+                      // AddressCallMethod(
+                      //   addressDetails,
                       //   title: 'Handicapped Type Id',
-                      //   details: formdetails[0].handicappedtypeid!,
+                      //   details: addressDetails[0].handicappedtypeid!,
                       // ),
                     ]),
                   ),
@@ -450,23 +480,23 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Citezenship Number',
-                      //     details: '${formdetails[0].citizenshipnumber}'),
-                      // FormCallMethod(
-                      //   formdetails,
+                      //     details: '${addressDetails[0].citizenshipnumber}'),
+                      // AddressCallMethod(
+                      //   addressDetails,
                       //   title: 'Issued Place',
-                      //   details: formdetails[0].issuedat,
+                      //   details: addressDetails[0].issuedat,
                       // ),
-                      // FormCallMethod(
-                      //   formdetails,
+                      // AddressCallMethod(
+                      //   addressDetails,
                       //   title: 'Issued Date',
-                      //   details: formdetails[0].issueddate,
+                      //   details: addressDetails[0].issueddate,
                       // ),
-                      // FormCallMethod(
-                      //   formdetails,
+                      // AddressCallMethod(
+                      //   addressDetails,
                       //   title: 'Verified by',
-                      //   details: formdetails[0].verifiedby,
+                      //   details: addressDetails[0].verifiedby,
                       // ),
                     ]),
                   ),
@@ -485,19 +515,19 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Interested Field',
-                      //     details: formdetails[0].interestedfieldid!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].interestedfieldid!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is Handicap?',
-                      //     details: formdetails[0].istakingtraining!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].istakingtraining!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Professional Status',
-                      //     details: formdetails[0].professionalstatus!),
-                      // FormCallMethod(
-                      //   formdetails,
+                      //     details: addressDetails[0].professionalstatus!),
+                      // AddressCallMethod(
+                      //   addressDetails,
                       //   title: 'Duration Of Activities',
-                      //   details: formdetails[0].durationofactivities!,
+                      //   details: addressDetails[0].durationofactivities!,
                       // ),
                     ]),
                   ),
@@ -516,19 +546,19 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Children Name',
-                      //     details: formdetails[0].name!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].name!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Family Details Id?',
-                      //     details: formdetails[0].familydetailid!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].familydetailid!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Child Gender',
-                      //     details: formdetails[0].childrengender!),
-                      // FormCallMethod(
-                      //   formdetails,
+                      //     details: addressDetails[0].childrengender!),
+                      // AddressCallMethod(
+                      //   addressDetails,
                       //   title: 'Children Date OF Birth',
-                      //   details: formdetails[0].childrendob!,
+                      //   details: addressDetails[0].childrendob!,
                       // ),
                     ]),
                   ),
@@ -547,70 +577,70 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Blood Group',
-                      //     details: formdetails[0].childrenbloodgroup!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].childrenbloodgroup!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Birth Place',
-                      //     details: formdetails[0].childrenbirthplace!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].childrenbirthplace!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Birth Weight',
-                      //     details: '${formdetails[0].chilrenbirthweight!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].chilrenbirthweight!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Birth Conditions',
-                      //     details: formdetails[0].childrenbirthcondition!),
+                      //     details: addressDetails[0].childrenbirthcondition!),
 
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is BCG Vaccinated?',
                       //     details:
-                      //         '${formdetails[0].childrenisBCGvaccinated!}'),
+                      //         '${addressDetails[0].childrenisBCGvaccinated!}'),
 
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is DPT H_HPB Vaccinated?',
                       //     details:
-                      //         '${formdetails[0].childrenisDPTHEPBvaccinated!}'),
-                      // FormCallMethod(formdetails,
+                      //         '${addressDetails[0].childrenisDPTHEPBvaccinated!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is OPV Vaccinated?',
                       //     details:
-                      //         '${formdetails[0].childrenisOPVvaccinated!}'),
-                      // FormCallMethod(formdetails,
+                      //         '${addressDetails[0].childrenisOPVvaccinated!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is PCV Vaccinated?',
                       //     details:
-                      //         '${formdetails[0].childrenisPCVvaccinated!}'),
-                      // FormCallMethod(formdetails,
+                      //         '${addressDetails[0].childrenisPCVvaccinated!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is IPV Vaccinated?',
                       //     details:
-                      //         '${formdetails[0].childrenisIPVvaccinated!}'),
-                      // FormCallMethod(formdetails,
+                      //         '${addressDetails[0].childrenisIPVvaccinated!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is MR Vaccinated?',
-                      //     details: '${formdetails[0].childrenisMRvaccinated!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].childrenisMRvaccinated!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is JE Vaccinated?',
-                      //     details: '${formdetails[0].childrenisJEvaccinated!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].childrenisJEvaccinated!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is TD Vaccinated?',
-                      //     details: '${formdetails[0].childrenisTDvaccinated!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].childrenisTDvaccinated!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is Genetic Disease Issues?',
                       //     details:
-                      //         '${formdetails[0].childrenisgeneticdiseaseissue!}'),
+                      //         '${addressDetails[0].childrenisgeneticdiseaseissue!}'),
 
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Genetic Disease Descrption',
-                      //     details: formdetails[0]
+                      //     details: addressDetails[0]
                       //         .childrengeneticdiseasedescription!),
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is Covid Vaccinated?',
                       //     details:
-                      //         '${formdetails[0].childreniscovidvaccinated!}'),
+                      //         '${addressDetails[0].childreniscovidvaccinated!}'),
 
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Vaccine Details',
-                      //     details: formdetails[0].childrenvaccinedetails!),
-                      // FormCallMethod(
-                      //   formdetails,
+                      //     details: addressDetails[0].childrenvaccinedetails!),
+                      // AddressCallMethod(
+                      //   addressDetails,
                       //   title: 'Vaccine Dose',
-                      //   details: formdetails[0].childrenvacinedose!,
+                      //   details: addressDetails[0].childrenvacinedose!,
                       // ),
                     ]),
                   ),
@@ -629,38 +659,38 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Blood Group',
-                      //     details: formdetails[0].healthbloodgroup!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].healthbloodgroup!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Birth Place',
-                      //     details: formdetails[0].birthplace!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].birthplace!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Birth Weight',
-                      //     details: '${formdetails[0].birthweight!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].birthweight!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Birth Conditions',
-                      //     details: formdetails[0].birthcondition!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].birthcondition!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is Below 5 Vaccinated?',
-                      //     details: '${formdetails[0].isbelowvaccinated!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].isbelowvaccinated!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is Covid Vaccinated?',
-                      //     details: '${formdetails[0].iscovidvaccinated!}'),
-                      // FormCallMethod(formdetails,
+                      //     details: '${addressDetails[0].iscovidvaccinated!}'),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Is Genetic Disease Issues?',
-                      //     details: formdetails[0].isgeneticdiseaseissue!),
-                      // FormCallMethod(formdetails,
+                      //     details: addressDetails[0].isgeneticdiseaseissue!),
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Vaccine Details',
-                      //     details: formdetails[0].vaccinedetails!),
-                      // FormCallMethod(
-                      //   formdetails,
+                      //     details: addressDetails[0].vaccinedetails!),
+                      // AddressCallMethod(
+                      //   addressDetails,
                       //   title: 'Vaccine Dose',
-                      //   details: formdetails[0].vacinedose!,
+                      //   details: addressDetails[0].vacinedose!,
                       // ),
-                      // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
                       //     title: 'Genetic Disease Descrption',
-                      //     details: formdetails[0].geneticdiseasedescription!),
+                      //     details: addressDetails[0].geneticdiseasedescription!),
                     ]),
                   ),
                   SizedBox(
@@ -678,15 +708,15 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FormCallMethod(formdetails,
-                      //     title: 'Latitude', details: formdetails[0].latitude!),
-                      // // FormCallMethod(formdetails,
+                      // AddressCallMethod(addressDetails,
+                      //     title: 'Latitude', details: addressDetails[0].latitude!),
+                      // // AddressCallMethod(addressDetails,
                       // //     title: 'Is Handicap?',
-                      // //     details: formdetails[0].ishandicap!),
-                      // FormCallMethod(
-                      //   formdetails,
+                      // //     details: addressDetails[0].ishandicap!),
+                      // AddressCallMethod(
+                      //   addressDetails,
                       //   title: 'Longtitude',
-                      //   details: formdetails[0].longitude!,
+                      //   details: addressDetails[0].longitude!,
                       // ),
                     ]),
                   ),
@@ -710,7 +740,7 @@ class storage extends StatelessWidget {
                                 "POST, GET, OPTIONS",
                             HttpHeaders.contentTypeHeader: "application/json",
                           },
-                          // body: json.encode(personalForm)
+                          // body: json.encode(personalAddress)
                         );
                         print(response.body);
                       },
@@ -727,23 +757,93 @@ class storage extends StatelessWidget {
             }))));
   }
 
-  // Row FormCallMethod(List<formModel> formdetails,
-  //     {required String title,
-  //     required dynamic details,
-  //     bool isHandicap = false}) {
-  //   return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-  //     Text(
-  //       title,
-  //       style: TextStyle(fontSize: 15, color: Colors.black),
-  //     ),
-  //     Spacer(),
-  //     Text(
-  //       details,
-  //       style: TextStyle(fontSize: 13, color: Colors.black),
-  //     ),
-  //     SizedBox(
-  //       height: 30,
-  //     ),
-  //   ]);
-  // }
+  Row FormCallMethod(
+    List<PersonalHiveModel> personalDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row AddressCallMethod(
+    List<AddressHiveModel> addressDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row FamilyCallMethod(
+    List<FamilyModel> familyDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row WorkingCallMethod(
+    List<WorkingHiveModel> workingDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row EthnicitiesCallMethod(
+    List<EthencitiesHiveModel> ethencitiesDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
 }

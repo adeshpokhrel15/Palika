@@ -5,6 +5,8 @@ import 'package:palika/screens/profile.dart';
 import 'package:palika/screens/settings.dart';
 import 'package:palika/screens/storage.dart';
 
+import 'draft.dart';
+
 var tstyle = TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 50);
 
 class MyHomePage extends StatefulWidget {
@@ -22,6 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
     dashBoard(),
     settingPage(),
     storage(),
+    //DraftStorage(),
   ];
   PageController controller = PageController();
 
