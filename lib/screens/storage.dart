@@ -9,14 +9,22 @@ import 'package:palika/Hive/ethencitieshive.dart';
 import 'package:palika/Hive/familyhive.dart';
 import 'package:palika/Hive/personalhive.dart';
 import 'package:palika/Hive/workinghive.dart';
+import 'package:palika/providers/Hive%20Providers/businessProvider.dart';
+import 'package:palika/providers/Hive%20Providers/childdetailsProvider.dart';
+import 'package:palika/providers/Hive%20Providers/childhealthProvider.dart';
 import 'package:palika/providers/Hive%20Providers/citizenProvider.dart';
 import 'package:palika/providers/Hive%20Providers/ethencitiesProvider.dart';
 import 'package:palika/providers/Hive%20Providers/expensesProvider.dart';
+import 'package:palika/providers/Hive%20Providers/extraactivitiesProvider.dart';
 import 'package:palika/providers/Hive%20Providers/familyProvider.dart';
 import 'package:palika/providers/Hive%20Providers/foodConsumptionProvider.dart';
+import 'package:palika/providers/Hive%20Providers/googleMapProvider.dart';
+import 'package:palika/providers/Hive%20Providers/healthhiveProvider.dart';
 import 'package:palika/providers/Hive%20Providers/personalProvider.dart';
+import 'package:palika/providers/Hive%20Providers/schoolProvider.dart';
 
 import '../providers/Hive Providers/addressProvider.dart';
+import '../providers/Hive Providers/appearenceProvider.dart';
 import '../providers/Hive Providers/houseProvider.dart';
 import '../providers/Hive Providers/workingProvider.dart';
 
@@ -41,7 +49,14 @@ class storage extends StatelessWidget {
               final foodDetails = ref.watch(foodHiveModelProvider);
               final houseDetails = ref.watch(houseHiveModelProvider);
               final citizenshipDetails = ref.watch(citizenHiveModelProvider);
-
+              final businessDetails = ref.watch(businessModelProvider);
+              final extraDetails = ref.watch(extraHiveModelProvider);
+              final schoolDetails = ref.watch(schoolHiveModelProvider);
+              final appearenceDetails = ref.watch(appearenceModelProvider);
+              final childrenDetails = ref.watch(childdetailModelProvider);
+              final childrenHealthDetails = ref.watch(childhealthModelProvider);
+              final googlemapDetails = ref.watch(googleHiveModelProvider);
+              final healthDetails = ref.watch(healthHiveModelProvider);
               return ListView(
                 children: [
                   const Center(
