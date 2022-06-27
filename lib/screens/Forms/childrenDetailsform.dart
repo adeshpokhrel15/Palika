@@ -7,6 +7,9 @@ import 'package:palika/Hive/childrenhive.dart';
 import 'package:palika/providers/Hive%20Providers/childdetailsProvider.dart';
 import 'package:palika/providers/formProvider.dart';
 
+import '../../models/genders.dart';
+import '../../providers/genderProvider.dart';
+
 class childrendetailsForm extends StatefulWidget {
   static const routeName = "childrendetails-form";
   @override
@@ -29,6 +32,7 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
 
   final familydetailid = TextEditingController();
   final dobcontroller = TextEditingController();
+  final childrengender = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -121,67 +125,67 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Gender',
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.blue),
-                                    ),
-                                    SizedBox(
-                                      width: 90,
-                                    ),
-                                    InkWell(
-                                      child: Icon(
-                                        Icons.add_circle,
-                                        size: 30,
-                                        color: Colors.blue,
-                                      ),
-                                      onTap: () {
-                                        showCupertinoModalPopup(
-                                            context: context,
-                                            builder: (context) =>
-                                                CupertinoActionSheet(
-                                                  actions: [buildDatePicker()],
-                                                  cancelButton:
-                                                      CupertinoActionSheetAction(
-                                                    child: Text('Done'),
-                                                    onPressed: () =>
-                                                        Navigator.pop(context),
-                                                  ),
-                                                ));
-                                      },
-                                    ),
-                                    SizedBox(
-                                      width: 20,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.27,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        border: Border.all(
-                                          color: Colors.white,
-                                          width: 10,
-                                        ),
-                                        borderRadius: BorderRadius.circular(20),
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          items[index],
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.blue),
-                                          textAlign: TextAlign.end,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                // Row(
+                                //   children: [
+                                //     Text(
+                                //       'Gender',
+                                //       style: TextStyle(
+                                //           fontSize: 20,
+                                //           fontWeight: FontWeight.bold,
+                                //           color: Colors.blue),
+                                //     ),
+                                //     SizedBox(
+                                //       width: 90,
+                                //     ),
+                                //     InkWell(
+                                //       child: Icon(
+                                //         Icons.add_circle,
+                                //         size: 30,
+                                //         color: Colors.blue,
+                                //       ),
+                                //       onTap: () {
+                                //         showCupertinoModalPopup(
+                                //             context: context,
+                                //             builder: (context) =>
+                                //                 CupertinoActionSheet(
+                                //                   actions: [buildDatePicker()],
+                                //                   cancelButton:
+                                //                       CupertinoActionSheetAction(
+                                //                     child: Text('Done'),
+                                //                     onPressed: () =>
+                                //                         Navigator.pop(context),
+                                //                   ),
+                                //                 ));
+                                //       },
+                                //     ),
+                                //     SizedBox(
+                                //       width: 20,
+                                //     ),
+                                //     Container(
+                                //       width: MediaQuery.of(context).size.width *
+                                //           0.27,
+                                //       height: 40,
+                                //       decoration: BoxDecoration(
+                                //         color: Colors.white,
+                                //         border: Border.all(
+                                //           color: Colors.white,
+                                //           width: 10,
+                                //         ),
+                                //         borderRadius: BorderRadius.circular(20),
+                                //       ),
+                                //       child: Center(
+                                //         child: Text(
+                                //           items[index],
+                                //           style: TextStyle(
+                                //               fontSize: 20,
+                                //               fontWeight: FontWeight.bold,
+                                //               color: Colors.blue),
+                                //           textAlign: TextAlign.end,
+                                //         ),
+                                //       ),
+                                //     ),
+                                //   ],
+                                // ),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -250,6 +254,47 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                     ),
                                   ],
                                 ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                FutureBuilder<List<Gender>>(
+                                  future: ApiGender().getData(),
+                                  builder: (context, snap) {
+                                    if (snap.hasData) {
+                                      final List<Gender> data = snap.data!;
+
+                                      return DropdownButtonFormField<Gender>(
+                                          menuMaxHeight: 400,
+                                          decoration: InputDecoration(
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(30),
+                                              ),
+                                              labelText: 'Select Gender',
+                                              prefixIcon: const Icon(
+                                                Icons.email,
+                                                color: Colors.orange,
+                                              ),
+                                              hintText: "Gender "),
+                                          items: [
+                                            ...data.map(
+                                              (e) => DropdownMenuItem(
+                                                value: e,
+                                                child: Text(e.nepalNamegender),
+                                              ),
+                                            )
+                                          ],
+                                          onChanged: (value) {
+                                            childrengender.text =
+                                                value!.nepalNamegender;
+
+                                            print(childrengender.text);
+                                          });
+                                    } else {
+                                      return const LinearProgressIndicator();
+                                    }
+                                  },
+                                ),
                               ],
                             ),
                             SizedBox(
@@ -265,7 +310,7 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                   final childrenDetails = ChildDetailsHiveModel(
                                     childrenFirstname: name.text.trim(),
                                     familydetailid: familydetailid.text.trim(),
-                                    childrengender: items[index].trim(),
+                                    childrengender: childrengender.text.trim(),
                                     childrendob: dobcontroller.text.trim(),
                                   );
                                   showDialog(

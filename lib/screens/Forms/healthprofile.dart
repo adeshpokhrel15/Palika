@@ -3,8 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/Hive/healthhive.dart';
+import 'package:palika/models/genders.dart';
 import 'package:palika/providers/Hive%20Providers/healthhiveProvider.dart';
 import 'package:palika/providers/formProvider.dart';
+import 'package:palika/providers/genderProvider.dart';
 
 import '../../models/bloodGroup.dart';
 import '../../providers/bloodProvider.dart';
@@ -73,40 +75,65 @@ class _healthProfileFormState extends State<healthProfileForm> {
             child: ListView(
               padding: EdgeInsets.all(10),
               children: [
-                FutureBuilder<List<BloodGroup>>(
-                  future: Apiblood().getData(),
-                  builder: (context, snap) {
-                    if (snap.hasData) {
-                      final List<BloodGroup> data = snap.data!;
-
-                      return DropdownButtonFormField<BloodGroup>(
-                          menuMaxHeight: 400,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              labelText: 'Blood Group',
-                              prefixIcon: const Icon(
-                                Icons.email,
-                                color: Colors.orange,
-                              ),
-                              hintText: " Blood Group "),
-                          items: [
-                            ...data.map(
-                              (e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e.bloodname),
-                              ),
-                            )
-                          ],
-                          onChanged: (value) {
-                            bloodgroupHealth.text = '${value!.bloodname}';
-                            print(bloodgroupHealth.text);
-                          });
-                    } else {
-                      return const LinearProgressIndicator();
-                    }
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Is Below 5 Vaccinated?",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    Spacer(),
+                    Checkbox(
+                      value: _checkisbelowVaccinated,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkisbelowVaccinated = !_checkisbelowVaccinated;
+                        });
+                      },
+                    ) //Row
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Is Covid Vaccinated?",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    Spacer(),
+                    Checkbox(
+                      value: _checkiscoVVidVaccinated,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkiscoVVidVaccinated = !_checkiscoVVidVaccinated;
+                        });
+                      },
+                    ) //Row
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Is Genetic Disease Issues?",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    Spacer(),
+                    Checkbox(
+                      value: _checkisgeneticaccinated,
+                      onChanged: (value) {
+                        setState(() {
+                          _checkisgeneticaccinated = !_checkisgeneticaccinated;
+                        });
+                      },
+                    ) //Row
+                  ],
                 ),
                 SizedBox(
                   height: 20,
@@ -170,69 +197,6 @@ class _healthProfileFormState extends State<healthProfileForm> {
                     ),
                     hintText: 'Birth Conditions',
                   ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Is Below 5 Vaccinated?",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    Spacer(),
-                    Checkbox(
-                      value: _checkisbelowVaccinated,
-                      onChanged: (value) {
-                        setState(() {
-                          _checkisbelowVaccinated = !_checkisbelowVaccinated;
-                        });
-                      },
-                    ) //Row
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Is Covid Vaccinated?",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    Spacer(),
-                    Checkbox(
-                      value: _checkiscoVVidVaccinated,
-                      onChanged: (value) {
-                        setState(() {
-                          _checkiscoVVidVaccinated = !_checkiscoVVidVaccinated;
-                        });
-                      },
-                    ) //Row
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Is Genetic Disease Issues?",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    Spacer(),
-                    Checkbox(
-                      value: _checkisgeneticaccinated,
-                      onChanged: (value) {
-                        setState(() {
-                          _checkisgeneticaccinated = !_checkisgeneticaccinated;
-                        });
-                      },
-                    ) //Row
-                  ],
                 ),
                 SizedBox(
                   height: 20,
@@ -340,7 +304,6 @@ class _healthProfileFormState extends State<healthProfileForm> {
                         isbelowvaccinated: _checkisbelowVaccinated,
                         iscovidvaccinated: _checkiscoVVidVaccinated,
                         isgeneticdiseaseissue: _checkisgeneticaccinated,
-                        healthbloodgroup: bloods[ind].trim(),
                       );
 
                       var jsonData = healthProfile.toJson();

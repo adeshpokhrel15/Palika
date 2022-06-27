@@ -53,6 +53,27 @@ class _appearenceProfileState extends State<appearenceProfile> {
             child: ListView(
               padding: EdgeInsets.all(10),
               children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Is Handicapped?",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    Spacer(),
+                    Checkbox(
+                      value: isChecked,
+                      onChanged: (value) {
+                        setState(() {
+                          isChecked = !isChecked;
+                        });
+                      },
+                    ) //Row
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
                 FutureBuilder<List<SkinColor>>(
                   future: ApiskinColor().skincolorgetData(),
                   builder: (context, snap) {
@@ -88,27 +109,6 @@ class _appearenceProfileState extends State<appearenceProfile> {
                 ),
                 SizedBox(
                   height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Is Handicapped?",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    Spacer(),
-                    Checkbox(
-                      value: isChecked,
-                      onChanged: (value) {
-                        setState(() {
-                          isChecked = !isChecked;
-                        });
-                      },
-                    ) //Row
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
                 ),
                 TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,

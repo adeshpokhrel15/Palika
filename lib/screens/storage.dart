@@ -5,9 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:palika/Hive/addresshive.dart';
+import 'package:palika/Hive/appearencehive.dart';
+import 'package:palika/Hive/businesshive.dart';
+import 'package:palika/Hive/childhlthhive.dart';
+import 'package:palika/Hive/citizenshive.dart';
 import 'package:palika/Hive/ethencitieshive.dart';
+import 'package:palika/Hive/expensshive.dart';
+import 'package:palika/Hive/extrahive.dart';
 import 'package:palika/Hive/familyhive.dart';
+import 'package:palika/Hive/foodhive.dart';
+import 'package:palika/Hive/googlehive.dart';
+import 'package:palika/Hive/healthhive.dart';
 import 'package:palika/Hive/personalhive.dart';
+import 'package:palika/Hive/schoolhive.dart';
 import 'package:palika/Hive/workinghive.dart';
 import 'package:palika/providers/Hive%20Providers/businessProvider.dart';
 import 'package:palika/providers/Hive%20Providers/childdetailsProvider.dart';
@@ -23,6 +33,8 @@ import 'package:palika/providers/Hive%20Providers/healthhiveProvider.dart';
 import 'package:palika/providers/Hive%20Providers/personalProvider.dart';
 import 'package:palika/providers/Hive%20Providers/schoolProvider.dart';
 
+import '../Hive/childrenhive.dart';
+import '../Hive/househive.dart';
 import '../providers/Hive Providers/addressProvider.dart';
 import '../providers/Hive Providers/appearenceProvider.dart';
 import '../providers/Hive Providers/houseProvider.dart';
@@ -46,7 +58,6 @@ class storage extends StatelessWidget {
               final ethencitiesDetails =
                   ref.watch(ethencitiesHiveModelProvider);
               final expensesDetails = ref.watch(expensesHiveModelProvider);
-              final foodDetails = ref.watch(foodHiveModelProvider);
               final houseDetails = ref.watch(houseHiveModelProvider);
               final citizenshipDetails = ref.watch(citizenHiveModelProvider);
               final businessDetails = ref.watch(businessModelProvider);
@@ -57,6 +68,7 @@ class storage extends StatelessWidget {
               final childrenHealthDetails = ref.watch(childhealthModelProvider);
               final googlemapDetails = ref.watch(googleHiveModelProvider);
               final healthDetails = ref.watch(healthHiveModelProvider);
+              final foodDetails = ref.watch(foodHiveModelProvider);
               return ListView(
                 children: [
                   const Center(
@@ -296,7 +308,7 @@ class storage extends StatelessWidget {
                       //     details: ethencitiesDetails[0].ethnicgroup!),
                     ]),
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Expenses Details',
                       style: TextStyle(
@@ -308,24 +320,24 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
+                      // ExpensesCallMethod(expensesDetails,
                       //     title: 'Total Month Income',
-                      //     details: '${addressDetails[0].totalmonthlyincome!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details: '${expensesDetails[0].totalmonthlyincome!}'),
+                      // ExpensesCallMethod(expensesDetails,
                       //     title: 'Income Source',
-                      //     details: addressDetails[0].incomesource!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: expensesDetails[0].incomesource!),
+                      // ExpensesCallMethod(expensesDetails,
                       //     title: 'Income Source Mainly',
-                      //     details: addressDetails[0].incomesourceman!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: expensesDetails[0].incomesourceman!),
+                      // ExpensesCallMethod(expensesDetails,
                       //     title: 'Expense Category  ',
-                      //     details: addressDetails[0].expensecategory!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: expensesDetails[0].expensecategory!),
+                      // ExpensesCallMethod(expensesDetails,
                       //     title: 'Total Expense',
-                      //     details: '${addressDetails[0].totalexpense!}'),
+                      //     details: '${expensesDetails[0].totalexpense!}'),
                     ]),
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Food Consumption Details',
                       style: TextStyle(
@@ -337,26 +349,26 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
+                      // FoodCallMethod(foodDetails,
                       //     title: 'Is Organic?',
-                      //     details: '${addressDetails[0].isorganic!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details: '${foodDetails[0].isorganic!}'),
+                      // FoodCallMethod(foodDetails,
                       //     title: 'Food Consumption Timing',
-                      //     details: addressDetails[0].foodconsumptiontiming!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: foodDetails[0].foodconsumptiontiming!),
+                      // FoodCallMethod(foodDetails,
                       //     title: 'Is Balanced Diet?',
-                      //     details: '${addressDetails[0].isbalanceddiet!}'),
-                      // AddressCallMethod(
-                      //   addressDetails,
+                      //     details: '${foodDetails[0].isbalanceddiet!}'),
+                      // FoodCallMethod(
+                      //   foodDetails,
                       //   title: 'Regular Meal Description',
-                      //   details: addressDetails[0].regularmealdescription!,
+                      //   details: foodDetails[0].regularmealdescription!,
                       // ),
                     ]),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'House Details',
                       style: TextStyle(
@@ -368,24 +380,24 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
+                      // HouseCallMethod(houseDetails,
                       //     title: 'House Address',
-                      //     details: addressDetails[0].Houseaddress!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: houseDetails[0].houseaddress!),
+                      // HouseCallMethod(houseDetails,
                       //     title: 'Block Number',
-                      //     details: '${addressDetails[0].Blocknumber!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details: '${houseDetails[0].blocknumber!}'),
+                      // HouseCallMethod(houseDetails,
                       //     title: 'Street Name',
-                      //     details: addressDetails[0].Streetname!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: houseDetails[0].streetname!),
+                      // HouseCallMethod(houseDetails,
                       //     title: 'House Number',
-                      //     details: '${addressDetails[0].Housenumber!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details: '${houseDetails[0].housenumber!}'),
+                      // HouseCallMethod(houseDetails,
                       //     title: 'Total Type Id',
-                      //     details: addressDetails[0].toilettypeid!),
+                      //     details: houseDetails[0].toilettypeid!),
                     ]),
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Business Profile',
                       style: TextStyle(
@@ -397,36 +409,36 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
+                      // BusinessCallMethod(businessDetails,
                       //     title: 'Business Org',
-                      //     details: addressDetails[0].businessorg!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: businessDetails[0].businessorg!),
+                      // BusinessCallMethod(businessDetails,
                       //     title: 'Business Type Id',
-                      //     details: addressDetails[0].businesstypeid!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: businessDetails[0].businesstypeid!),
+                      // BusinessCallMethod(businessDetails,
                       //     title: 'Organization Name',
-                      //     details: addressDetails[0].orgname!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: businessDetails[0].orgname!),
+                      // BusinessCallMethod(businessDetails,
                       //     title: 'Total Investment',
-                      //     details: '${addressDetails[0].totalinvestment!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details: '${businessDetails[0].totalinvestment!}'),
+                      // BusinessCallMethod(businessDetails,
                       //     title: 'Annual Income',
-                      //     details: '${addressDetails[0].annualincomeorg!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details: '${businessDetails[0].annualincomeorg!}'),
+                      // BusinessCallMethod(businessDetails,
                       //     title: 'Annual Expenses',
-                      //     details: '${addressDetails[0].annualxpense!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details: '${businessDetails[0].annualxpense!}'),
+                      // BusinessCallMethod(businessDetails,
                       //     title: 'Total No. of Staff',
-                      //     details: '${addressDetails[0].totalnostaff!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details: '${businessDetails[0].totalnostaff!}'),
+                      // BusinessCallMethod(businessDetails,
                       //     title: 'Business Area',
-                      //     details: addressDetails[0].businessarea!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: businessDetails[0].businessarea!),
+                      // BusinessCallMethod(businessDetails,
                       //     title: 'Business Product',
-                      //     details: addressDetails[0].businessproduct!),
+                      //     details: businessDetails[0].businessproduct!),
                     ]),
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'School Profile',
                       style: TextStyle(
@@ -438,26 +450,26 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
+                      // SchoolCallMethod(schoolDetails,
                       //     title: 'School Name',
-                      //     details: addressDetails[0].schoolname!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: schoolDetails[0].schoolname!),
+                      // SchoolCallMethod(schoolDetails,
                       //     title: 'School Type Id',
-                      //     details: addressDetails[0].schooltypeid!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: schoolDetails[0].schooltypeid!),
+                      // SchoolCallMethod(schoolDetails,
                       //     title: 'Dress Code',
-                      //     details: addressDetails[0].dresscode!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: schoolDetails[0].dresscode!),
+                      // SchoolCallMethod(schoolDetails,
                       //     title: 'Dress Conditions',
-                      //     details: addressDetails[0].dresscondition!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: schoolDetails[0].dresscondition!),
+                      // SchoolCallMethod(schoolDetails,
                       //     title: 'Children Schema Id',
-                      //     details: addressDetails[0].childenschoolschemeid!),
+                      //     details: schoolDetails[0].childenschoolschemeid!),
                     ]),
                   ),
-                  Center(
+                  const Center(
                     child: Text(
-                      'Apperence Profile',
+                      'Appearence Profile',
                       style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
@@ -467,23 +479,23 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
+                      // AppearenceCallMethod(appearenceDetails,
                       //     title: 'Skin Color',
-                      //     details: addressDetails[0].skincolor!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: appearenceDetails[0].skincolor!),
+                      // AppearenceCallMethod(appearenceDetails,
                       //     title: 'Is Handicap?',
-                      //     details: '${addressDetails[0].ishandicap!}'),
-                      // AddressCallMethod(
-                      //   addressDetails,
+                      //     details: '${appearenceDetails[0].ishandicap!}'),
+                      // AppearenceCallMethod(
+                      //   appearenceDetails,
                       //   title: 'Handicapped Type Id',
-                      //   details: addressDetails[0].handicappedtypeid!,
+                      //   details: appearenceDetails[0].handicappedtypeid!,
                       // ),
                     ]),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Citizenship Details',
                       style: TextStyle(
@@ -495,30 +507,31 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
+                      // CitizensCallMethod(citizenshipDetails,
                       //     title: 'Citezenship Number',
-                      //     details: '${addressDetails[0].citizenshipnumber}'),
-                      // AddressCallMethod(
-                      //   addressDetails,
+                      //     details:
+                      //         '${citizenshipDetails[0].citizenshipnumber}'),
+                      // CitizensCallMethod(
+                      //   citizenshipDetails,
                       //   title: 'Issued Place',
-                      //   details: addressDetails[0].issuedat,
+                      //   details: citizenshipDetails[0].issuedat,
                       // ),
-                      // AddressCallMethod(
-                      //   addressDetails,
+                      // CitizensCallMethod(
+                      //   citizenshipDetails,
                       //   title: 'Issued Date',
-                      //   details: addressDetails[0].issueddate,
+                      //   details: citizenshipDetails[0].issueddate,
                       // ),
-                      // AddressCallMethod(
-                      //   addressDetails,
+                      // CitizensCallMethod(
+                      //   citizenshipDetails,
                       //   title: 'Verified by',
-                      //   details: addressDetails[0].verifiedby,
+                      //   details: citizenshipDetails[0].verifiedby,
                       // ),
                     ]),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Extra Cariculum Activities',
                       style: TextStyle(
@@ -530,26 +543,26 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
+                      // ExtraCallMethod(extraDetails,
                       //     title: 'Interested Field',
-                      //     details: addressDetails[0].interestedfieldid!),
-                      // AddressCallMethod(addressDetails,
-                      //     title: 'Is Handicap?',
-                      //     details: addressDetails[0].istakingtraining!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: extraDetails[0].interestedfieldid!),
+                      // ExtraCallMethod(extraDetails,
+                      //     title: 'Is Taking Training?',
+                      //     details: '${extraDetails[0].istakingtraining!}'),
+                      // ExtraCallMethod(extraDetails,
                       //     title: 'Professional Status',
-                      //     details: addressDetails[0].professionalstatus!),
-                      // AddressCallMethod(
-                      //   addressDetails,
+                      //     details: extraDetails[0].professionalstatus!),
+                      // ExtraCallMethod(
+                      //   extraDetails,
                       //   title: 'Duration Of Activities',
-                      //   details: addressDetails[0].durationofactivities!,
+                      //   details: extraDetails[0].durationofactivities!,
                       // ),
                     ]),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Children Details',
                       style: TextStyle(
@@ -561,26 +574,26 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
-                      //     title: 'Children Name',
-                      //     details: addressDetails[0].name!),
-                      // AddressCallMethod(addressDetails,
+                      // ChildrenDetailsCallMethod(childrenDetails,
+                      //     title: 'Children Full Name',
+                      //     details: childrenDetails[0].childrenFirstname!),
+                      // ChildrenDetailsCallMethod(childrenDetails,
                       //     title: 'Family Details Id?',
-                      //     details: addressDetails[0].familydetailid!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: childrenDetails[0].familydetailid!),
+                      // ChildrenDetailsCallMethod(childrenDetails,
                       //     title: 'Child Gender',
-                      //     details: addressDetails[0].childrengender!),
-                      // AddressCallMethod(
-                      //   addressDetails,
+                      //     details: childrenDetails[0].childrengender!),
+                      // ChildrenDetailsCallMethod(
+                      //   childrenDetails,
                       //   title: 'Children Date OF Birth',
-                      //   details: addressDetails[0].childrendob!,
+                      //   details: childrenDetails[0].childrendob!,
                       // ),
                     ]),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Children Health',
                       style: TextStyle(
@@ -592,77 +605,81 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Blood Group',
-                      //     details: addressDetails[0].childrenbloodgroup!),
-                      // AddressCallMethod(addressDetails,
+                      //     details:
+                      //         childrenHealthDetails[0].childrenbloodgroup!),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Birth Place',
-                      //     details: addressDetails[0].childrenbirthplace!),
-                      // AddressCallMethod(addressDetails,
+                      //     details:
+                      //         childrenHealthDetails[0].childrenbirthplace!),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Birth Weight',
-                      //     details: '${addressDetails[0].chilrenbirthweight!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details:
+                      //         '${childrenHealthDetails[0].chilrenbirthweight!}'),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Birth Conditions',
-                      //     details: addressDetails[0].childrenbirthcondition!),
-
-                      // AddressCallMethod(addressDetails,
+                      //     details:
+                      //         childrenHealthDetails[0].childrenbirthcondition!),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Is BCG Vaccinated?',
                       //     details:
-                      //         '${addressDetails[0].childrenisBCGvaccinated!}'),
-
-                      // AddressCallMethod(addressDetails,
+                      //         '${childrenHealthDetails[0].childrenisBCGvaccinated!}'),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Is DPT H_HPB Vaccinated?',
                       //     details:
-                      //         '${addressDetails[0].childrenisDPTHEPBvaccinated!}'),
-                      // AddressCallMethod(addressDetails,
+                      //         '${childrenHealthDetails[0].childrenisDPTHEPBvaccinated!}'),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Is OPV Vaccinated?',
                       //     details:
-                      //         '${addressDetails[0].childrenisOPVvaccinated!}'),
-                      // AddressCallMethod(addressDetails,
+                      //         '${childrenHealthDetails[0].childrenisOPVvaccinated!}'),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Is PCV Vaccinated?',
                       //     details:
-                      //         '${addressDetails[0].childrenisPCVvaccinated!}'),
-                      // AddressCallMethod(addressDetails,
+                      //         '${childrenHealthDetails[0].childrenisPCVvaccinated!}'),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Is IPV Vaccinated?',
                       //     details:
-                      //         '${addressDetails[0].childrenisIPVvaccinated!}'),
-                      // AddressCallMethod(addressDetails,
+                      //         '${childrenHealthDetails[0].childrenisIPVvaccinated!}'),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Is MR Vaccinated?',
-                      //     details: '${addressDetails[0].childrenisMRvaccinated!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details:
+                      //         '${childrenHealthDetails[0].childrenisMRvaccinated!}'),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Is JE Vaccinated?',
-                      //     details: '${addressDetails[0].childrenisJEvaccinated!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details:
+                      //         '${childrenHealthDetails[0].childrenisJEvaccinated!}'),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Is TD Vaccinated?',
-                      //     details: '${addressDetails[0].childrenisTDvaccinated!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details:
+                      //         '${childrenHealthDetails[0].childrenisTDvaccinated!}'),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Is Genetic Disease Issues?',
                       //     details:
-                      //         '${addressDetails[0].childrenisgeneticdiseaseissue!}'),
-
-                      // AddressCallMethod(addressDetails,
+                      //         '${childrenHealthDetails[0].childrenisgeneticdiseaseissue!}'),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Genetic Disease Descrption',
-                      //     details: addressDetails[0]
+                      //     details: childrenHealthDetails[0]
                       //         .childrengeneticdiseasedescription!),
-                      // AddressCallMethod(addressDetails,
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Is Covid Vaccinated?',
                       //     details:
-                      //         '${addressDetails[0].childreniscovidvaccinated!}'),
-
-                      // AddressCallMethod(addressDetails,
+                      //         '${childrenHealthDetails[0].childreniscovidvaccinated!}'),
+                      // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Vaccine Details',
-                      //     details: addressDetails[0].childrenvaccinedetails!),
-                      // AddressCallMethod(
-                      //   addressDetails,
+                      //     details:
+                      //         childrenHealthDetails[0].childrenvaccinedetails!),
+                      // ChildrenHealthCallMethod(
+                      //   childrenHealthDetails,
                       //   title: 'Vaccine Dose',
-                      //   details: addressDetails[0].childrenvacinedose!,
+                      //   details: childrenHealthDetails[0].childrenvacinedose!,
                       // ),
                     ]),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Health Profile',
                       style: TextStyle(
@@ -674,44 +691,42 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
-                      //     title: 'Blood Group',
-                      //     details: addressDetails[0].healthbloodgroup!),
-                      // AddressCallMethod(addressDetails,
+                      // HealthCallMethod(healthDetails,
                       //     title: 'Birth Place',
-                      //     details: addressDetails[0].birthplace!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: healthDetails[0].birthplace!),
+                      // HealthCallMethod(healthDetails,
                       //     title: 'Birth Weight',
-                      //     details: '${addressDetails[0].birthweight!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details: '${healthDetails[0].birthweight!}'),
+                      // HealthCallMethod(healthDetails,
                       //     title: 'Birth Conditions',
-                      //     details: addressDetails[0].birthcondition!),
-                      // AddressCallMethod(addressDetails,
+                      //     details: healthDetails[0].birthcondition!),
+                      // HealthCallMethod(healthDetails,
                       //     title: 'Is Below 5 Vaccinated?',
-                      //     details: '${addressDetails[0].isbelowvaccinated!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details: '${healthDetails[0].isbelowvaccinated!}'),
+                      // HealthCallMethod(healthDetails,
                       //     title: 'Is Covid Vaccinated?',
-                      //     details: '${addressDetails[0].iscovidvaccinated!}'),
-                      // AddressCallMethod(addressDetails,
+                      //     details: '${healthDetails[0].iscovidvaccinated!}'),
+                      // HealthCallMethod(healthDetails,
                       //     title: 'Is Genetic Disease Issues?',
-                      //     details: addressDetails[0].isgeneticdiseaseissue!),
-                      // AddressCallMethod(addressDetails,
+                      //     details:
+                      //         '${healthDetails[0].isgeneticdiseaseissue!}'),
+                      // HealthCallMethod(healthDetails,
                       //     title: 'Vaccine Details',
-                      //     details: addressDetails[0].vaccinedetails!),
-                      // AddressCallMethod(
-                      //   addressDetails,
+                      //     details: healthDetails[0].vaccinedetails!),
+                      // HealthCallMethod(
+                      //   healthDetails,
                       //   title: 'Vaccine Dose',
-                      //   details: addressDetails[0].vacinedose!,
+                      //   details: healthDetails[0].vacinedose!,
                       // ),
-                      // AddressCallMethod(addressDetails,
+                      // HealthCallMethod(healthDetails,
                       //     title: 'Genetic Disease Descrption',
-                      //     details: addressDetails[0].geneticdiseasedescription!),
+                      //     details: healthDetails[0].geneticdiseasedescription!),
                     ]),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-                  Center(
+                  const Center(
                     child: Text(
                       'Google Map',
                       style: TextStyle(
@@ -723,16 +738,14 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // AddressCallMethod(addressDetails,
-                      //     title: 'Latitude', details: addressDetails[0].latitude!),
-                      // // AddressCallMethod(addressDetails,
-                      // //     title: 'Is Handicap?',
-                      // //     details: addressDetails[0].ishandicap!),
-                      // AddressCallMethod(
-                      //   addressDetails,
-                      //   title: 'Longtitude',
-                      //   details: addressDetails[0].longitude!,
-                      // ),
+                      GooglemapCallMethod(googlemapDetails,
+                          title: 'Latitude',
+                          details: '${googlemapDetails[0].latitude!}'),
+                      GooglemapCallMethod(
+                        googlemapDetails,
+                        title: 'Longtitude',
+                        details: '${googlemapDetails[0].longitude!}',
+                      ),
                     ]),
                   ),
                   SizedBox(
@@ -861,4 +874,220 @@ class storage extends StatelessWidget {
       ),
     ]);
   }
+
+  Row ExpensesCallMethod(
+    List<ExpenssHiveModel> expensesDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row AppearenceCallMethod(
+    List<AppearenceHiveModel> appearenceDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row HouseCallMethod(
+    List<Housemodel> houseDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row CitizensCallMethod(
+    List<CitizensHiveModel> citizenshipDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row ExtraCallMethod(
+    List<ExtraHiveModel> extraDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row ChildrenDetailsCallMethod(
+    List<ChildDetailsHiveModel> childrenDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row ChildrenHealthCallMethod(
+    List<ChildHealthHiveModel> childrenHealthDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row HealthCallMethod(
+    List<HealthHiveModel> healthDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  Row GooglemapCallMethod(
+    List<GoogleHiveModel> googlemapDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
+
+  // Row FoodCallMethod(
+  //   List<Foodmodel> foodDetails, {
+  //   required String title,
+  //   required dynamic details,
+  // }) {
+  //   return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  //     Text(
+  //       title,
+  //       style: TextStyle(fontSize: 15, color: Colors.black),
+  //     ),
+  //     Spacer(),
+  //     Text(
+  //       details,
+  //       style: TextStyle(fontSize: 13, color: Colors.black),
+  //     ),
+  //   ]);
+  // }
+
+  // Row BusinessCallMethod(
+  //   List<BusinessHiveModel> businessDetails, {
+  //   required String title,
+  //   required dynamic details,
+  // }) {
+  //   return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  //     Text(
+  //       title,
+  //       style: TextStyle(fontSize: 15, color: Colors.black),
+  //     ),
+  //     Spacer(),
+  //     Text(
+  //       details,
+  //       style: TextStyle(fontSize: 13, color: Colors.black),
+  //     ),
+  //   ]);
+  // }
+  //  Row SchoolCallMethod(
+  //   List<SchoolHiveModel> schoolDetails, {
+  //   required String title,
+  //   required dynamic details,
+  // }) {
+  //   return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  //     Text(
+  //       title,
+  //       style: TextStyle(fontSize: 15, color: Colors.black),
+  //     ),
+  //     Spacer(),
+  //     Text(
+  //       details,
+  //       style: TextStyle(fontSize: 13, color: Colors.black),
+  //     ),
+  //   ]);
+  // }
+
 }

@@ -78,105 +78,7 @@ class _childrenhealthProfileState extends State<childrenhealthProfile> {
             child: ListView(
               padding: EdgeInsets.all(10),
               children: [
-                FutureBuilder<List<BloodGroup>>(
-                  future: Apiblood().getData(),
-                  builder: (context, snap) {
-                    if (snap.hasData) {
-                      final List<BloodGroup> data = snap.data!;
-                      return DropdownButtonFormField<BloodGroup>(
-                          menuMaxHeight: 400,
-                          decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              labelText: 'Blood Group',
-                              prefixIcon: const Icon(
-                                Icons.email,
-                                color: Colors.orange,
-                              ),
-                              hintText: " Blood Group "),
-                          items: [
-                            ...data.map(
-                              (e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e.bloodname),
-                              ),
-                            )
-                          ],
-                          onChanged: (value) {
-                            genderChildren.text = '${value!.bloodid}';
-                          });
-                    } else {
-                      return const LinearProgressIndicator();
-                    }
-                  },
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  controller: birthplace,
-                  textCapitalization: TextCapitalization.words,
-                  validator: (val) {
-                    if (val!.isEmpty) {
-                      return 'Blace place is required';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    labelText: 'Blace place',
-                    prefixIcon: Icon(
-                      Icons.person,
-                      color: Colors.blue,
-                    ),
-                    hintText: 'Blace place',
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  controller: birthweight,
-                  textCapitalization: TextCapitalization.words,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    labelText: 'Birth Weight',
-                    prefixIcon: Icon(
-                      Icons.person,
-                      color: Colors.blue,
-                    ),
-                    hintText: 'Birth Weight',
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  controller: birthconditioins,
-                  textCapitalization: TextCapitalization.words,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    labelText: 'Birth Conditions',
-                    prefixIcon: Icon(
-                      Icons.person,
-                      color: Colors.blue,
-                    ),
-                    hintText: 'Birth Conditions',
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -452,6 +354,105 @@ class _childrenhealthProfileState extends State<childrenhealthProfile> {
                         color: Colors.orange,
                       ),
                       hintText: "Vaccine dose "),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                FutureBuilder<List<BloodGroup>>(
+                  future: Apiblood().getData(),
+                  builder: (context, snap) {
+                    if (snap.hasData) {
+                      final List<BloodGroup> data = snap.data!;
+                      return DropdownButtonFormField<BloodGroup>(
+                          menuMaxHeight: 400,
+                          decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              labelText: 'Blood Group',
+                              prefixIcon: const Icon(
+                                Icons.email,
+                                color: Colors.orange,
+                              ),
+                              hintText: " Blood Group "),
+                          items: [
+                            ...data.map(
+                              (e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e.bloodname),
+                              ),
+                            )
+                          ],
+                          onChanged: (value) {
+                            genderChildren.text = '${value!.bloodid}';
+                          });
+                    } else {
+                      return const LinearProgressIndicator();
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  controller: birthplace,
+                  textCapitalization: TextCapitalization.words,
+                  validator: (val) {
+                    if (val!.isEmpty) {
+                      return 'Blace place is required';
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    labelText: 'Blace place',
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Colors.blue,
+                    ),
+                    hintText: 'Blace place',
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  controller: birthweight,
+                  textCapitalization: TextCapitalization.words,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    labelText: 'Birth Weight',
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Colors.blue,
+                    ),
+                    hintText: 'Birth Weight',
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  controller: birthconditioins,
+                  textCapitalization: TextCapitalization.words,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    labelText: 'Birth Conditions',
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Colors.blue,
+                    ),
+                    hintText: 'Birth Conditions',
+                  ),
                 ),
                 SizedBox(
                   height: 20,
