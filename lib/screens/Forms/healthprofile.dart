@@ -21,16 +21,16 @@ class healthProfileForm extends StatefulWidget {
 class _healthProfileFormState extends State<healthProfileForm> {
   final _form = GlobalKey<FormState>();
   int ind = 0;
-  final bloods = [
-    'A+',
-    'A-',
-    'B+',
-    'B-',
-    'AB+',
-    'AB-',
-    'O+',
-    'O-',
-  ];
+  // final bloods = [
+  //   'A+',
+  //   'A-',
+  //   'B+',
+  //   'B-',
+  //   'AB+',
+  //   'AB-',
+  //   'O+',
+  //   'O-',
+  // ];
   final bloodgroupHealth = TextEditingController();
   final birthplace = TextEditingController();
   final birthweight = TextEditingController();
@@ -328,30 +328,30 @@ class _healthProfileFormState extends State<healthProfileForm> {
     });
   }
 
-  Widget buildbloodpicker() => SizedBox(
-        height: 250,
-        child: Center(
-          child: CupertinoPicker(
-              looping: true,
-              itemExtent: 50,
-              onSelectedItemChanged: (ind) {
-                setState(() {
-                  this.ind = ind;
-                });
-                final blood = bloods[ind];
-                print(blood);
-              },
-              children: bloods.map((blood) {
-                return Center(
-                  child: Text(
-                    blood,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue),
-                  ),
-                );
-              }).toList()),
-        ),
-      );
+  // Widget buildbloodpicker() => SizedBox(
+  //       height: 250,
+  //       child: Center(
+  //         child: CupertinoPicker(
+  //             looping: true,
+  //             itemExtent: 50,
+  //             onSelectedItemChanged: (ind) {
+  //               setState(() {
+  //                 this.ind = ind;
+  //               });
+  //               final blood = bloods[ind];
+  //               print(blood);
+  //             },
+  //             children: bloods.map((blood) {
+  //               return Center(
+  //                 child: Text(
+  //                   blood,
+  //                   style: TextStyle(
+  //                       fontSize: 20,
+  //                       fontWeight: FontWeight.bold,
+  //                       color: Colors.blue),
+  //                 ),
+  //               );
+  //             }).toList()),
+  //       ),
+  //     );
 }

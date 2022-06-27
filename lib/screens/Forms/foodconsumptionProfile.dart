@@ -19,8 +19,8 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
   final regulardescription = TextEditingController();
   // bool value = false;
 
-  bool checkOrganic = false;
-  bool checkBalnced = false;
+  bool _checkOrganic = false;
+  bool _checkBalnced = false;
   // List<String> allItemList = [
   //   'Yes',
   //   'No',
@@ -69,10 +69,10 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                     ),
                     Spacer(),
                     Checkbox(
-                      value: checkOrganic,
+                      value: _checkOrganic,
                       onChanged: (value) {
                         setState(() {
-                          checkOrganic = !checkOrganic;
+                          _checkOrganic = !_checkOrganic;
                         });
                       },
                     ) //Row
@@ -140,10 +140,10 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                     ),
                     Spacer(),
                     Checkbox(
-                      value: checkBalnced,
+                      value: _checkBalnced,
                       onChanged: (value) {
                         setState(() {
-                          checkBalnced = !checkBalnced;
+                          _checkBalnced = !_checkBalnced;
                         });
                       },
                     ) //Row
@@ -164,8 +164,8 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                           foodconsumptiontiming: foodtiming.text.trim(),
                           regularmealdescription:
                               regulardescription.text.trim(),
-                          isbalanceddiet: checkBalnced,
-                          isorganic: checkOrganic);
+                          isbalanceddiet: _checkBalnced,
+                          isorganic: _checkOrganic);
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(

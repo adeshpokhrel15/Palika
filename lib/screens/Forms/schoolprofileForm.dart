@@ -201,8 +201,8 @@ class schoolprofile extends StatelessWidget {
                                           )
                                         ],
                                         onChanged: (value) {
-                                          schooltypeid.text =
-                                              '${value!.indexchildrenschemetype}';
+                                          schooltypeid.text = value!
+                                              .childrenschemetypeenglishname;
                                         });
                                   } else {
                                     return const LinearProgressIndicator();

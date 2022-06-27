@@ -25,5 +25,7 @@ class Foodmodel extends HiveObject {
   Map<String, dynamic> toJson() => {
         "food_consumption_timing": foodconsumptiontiming,
         "regular_meal_description": regularmealdescription,
+        "is_organic": isorganic,
+        "is_balanced_diet": isbalanceddiet,
       };
 }

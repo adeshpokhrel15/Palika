@@ -738,17 +738,17 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      GooglemapCallMethod(googlemapDetails,
-                          title: 'Latitude',
-                          details: '${googlemapDetails[0].latitude!}'),
-                      GooglemapCallMethod(
-                        googlemapDetails,
-                        title: 'Longtitude',
-                        details: '${googlemapDetails[0].longitude!}',
-                      ),
+                      // GooglemapCallMethod(googlemapDetails,
+                      //     title: 'Latitude',
+                      //     details: '${googlemapDetails[0].latitude!}'),
+                      // GooglemapCallMethod(
+                      //   googlemapDetails,
+                      //   title: 'Longtitude',
+                      //   details: '${googlemapDetails[0].longitude!}',
+                      // ),
                     ]),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   Container(
@@ -1055,39 +1055,39 @@ class storage extends StatelessWidget {
   //   ]);
   // }
 
-  // Row BusinessCallMethod(
-  //   List<BusinessHiveModel> businessDetails, {
-  //   required String title,
-  //   required dynamic details,
-  // }) {
-  //   return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-  //     Text(
-  //       title,
-  //       style: TextStyle(fontSize: 15, color: Colors.black),
-  //     ),
-  //     Spacer(),
-  //     Text(
-  //       details,
-  //       style: TextStyle(fontSize: 13, color: Colors.black),
-  //     ),
-  //   ]);
-  // }
-  //  Row SchoolCallMethod(
-  //   List<SchoolHiveModel> schoolDetails, {
-  //   required String title,
-  //   required dynamic details,
-  // }) {
-  //   return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-  //     Text(
-  //       title,
-  //       style: TextStyle(fontSize: 15, color: Colors.black),
-  //     ),
-  //     Spacer(),
-  //     Text(
-  //       details,
-  //       style: TextStyle(fontSize: 13, color: Colors.black),
-  //     ),
-  //   ]);
-  // }
+  Row BusinessCallMethod(
+    List<BusinessHiveModel> businessDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
 
+  Row SchoolCallMethod(
+    List<SchoolHiveModel> schoolDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
 }
