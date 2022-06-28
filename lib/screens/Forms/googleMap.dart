@@ -117,7 +117,7 @@ class _googlemapProfileState extends State<googlemapProfile> {
                       },
                       child: Text('Open Map')),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 60,
                 ),
                 Container(

@@ -349,20 +349,20 @@ class storage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(children: [
-                      // FoodCallMethod(foodDetails,
-                      //     title: 'Is Organic?',
-                      //     details: '${foodDetails[0].isorganic!}'),
-                      // FoodCallMethod(foodDetails,
-                      //     title: 'Food Consumption Timing',
-                      //     details: foodDetails[0].foodconsumptiontiming!),
-                      // FoodCallMethod(foodDetails,
-                      //     title: 'Is Balanced Diet?',
-                      //     details: '${foodDetails[0].isbalanceddiet!}'),
-                      // FoodCallMethod(
-                      //   foodDetails,
-                      //   title: 'Regular Meal Description',
-                      //   details: foodDetails[0].regularmealdescription!,
-                      // ),
+                      FoodCallMethod(foodDetails,
+                          title: 'Is Organic?',
+                          details: '${foodDetails[0].isorganic!}'),
+                      FoodCallMethod(foodDetails,
+                          title: 'Food Consumption Timing',
+                          details: foodDetails[0].foodconsumptiontiming!),
+                      FoodCallMethod(foodDetails,
+                          title: 'Is Balanced Diet?',
+                          details: '${foodDetails[0].isbalanceddiet!}'),
+                      FoodCallMethod(
+                        foodDetails,
+                        title: 'Regular Meal Description',
+                        details: foodDetails[0].regularmealdescription!,
+                      ),
                     ]),
                   ),
                   const SizedBox(
@@ -1037,23 +1037,23 @@ class storage extends StatelessWidget {
     ]);
   }
 
-  // Row FoodCallMethod(
-  //   List<Foodmodel> foodDetails, {
-  //   required String title,
-  //   required dynamic details,
-  // }) {
-  //   return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-  //     Text(
-  //       title,
-  //       style: TextStyle(fontSize: 15, color: Colors.black),
-  //     ),
-  //     Spacer(),
-  //     Text(
-  //       details,
-  //       style: TextStyle(fontSize: 13, color: Colors.black),
-  //     ),
-  //   ]);
-  // }
+  Row FoodCallMethod(
+    List<Foodmodel> foodDetails, {
+    required String title,
+    required dynamic details,
+  }) {
+    return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        title,
+        style: TextStyle(fontSize: 15, color: Colors.black),
+      ),
+      Spacer(),
+      Text(
+        details,
+        style: TextStyle(fontSize: 13, color: Colors.black),
+      ),
+    ]);
+  }
 
   Row BusinessCallMethod(
     List<BusinessHiveModel> businessDetails, {
