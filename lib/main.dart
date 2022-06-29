@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'package:palika/Hive/addresshive.dart';
 import 'package:palika/Hive/appearencehive.dart';
 import 'package:palika/Hive/businesshive.dart';
@@ -19,6 +20,7 @@ import 'package:palika/Hive/househive.dart';
 import 'package:palika/Hive/personalhive.dart';
 import 'package:palika/Hive/schoolhive.dart';
 import 'package:palika/Hive/workinghive.dart';
+import 'package:palika/hawa.dart';
 import 'package:palika/screens/Forms/addressform.dart';
 import 'package:palika/screens/Forms/appearenceform.dart';
 import 'package:palika/screens/Forms/businessprofileForm.dart';
@@ -139,32 +141,36 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        home:
-            // abc(),
-            MyHomePage(),
-        //settingPage(),
-        routes: {
-          personalForm.routeName: (context) => personalForm(),
-          addressForm.routeName: (context) => addressForm(),
-          familyform.routeName: (context) => familyform(),
-          workingform.routeName: (context) => workingform(),
-          ethencitiesform.routName: (context) => ethencitiesform(),
-          expensesprofileform.routeName: (context) => expensesprofileform(),
-          foodconsumptionProfile.routeName: (context) =>
-              foodconsumptionProfile(),
-          houseform.routeName: (context) => houseform(),
-          citizendetailsForm.routeName: (context) => citizendetailsForm(),
-          businessprofile.routName: (context) => businessprofile(),
-          schoolprofile.routName: (context) => schoolprofile(),
-          appearenceProfile.routeName: (context) => appearenceProfile(),
-          extraactivitiesProfile.routeName: (context) =>
-              extraactivitiesProfile(),
-          childrendetailsForm.routeName: (context) => childrendetailsForm(),
-          googlemapProfile.routeName: (context) => googlemapProfile(),
-          healthProfileForm.routeName: (context) => healthProfileForm(),
-          childrenhealthProfile.routeName: (context) => childrenhealthProfile(),
-        });
+    return OverlaySupport.global(
+      child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          home:
+              //OffilineChecker(),
+              // abc(),
+              MyHomePage(),
+          //settingPage(),
+          routes: {
+            personalForm.routeName: (context) => personalForm(),
+            addressForm.routeName: (context) => addressForm(),
+            familyform.routeName: (context) => familyform(),
+            workingform.routeName: (context) => workingform(),
+            ethencitiesform.routName: (context) => ethencitiesform(),
+            expensesprofileform.routeName: (context) => expensesprofileform(),
+            foodconsumptionProfile.routeName: (context) =>
+                foodconsumptionProfile(),
+            houseform.routeName: (context) => houseform(),
+            citizendetailsForm.routeName: (context) => citizendetailsForm(),
+            businessprofile.routName: (context) => businessprofile(),
+            schoolprofile.routName: (context) => schoolprofile(),
+            appearenceProfile.routeName: (context) => appearenceProfile(),
+            extraactivitiesProfile.routeName: (context) =>
+                extraactivitiesProfile(),
+            childrendetailsForm.routeName: (context) => childrendetailsForm(),
+            googlemapProfile.routeName: (context) => googlemapProfile(),
+            healthProfileForm.routeName: (context) => healthProfileForm(),
+            childrenhealthProfile.routeName: (context) =>
+                childrenhealthProfile(),
+          }),
+    );
   }
 }

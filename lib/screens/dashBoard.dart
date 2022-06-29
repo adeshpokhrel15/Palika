@@ -19,6 +19,11 @@ import 'package:palika/screens/Forms/houseform.dart';
 import 'package:palika/screens/Forms/personalform.dart';
 import 'package:palika/screens/Forms/schoolprofileForm.dart';
 import 'package:palika/screens/Forms/workingform.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:flutter/material.dart';
+
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 class dashBoard extends StatefulWidget {
   @override
@@ -27,6 +32,9 @@ class dashBoard extends StatefulWidget {
 
 class _dashBoardState extends State<dashBoard> {
   int currentIndex = 0;
+  bool hasInternet = false;
+
+  ConnectivityResult result = ConnectivityResult.none;
 
   @override
   Widget build(BuildContext context) {
@@ -144,6 +152,36 @@ class _dashBoardState extends State<dashBoard> {
                         routeName: healthProfileForm.routeName),
                   ]),
             ),
+            SizedBox(
+              height: 20,
+            ),
+            Center(
+                child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.all(10),
+                shadowColor: Colors.blue,
+              ),
+              child: Text('Check'),
+              onPressed: () async {
+                hasInternet = await InternetConnectionChecker().hasConnection;
+                result = await Connectivity().checkConnectivity();
+                final text =
+                    hasInternet ? 'Has Internet' : 'No Internet Connection';
+                if (result == ConnectivityResult.mobile) {
+                  showSimpleNotification(
+                    Text('$text: Mobile Network'),
+                  );
+                } else if (result == ConnectivityResult.wifi) {
+                  showSimpleNotification(
+                    Text('$text: Wifi Network'),
+                  );
+                } else {
+                  showSimpleNotification(
+                    Text('$text: No Network'),
+                  );
+                }
+              },
+            )),
           ]),
         ),
       );
