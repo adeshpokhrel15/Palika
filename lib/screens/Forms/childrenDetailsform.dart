@@ -5,10 +5,9 @@ import 'package:nepali_utils/nepali_utils.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
 import 'package:palika/Hive/childrenhive.dart';
 import 'package:palika/providers/Hive%20Providers/childdetailsProvider.dart';
-import 'package:palika/providers/formProvider.dart';
 
-import '../../models/genders.dart';
-import '../../providers/genderProvider.dart';
+import '../../models/Api Models/genders.dart';
+import '../../providers/Api Providers/genderProvider.dart';
 
 class childrendetailsForm extends StatefulWidget {
   static const routeName = "childrendetails-form";
@@ -41,7 +40,7 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
           child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
-                title: Center(
+                title: const Center(
                   child: Text(
                     'Children Details',
                     style: TextStyle(
@@ -53,7 +52,7 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                 ),
                 elevation: 0,
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  icon: const Icon(Icons.arrow_back, color: Colors.black),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -86,14 +85,14 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                   borderRadius: BorderRadius.circular(30),
                                 ),
                                 labelText: 'Name',
-                                prefixIcon: Icon(
+                                prefixIcon: const Icon(
                                   Icons.person,
                                   color: Colors.blue,
                                 ),
                                 hintText: 'Name',
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             TextFormField(
@@ -113,13 +112,13 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Family detail Id',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.email,
                                     color: Colors.orange,
                                   ),
                                   hintText: "Family detail Id"),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Column(
@@ -186,23 +185,23 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                 //     ),
                                 //   ],
                                 // ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 ),
                                 Row(
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Date of Birth',
                                       style: TextStyle(
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.blue),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 43,
                                     ),
                                     InkWell(
-                                      child: Icon(
+                                      child: const Icon(
                                         Icons.add_circle,
                                         size: 30,
                                         color: Colors.blue,
@@ -226,7 +225,7 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                         );
                                       },
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 20,
                                     ),
                                     Container(
@@ -244,7 +243,7 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                       child: Center(
                                         child: Text(
                                           dobcontroller.text,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold,
                                               color: Colors.blue),
@@ -254,7 +253,7 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 ),
                                 FutureBuilder<List<Gender>>(
@@ -297,10 +296,10 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                 ),
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
-                            Container(
+                            SizedBox(
                               height: 50,
                               width: 150,
                               child: MaterialButton(
@@ -339,9 +338,9 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(22.0)),
                                 elevation: 5.0,
-                                child: Text('Save as Draft'),
-                                color: Color(0xFF00a2e8),
+                                color: const Color(0xFF00a2e8),
                                 textColor: Colors.black,
+                                child: Text('Save as Draft'),
                               ),
                             ),
                           ],
@@ -369,7 +368,7 @@ class _childrendetailsFormState extends State<childrendetailsForm> {
                 return Center(
                   child: Text(
                     item,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue),

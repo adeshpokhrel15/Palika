@@ -20,7 +20,6 @@ import 'package:palika/Hive/househive.dart';
 import 'package:palika/Hive/personalhive.dart';
 import 'package:palika/Hive/schoolhive.dart';
 import 'package:palika/Hive/workinghive.dart';
-import 'package:palika/hawa.dart';
 import 'package:palika/screens/Forms/addressform.dart';
 import 'package:palika/screens/Forms/appearenceform.dart';
 import 'package:palika/screens/Forms/businessprofileForm.dart';
@@ -38,7 +37,7 @@ import 'package:palika/screens/Forms/houseform.dart';
 import 'package:palika/screens/Forms/personalform.dart';
 import 'package:palika/screens/Forms/schoolprofileForm.dart';
 import 'package:palika/screens/Forms/workingform.dart';
-import 'package:palika/screens/buttomNavigationbar.dart';
+import 'package:palika/screens/Main%20Screens/buttomNavigationbar.dart';
 
 final boxAddress = Provider<List<AddressHiveModel>>((ref) => []);
 final boxAppearence = Provider<List<AppearenceHiveModel>>((ref) => []);

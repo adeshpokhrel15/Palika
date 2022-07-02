@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:palika/models/bloodGroup.dart';
-import 'package:palika/models/businessTypes.dart';
-import 'package:palika/models/districts.dart';
-import 'package:palika/models/schoolTypes.dart';
+
+import '../../models/Api Models/schoolTypes.dart';
 
 class Apischool {
   static const String baseUrl =

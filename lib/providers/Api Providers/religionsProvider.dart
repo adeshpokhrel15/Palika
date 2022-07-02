@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:palika/models/districts.dart';
-import 'package:palika/models/ethnicGroup.dart';
-import 'package:palika/models/nationalities.dart';
-import 'package:palika/models/religions.dart';
+
+import '../../models/Api Models/religions.dart';
 
 class Apireligions {
   static const String baseUrl =

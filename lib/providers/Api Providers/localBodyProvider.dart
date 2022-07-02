@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:palika/models/districts.dart';
-import 'package:palika/models/localBodies.dart';
+
+import '../../models/Api Models/localBodies.dart';
 
 class ApilocalBody {
   static const String baseUrl =

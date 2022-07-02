@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/Hive/addresshive.dart';
-import 'package:palika/models/districts.dart';
-import 'package:palika/models/localBodies.dart';
-import 'package:palika/models/provience.dart';
 import 'package:palika/providers/Hive%20Providers/addressProvider.dart';
-import 'package:palika/providers/districtsProvider.dart';
-import 'package:palika/providers/formProvider.dart';
-import 'package:palika/providers/localBodyProvider.dart';
-import 'package:palika/providers/provienceProvider.dart';
+
+import '../../models/Api Models/districts.dart';
+import '../../models/Api Models/localBodies.dart';
+import '../../models/Api Models/provience.dart';
+import '../../providers/Api Providers/districtsProvider.dart';
+import '../../providers/Api Providers/localBodyProvider.dart';
+import '../../providers/Api Providers/provienceProvider.dart';
 
 class addressForm extends StatefulWidget {
   static const routeName = 'address-form';

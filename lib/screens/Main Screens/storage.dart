@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -33,12 +32,12 @@ import 'package:palika/providers/Hive%20Providers/healthhiveProvider.dart';
 import 'package:palika/providers/Hive%20Providers/personalProvider.dart';
 import 'package:palika/providers/Hive%20Providers/schoolProvider.dart';
 
-import '../Hive/childrenhive.dart';
-import '../Hive/househive.dart';
-import '../providers/Hive Providers/addressProvider.dart';
-import '../providers/Hive Providers/appearenceProvider.dart';
-import '../providers/Hive Providers/houseProvider.dart';
-import '../providers/Hive Providers/workingProvider.dart';
+import '../../Hive/childrenhive.dart';
+import '../../Hive/househive.dart';
+import '../../providers/Hive Providers/addressProvider.dart';
+import '../../providers/Hive Providers/appearenceProvider.dart';
+import '../../providers/Hive Providers/houseProvider.dart';
+import '../../providers/Hive Providers/workingProvider.dart';
 
 class storage extends StatelessWidget {
   // Box<AddressModel> _boxx = Hive.box('AddressModel');
@@ -130,7 +129,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // AddressCallMethod(addressDetails,
                       //     title: 'Temporary Province',
                       //     details: addressDetails[0].tempProv!),
@@ -180,7 +179,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // FamilyCallMethod(familyDetails,
                       //     title: 'Father First Name',
                       //     details: familyDetails[0].fatherFirstName!),
@@ -263,7 +262,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // WorkingCallMethod(workingDetails,
                       //     title: 'Job Type',
                       //     details: workingDetails[0].jobtype!),
@@ -292,7 +291,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // EthnicitiesCallMethod(ethencitiesDetails,
                       //     title: 'Nationalism or Religion',
                       //     details:
@@ -319,7 +318,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // ExpensesCallMethod(expensesDetails,
                       //     title: 'Total Month Income',
                       //     details: '${expensesDetails[0].totalmonthlyincome!}'),
@@ -348,7 +347,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // FoodCallMethod(foodDetails,
                       //     title: 'Is Organic?',
                       //     details: '${foodDetails[0].isorganic!}'),
@@ -379,7 +378,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // HouseCallMethod(houseDetails,
                       //     title: 'House Address',
                       //     details: houseDetails[0].houseaddress!),
@@ -408,7 +407,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // BusinessCallMethod(businessDetails,
                       //     title: 'Business Org',
                       //     details: businessDetails[0].businessorg!),
@@ -449,7 +448,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // SchoolCallMethod(schoolDetails,
                       //     title: 'School Name',
                       //     details: schoolDetails[0].schoolname!),
@@ -478,7 +477,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // AppearenceCallMethod(appearenceDetails,
                       //     title: 'Skin Color',
                       //     details: appearenceDetails[0].skincolor!),
@@ -506,7 +505,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // CitizensCallMethod(citizenshipDetails,
                       //     title: 'Citezenship Number',
                       //     details:
@@ -528,7 +527,7 @@ class storage extends StatelessWidget {
                       // ),
                     ]),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Center(
@@ -542,7 +541,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // ExtraCallMethod(extraDetails,
                       //     title: 'Interested Field',
                       //     details: extraDetails[0].interestedfieldid!),
@@ -559,7 +558,7 @@ class storage extends StatelessWidget {
                       // ),
                     ]),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Center(
@@ -573,7 +572,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // ChildrenDetailsCallMethod(childrenDetails,
                       //     title: 'Children Full Name',
                       //     details: childrenDetails[0].childrenFirstname!),
@@ -590,7 +589,7 @@ class storage extends StatelessWidget {
                       // ),
                     ]),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Center(
@@ -604,7 +603,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // ChildrenHealthCallMethod(childrenHealthDetails,
                       //     title: 'Blood Group',
                       //     details:
@@ -676,7 +675,7 @@ class storage extends StatelessWidget {
                       // ),
                     ]),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Center(
@@ -690,7 +689,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // HealthCallMethod(healthDetails,
                       //     title: 'Birth Place',
                       //     details: healthDetails[0].birthplace!),
@@ -723,7 +722,7 @@ class storage extends StatelessWidget {
                       //     details: healthDetails[0].geneticdiseasedescription!),
                     ]),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 20,
                   ),
                   const Center(
@@ -737,7 +736,7 @@ class storage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(40.0),
-                    child: Column(children: [
+                    child: Column(children: const [
                       // GooglemapCallMethod(googlemapDetails,
                       //     title: 'Latitude',
                       //     details: '${googlemapDetails[0].latitude!}'),
@@ -751,7 +750,7 @@ class storage extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
+                  SizedBox(
                     height: 50,
                     width: double.infinity,
                     child: MaterialButton(
@@ -775,9 +774,9 @@ class storage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(22.0)),
                       elevation: 5.0,
-                      child: Text('Submit'),
-                      color: Color(0xFF00a2e8),
+                      color: const Color(0xFF00a2e8),
                       textColor: Colors.black,
+                      child: const Text('Submit'),
                     ),
                   ),
                 ],
@@ -793,12 +792,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -811,12 +810,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -829,12 +828,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -847,12 +846,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -865,12 +864,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -883,12 +882,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -901,12 +900,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -919,12 +918,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -937,12 +936,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -955,12 +954,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -973,12 +972,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -991,12 +990,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -1009,12 +1008,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -1027,12 +1026,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -1045,12 +1044,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -1063,12 +1062,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }
@@ -1081,12 +1080,12 @@ class storage extends StatelessWidget {
     return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Text(
         title,
-        style: TextStyle(fontSize: 15, color: Colors.black),
+        style: const TextStyle(fontSize: 15, color: Colors.black),
       ),
-      Spacer(),
+      const Spacer(),
       Text(
         details,
-        style: TextStyle(fontSize: 13, color: Colors.black),
+        style: const TextStyle(fontSize: 13, color: Colors.black),
       ),
     ]);
   }

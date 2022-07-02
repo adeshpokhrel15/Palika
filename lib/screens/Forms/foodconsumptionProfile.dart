@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/Hive/foodhive.dart';
 import 'package:palika/providers/Hive%20Providers/foodConsumptionProvider.dart';
-//import 'package:grouped_checkbox/grouped_checkbox.dart';
-import 'package:palika/providers/formProvider.dart';
 
 class foodconsumptionProfile extends StatefulWidget {
   static const routeName = "foodconsumptionProfile-form";
@@ -35,7 +33,7 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
           child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Center(
+          title: const Center(
             child: Text(
               'Food Consumption Profile',
               style: TextStyle(
@@ -47,7 +45,7 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
           ),
           elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -58,16 +56,16 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: ListView(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Is Organic?",
                       style: TextStyle(color: Colors.black),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Checkbox(
                       value: _checkOrganic,
                       onChanged: (value) {
@@ -78,7 +76,7 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                     ) //Row
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -96,14 +94,14 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     labelText: 'Food Consumption Timing',
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.person,
                       color: Colors.blue,
                     ),
                     hintText: 'Food Consumption Timing',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -122,23 +120,23 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       labelText: 'Regular meal description',
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.email,
                         color: Colors.orange,
                       ),
                       hintText: "Regular meal description"),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Is Balanced Diet?",
                       style: TextStyle(color: Colors.black),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Checkbox(
                       value: _checkBalnced,
                       onChanged: (value) {
@@ -149,10 +147,10 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                     ) //Row
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Container(
+                SizedBox(
                   height: 50,
                   width: 150,
                   child: MaterialButton(
@@ -191,9 +189,9 @@ class _foodconsumptionProfileState extends State<foodconsumptionProfile> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),
                     elevation: 5.0,
-                    child: Text('Save as Draft'),
-                    color: Color(0xFF00a2e8),
+                    color: const Color(0xFF00a2e8),
                     textColor: Colors.black,
+                    child: Text('Save as Draft'),
                   ),
                 ),
               ],

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/Hive/extrahive.dart';
-import 'package:palika/models/ecaInterested.dart';
 import 'package:palika/providers/Hive%20Providers/extraactivitiesProvider.dart';
 
-import 'package:palika/providers/ecaInterested.dart';
-import 'package:palika/providers/formProvider.dart';
+import '../../models/Api Models/ecaInterested.dart';
+import '../../providers/Api Providers/ecaInterested.dart';
 
 class extraactivitiesProfile extends StatefulWidget {
   static const routeName = 'activities-form';
@@ -29,7 +28,7 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
           child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Center(
+          title: const Center(
             child: Text(
               'Extra Cariculum Activities',
               style: TextStyle(
@@ -41,7 +40,7 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
           ),
           elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -52,16 +51,16 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: ListView(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Is Handicapped?",
                       style: TextStyle(color: Colors.black),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Checkbox(
                       value: checktraining,
                       onChanged: (value) {
@@ -72,7 +71,7 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
                     ) //Row
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -91,13 +90,13 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       labelText: 'Professional status',
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.email,
                         color: Colors.orange,
                       ),
                       hintText: "Professional status"),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -116,13 +115,13 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       labelText: 'Duration of activities',
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.email,
                         color: Colors.orange,
                       ),
                       hintText: "Duration of activities"),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 FutureBuilder<List<EcainterestedField>>(
@@ -159,10 +158,10 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Container(
+                SizedBox(
                   height: 50,
                   width: 80,
                   child: MaterialButton(
@@ -200,9 +199,9 @@ class _extraactivitiesProfileState extends State<extraactivitiesProfile> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),
                     elevation: 5.0,
-                    child: Text('Save as Draft'),
-                    color: Color(0xFF00a2e8),
+                    color: const Color(0xFF00a2e8),
                     textColor: Colors.black,
+                    child: Text('Save as Draft'),
                   ),
                 ),
               ],

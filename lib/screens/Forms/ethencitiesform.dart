@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/Hive/ethencitieshive.dart';
-import 'package:palika/models/ethnicGroup.dart';
-import 'package:palika/models/nationalities.dart';
-import 'package:palika/models/religions.dart';
 import 'package:palika/providers/Hive%20Providers/ethencitiesProvider.dart';
-import 'package:palika/providers/ethinicGroup.dart';
-import 'package:palika/providers/formProvider.dart';
-import 'package:palika/providers/nationalities.dart';
-import 'package:palika/providers/religionsProvider.dart';
+
+import '../../models/Api Models/ethnicGroup.dart';
+import '../../models/Api Models/nationalities.dart';
+import '../../models/Api Models/religions.dart';
+import '../../providers/Api Providers/ethinicGroup.dart';
+import '../../providers/Api Providers/nationalities.dart';
+import '../../providers/Api Providers/religionsProvider.dart';
 
 class ethencitiesform extends StatelessWidget {
   static const routName = 'ethencities-form';
@@ -28,7 +28,7 @@ class ethencitiesform extends StatelessWidget {
           child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
-                title: Center(
+                title: const Center(
                   child: Text(
                     'Ethencities',
                     style: TextStyle(
@@ -40,7 +40,7 @@ class ethencitiesform extends StatelessWidget {
                 ),
                 elevation: 0,
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  icon: const Icon(Icons.arrow_back, color: Colors.black),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -73,14 +73,14 @@ class ethencitiesform extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Nationalism and Religion',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Nationalism and Religion',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               FutureBuilder<List<Nationalities>>(
@@ -121,7 +121,7 @@ class ethencitiesform extends StatelessWidget {
                                   }
                                 },
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               FutureBuilder<List<Ethinicgroup>>(
@@ -161,7 +161,7 @@ class ethencitiesform extends StatelessWidget {
                                   }
                                 },
                               ),
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
                               FutureBuilder<List<Religions>>(
                                 future: Apireligions().religionsgetData(),
                                 builder: (context, snap) {
@@ -198,10 +198,10 @@ class ethencitiesform extends StatelessWidget {
                                   }
                                 },
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Container(
+                              SizedBox(
                                 height: 50,
                                 width: 150,
                                 child: MaterialButton(
@@ -245,9 +245,9 @@ class ethencitiesform extends StatelessWidget {
                                       borderRadius:
                                           BorderRadius.circular(22.0)),
                                   elevation: 5.0,
-                                  child: Text('Save as Draft'),
-                                  color: Color(0xFF00a2e8),
+                                  color: const Color(0xFF00a2e8),
                                   textColor: Colors.black,
+                                  child: const Text('Save as Draft'),
                                 ),
                               ),
                             ]),

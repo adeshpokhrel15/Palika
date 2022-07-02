@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:palika/models/districts.dart';
-import 'package:palika/models/genders.dart';
+
+import '../../models/Api Models/genders.dart';
 
 class ApiGender {
   static const String baseUrlGender =

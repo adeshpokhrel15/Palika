@@ -110,10 +110,10 @@ class _OffilineCheckerState extends State<OffilineChecker> {
       body: Center(
           child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           shadowColor: Colors.blue,
         ),
-        child: Text('Check'),
+        child: const Text('Check'),
         onPressed: () async {
           hasInternet = await InternetConnectionChecker().hasConnection;
           result = await Connectivity().checkConnectivity();

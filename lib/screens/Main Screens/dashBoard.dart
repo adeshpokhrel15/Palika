@@ -1,7 +1,6 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:palika/providers/provienceProvider.dart';
 import 'package:palika/screens/Forms/addressform.dart';
 import 'package:palika/screens/Forms/appearenceform.dart';
 import 'package:palika/screens/Forms/businessprofileForm.dart';
@@ -44,7 +43,7 @@ class _dashBoardState extends State<dashBoard> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             elevation: 0,
-            title: Center(
+            title: const Center(
               child: Text(
                 'Digital Profile',
                 style: TextStyle(
@@ -152,16 +151,16 @@ class _dashBoardState extends State<dashBoard> {
                         routeName: healthProfileForm.routeName),
                   ]),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Center(
                 child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 shadowColor: Colors.blue,
               ),
-              child: Text('Check'),
+              child: const Text('Check'),
               onPressed: () async {
                 hasInternet = await InternetConnectionChecker().hasConnection;
                 result = await Connectivity().checkConnectivity();
@@ -208,7 +207,7 @@ class _dashBoardState extends State<dashBoard> {
               ),
               Text(
                 title,
-                style: TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20),
               ),
             ],
           )),

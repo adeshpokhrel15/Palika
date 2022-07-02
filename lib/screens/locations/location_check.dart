@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
-import 'package:palika/screens/google_map.dart';
+import 'package:palika/screens/locations/google_map.dart';
 
 class LocationCheck extends StatelessWidget {
   late LocationPermission permission;

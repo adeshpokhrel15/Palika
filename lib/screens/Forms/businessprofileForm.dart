@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/Hive/businesshive.dart';
-import 'package:palika/models/businessTypes.dart';
 import 'package:palika/providers/Hive%20Providers/businessProvider.dart';
-import 'package:palika/providers/businessProvider.dart';
-import 'package:palika/providers/formProvider.dart';
+
+import '../../models/Api Models/businessTypes.dart';
+import '../../providers/Api Providers/businessProvider.dart';
 
 class businessprofile extends StatelessWidget {
   static const routName = "businessprofile-form";
@@ -27,7 +27,7 @@ class businessprofile extends StatelessWidget {
           child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
-                title: Center(
+                title: const Center(
                   child: Text(
                     'Business Profile',
                     style: TextStyle(
@@ -39,7 +39,7 @@ class businessprofile extends StatelessWidget {
                 ),
                 elevation: 0,
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  icon: const Icon(Icons.arrow_back, color: Colors.black),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -72,14 +72,14 @@ class businessprofile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Business org ',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Business org ',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               FutureBuilder<List<Business>>(
@@ -117,7 +117,7 @@ class businessprofile extends StatelessWidget {
                                   }
                                 },
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -136,14 +136,14 @@ class businessprofile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Organization name ',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.calendar_today,
                                     color: Colors.lightBlue,
                                   ),
                                   hintText: "Organization name ",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -164,7 +164,7 @@ class businessprofile extends StatelessWidget {
                                     labelText: 'Total investment',
                                     hintText: 'Total investment'),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -183,14 +183,14 @@ class businessprofile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Annual income',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.block,
                                     color: Colors.blue,
                                   ),
                                   hintText: "Annual income",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -209,14 +209,14 @@ class businessprofile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Annual Expenses',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Annual Expenses',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -235,14 +235,14 @@ class businessprofile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Total No. of staff',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.block,
                                     color: Colors.blue,
                                   ),
                                   hintText: "Total No. of staff",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -261,14 +261,14 @@ class businessprofile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Business area',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.block,
                                     color: Colors.blue,
                                   ),
                                   hintText: "Business area",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -287,17 +287,17 @@ class businessprofile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Business product',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.block,
                                     color: Colors.blue,
                                   ),
                                   hintText: "Business product",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
-                              Container(
+                              SizedBox(
                                 height: 50,
                                 width: 150,
                                 child: MaterialButton(
@@ -353,9 +353,9 @@ class businessprofile extends StatelessWidget {
                                       borderRadius:
                                           BorderRadius.circular(22.0)),
                                   elevation: 5.0,
-                                  child: Text('Submit'),
-                                  color: Color(0xFF00a2e8),
+                                  color: const Color(0xFF00a2e8),
                                   textColor: Colors.black,
+                                  child: Text('Submit'),
                                 ),
                               ),
                             ]),

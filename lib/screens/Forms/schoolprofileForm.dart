@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/Hive/schoolhive.dart';
-import 'package:palika/models/childrenSchoolSchemes.dart';
-import 'package:palika/models/schoolTypes.dart';
 import 'package:palika/providers/Hive%20Providers/schoolProvider.dart';
-import 'package:palika/providers/childrenSchemeType.dart';
-import 'package:palika/providers/formProvider.dart';
-import 'package:palika/providers/schooltypeProvider.dart';
+
+import '../../models/Api Models/childrenSchoolSchemes.dart';
+import '../../models/Api Models/schoolTypes.dart';
+import '../../providers/Api Providers/childrenSchemeType.dart';
+import '../../providers/Api Providers/schooltypeProvider.dart';
 
 class schoolprofile extends StatelessWidget {
   static const routName = "schoolprofile-form";
@@ -29,7 +29,7 @@ class schoolprofile extends StatelessWidget {
           child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
-                title: Center(
+                title: const Center(
                   child: Text(
                     'School Profile',
                     style: TextStyle(
@@ -41,7 +41,7 @@ class schoolprofile extends StatelessWidget {
                 ),
                 elevation: 0,
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  icon: const Icon(Icons.arrow_back, color: Colors.black),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -74,14 +74,14 @@ class schoolprofile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'School name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'School name ',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               FutureBuilder<List<Schooltype>>(
@@ -120,7 +120,7 @@ class schoolprofile extends StatelessWidget {
                                   }
                                 },
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -139,14 +139,14 @@ class schoolprofile extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Dress code ',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.calendar_today,
                                     color: Colors.lightBlue,
                                   ),
                                   hintText: "Dress code",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -167,7 +167,7 @@ class schoolprofile extends StatelessWidget {
                                     labelText: 'Dress condition',
                                     hintText: 'Dress condition'),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               FutureBuilder<List<Childrenschemetype>>(
@@ -209,10 +209,10 @@ class schoolprofile extends StatelessWidget {
                                   }
                                 },
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
-                              Container(
+                              SizedBox(
                                 height: 50,
                                 width: 150,
                                 child: MaterialButton(
@@ -257,9 +257,9 @@ class schoolprofile extends StatelessWidget {
                                       borderRadius:
                                           BorderRadius.circular(22.0)),
                                   elevation: 5.0,
-                                  child: Text('Save as Draft'),
-                                  color: Color(0xFF00a2e8),
+                                  color: const Color(0xFF00a2e8),
                                   textColor: Colors.black,
+                                  child: Text('Save as Draft'),
                                 ),
                               ),
                             ]),

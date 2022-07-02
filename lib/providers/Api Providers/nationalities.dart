@@ -1,7 +1,8 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
-import 'package:palika/models/districts.dart';
-import 'package:palika/models/nationalities.dart';
+
+import '../../models/Api Models/nationalities.dart';
 
 class Apinationalities {
   static const String baseUrl =

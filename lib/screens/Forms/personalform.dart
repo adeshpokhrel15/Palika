@@ -3,14 +3,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nepali_utils/nepali_utils.dart';
 import 'package:palika/Hive/personalhive.dart';
 
-import 'package:palika/models/bloodGroup.dart';
-
-import 'package:palika/models/genders.dart';
 import 'package:palika/providers/Hive%20Providers/personalProvider.dart';
-import 'package:palika/providers/bloodProvider.dart';
-import 'package:palika/providers/formProvider.dart';
-import 'package:palika/providers/genderProvider.dart';
 import 'package:nepali_date_picker/nepali_date_picker.dart' as picker;
+
+import '../../models/Api Models/bloodGroup.dart';
+import '../../models/Api Models/genders.dart';
+import '../../providers/Api Providers/bloodProvider.dart';
+import '../../providers/Api Providers/genderProvider.dart';
 
 class personalForm extends StatefulWidget {
   static const routeName = 'personal-form';
@@ -158,11 +157,11 @@ class _personalFormState extends State<personalForm> {
                                     fontWeight: FontWeight.bold,
                                     color: Colors.blue),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 43,
                               ),
                               InkWell(
-                                child: Icon(
+                                child: const Icon(
                                   Icons.add_circle,
                                   size: 30,
                                   color: Colors.blue,
@@ -213,7 +212,7 @@ class _personalFormState extends State<personalForm> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           TextFormField(
@@ -289,7 +288,7 @@ class _personalFormState extends State<personalForm> {
                                 ),
                                 labelText: 'Handicapped Type Id'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           FutureBuilder<List<Gender>>(
@@ -425,7 +424,7 @@ class _personalFormState extends State<personalForm> {
                           const SizedBox(
                             height: 20,
                           ),
-                          Container(
+                          SizedBox(
                             height: 50,
                             width: 150,
                             child: MaterialButton(
@@ -494,9 +493,9 @@ class _personalFormState extends State<personalForm> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(22.0)),
                               elevation: 5.0,
-                              child: const Text('Save as Draft'),
                               color: const Color(0xFF00a2e8),
                               textColor: Colors.black,
+                              child: const Text('Save as Draft'),
                             ),
                           ),
                         ],

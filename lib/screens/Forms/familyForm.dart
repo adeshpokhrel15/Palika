@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/Hive/familyhive.dart';
 import 'package:palika/providers/Hive%20Providers/familyProvider.dart';
-import 'package:palika/providers/formProvider.dart';
 
 class familyform extends StatefulWidget {
   static const routeName = 'family-form';
@@ -51,7 +50,7 @@ class _familyformState extends State<familyform> {
           child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
-                title: Center(
+                title: const Center(
                   child: Text(
                     'Family Form',
                     style: TextStyle(
@@ -63,7 +62,7 @@ class _familyformState extends State<familyform> {
                 ),
                 elevation: 0,
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  icon: const Icon(Icons.arrow_back, color: Colors.black),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -96,14 +95,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Father First Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Father First Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -116,14 +115,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Father Second Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Father Second Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -142,14 +141,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Father Last Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Father Last Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -168,14 +167,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Mother First Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Mother First Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -188,14 +187,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Mother Second Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Mother Second Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -214,14 +213,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Mother Last Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Mother Last Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -240,14 +239,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Spouse First Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Spouse First Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -260,14 +259,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'SpouseSecond Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Spouse Second Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -286,14 +285,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Spouse Last Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Spouse Last Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -312,14 +311,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Grandfather First Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Grandfather First Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -332,14 +331,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Grandfather Second Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Grandfather Second Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -358,14 +357,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Grandfather Last Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Grandfather Last Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -384,14 +383,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Grandmother First Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'GrandmotherFirst Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -404,14 +403,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Grandmother Second Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Grandmother Second Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -430,14 +429,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Grandmother Last Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Grandmother Last Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -456,14 +455,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Son First Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Son first Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -476,14 +475,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Son Second Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Son Second Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -502,14 +501,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Son Last Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Son Last Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -528,14 +527,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Daughter First Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Daughter first Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -548,14 +547,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Daughter Second Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Daughter Second Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -574,14 +573,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Daughter Last Name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'Daughter Last Name',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -594,14 +593,14 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Total Son',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.calendar_today,
                                     color: Colors.lightBlue,
                                   ),
                                   hintText: "Total Son ",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -614,17 +613,17 @@ class _familyformState extends State<familyform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Total Daughter ',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.calendar_today,
                                     color: Colors.lightBlue,
                                   ),
                                   hintText: "Total Daughter ",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 30,
                               ),
-                              Container(
+                              SizedBox(
                                 height: 50,
                                 width: 150,
                                 child: MaterialButton(
@@ -705,9 +704,9 @@ class _familyformState extends State<familyform> {
                                       borderRadius:
                                           BorderRadius.circular(22.0)),
                                   elevation: 5.0,
-                                  child: Text('Save as Draft'),
-                                  color: Color(0xFF00a2e8),
+                                  color: const Color(0xFF00a2e8),
                                   textColor: Colors.black,
+                                  child: const Text('Save as Draft'),
                                 ),
                               ),
                             ]),

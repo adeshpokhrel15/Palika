@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/Hive/househive.dart';
-import 'package:palika/models/toiletTypes.dart';
 import 'package:palika/providers/Hive%20Providers/houseProvider.dart';
-import 'package:palika/providers/districtsProvider.dart';
-import 'package:palika/providers/formProvider.dart';
-import 'package:palika/providers/toiletTypeProvider.dart';
+
+import '../../models/Api Models/toiletTypes.dart';
+import '../../providers/Api Providers/toiletTypeProvider.dart';
 
 class houseform extends StatefulWidget {
   static const routeName = 'house-form';
@@ -34,7 +33,7 @@ class _houseformState extends State<houseform> {
           child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.white,
-                title: Center(
+                title: const Center(
                   child: Text(
                     'House Details',
                     style: TextStyle(
@@ -46,7 +45,7 @@ class _houseformState extends State<houseform> {
                 ),
                 elevation: 0,
                 leading: IconButton(
-                  icon: Icon(Icons.arrow_back, color: Colors.black),
+                  icon: const Icon(Icons.arrow_back, color: Colors.black),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -79,14 +78,14 @@ class _houseformState extends State<houseform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'House address',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.person,
                                     color: Colors.blue,
                                   ),
                                   hintText: 'House address',
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -106,13 +105,13 @@ class _houseformState extends State<houseform> {
                                       borderRadius: BorderRadius.circular(30),
                                     ),
                                     labelText: 'Block number',
-                                    prefixIcon: Icon(
+                                    prefixIcon: const Icon(
                                       Icons.email,
                                       color: Colors.orange,
                                     ),
                                     hintText: " Block number"),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -131,14 +130,14 @@ class _houseformState extends State<houseform> {
                                     borderRadius: BorderRadius.circular(30),
                                   ),
                                   labelText: 'Stree name',
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.calendar_today,
                                     color: Colors.lightBlue,
                                   ),
                                   hintText: "Stree name ",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               TextFormField(
@@ -159,7 +158,7 @@ class _houseformState extends State<houseform> {
                                     labelText: 'House number',
                                     hintText: "House number"),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               FutureBuilder<List<Toilet>>(
@@ -197,10 +196,10 @@ class _houseformState extends State<houseform> {
                                   }
                                 },
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 40,
                               ),
-                              Container(
+                              SizedBox(
                                 height: 50,
                                 width: 150,
                                 child: MaterialButton(
@@ -245,9 +244,9 @@ class _houseformState extends State<houseform> {
                                       borderRadius:
                                           BorderRadius.circular(22.0)),
                                   elevation: 5.0,
-                                  child: Text('Sace as Draft'),
-                                  color: Color(0xFF00a2e8),
+                                  color: const Color(0xFF00a2e8),
                                   textColor: Colors.black,
+                                  child: Text('Sace as Draft'),
                                 ),
                               ),
                             ]),

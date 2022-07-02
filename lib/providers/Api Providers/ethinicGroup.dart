@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:palika/models/districts.dart';
-import 'package:palika/models/ethnicGroup.dart';
-import 'package:palika/models/nationalities.dart';
+
+import '../../models/Api Models/ethnicGroup.dart';
 
 class Apiethinicgroup {
   static const String baseUrl =
@@ -16,7 +15,7 @@ class Apiethinicgroup {
     final List ethinicgroup = data['data']['ethnic_groups'];
     final output = ethinicgroup
         .map((e) => Ethinicgroup(
-            indexethinicgroup:int.parse(
+            indexethinicgroup: int.parse(
               e[0],
             ),
             ethinicgroupnepaliname: e[1],

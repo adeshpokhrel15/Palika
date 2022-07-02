@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart';
-import 'package:palika/models/districts.dart';
-import 'package:palika/models/provience.dart';
+
+import '../../models/Api Models/provience.dart';
 
 //API SERVICE Provider
 final apiProvider = Provider<ApiService>((ref) => ApiService());

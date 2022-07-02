@@ -3,13 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/Hive/healthhive.dart';
-import 'package:palika/models/genders.dart';
 import 'package:palika/providers/Hive%20Providers/healthhiveProvider.dart';
-import 'package:palika/providers/formProvider.dart';
-import 'package:palika/providers/genderProvider.dart';
-
-import '../../models/bloodGroup.dart';
-import '../../providers/bloodProvider.dart';
 
 class healthProfileForm extends StatefulWidget {
   static const routeName = 'healthprofile-form';
@@ -50,7 +44,7 @@ class _healthProfileFormState extends State<healthProfileForm> {
           child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Center(
+          title: const Center(
             child: Text(
               'Health Profile',
               style: TextStyle(
@@ -62,7 +56,7 @@ class _healthProfileFormState extends State<healthProfileForm> {
           ),
           elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -73,16 +67,16 @@ class _healthProfileFormState extends State<healthProfileForm> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: ListView(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Is Below 5 Vaccinated?",
                       style: TextStyle(color: Colors.black),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Checkbox(
                       value: _checkisbelowVaccinated,
                       onChanged: (value) {
@@ -93,17 +87,17 @@ class _healthProfileFormState extends State<healthProfileForm> {
                     ) //Row
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Is Covid Vaccinated?",
                       style: TextStyle(color: Colors.black),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Checkbox(
                       value: _checkiscoVVidVaccinated,
                       onChanged: (value) {
@@ -114,17 +108,17 @@ class _healthProfileFormState extends State<healthProfileForm> {
                     ) //Row
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Is Genetic Disease Issues?",
                       style: TextStyle(color: Colors.black),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Checkbox(
                       value: _checkisgeneticaccinated,
                       onChanged: (value) {
@@ -135,7 +129,7 @@ class _healthProfileFormState extends State<healthProfileForm> {
                     ) //Row
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -153,14 +147,14 @@ class _healthProfileFormState extends State<healthProfileForm> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     labelText: 'Blace place',
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.person,
                       color: Colors.blue,
                     ),
                     hintText: 'Blace place',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -172,14 +166,14 @@ class _healthProfileFormState extends State<healthProfileForm> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     labelText: 'Birth Weight',
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.person,
                       color: Colors.blue,
                     ),
                     hintText: 'Birth Weight',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -191,14 +185,14 @@ class _healthProfileFormState extends State<healthProfileForm> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     labelText: 'Birth Conditions',
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.person,
                       color: Colors.blue,
                     ),
                     hintText: 'Birth Conditions',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -210,14 +204,14 @@ class _healthProfileFormState extends State<healthProfileForm> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     labelText: 'Genetic disease description',
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.person,
                       color: Colors.blue,
                     ),
                     hintText: 'Genetic disease description',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -236,13 +230,13 @@ class _healthProfileFormState extends State<healthProfileForm> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       labelText: 'Vaccine details ',
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.email,
                         color: Colors.orange,
                       ),
                       hintText: "Vaccine details "),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 TextFormField(
@@ -261,16 +255,16 @@ class _healthProfileFormState extends State<healthProfileForm> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       labelText: 'Vaccine dose ',
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.email,
                         color: Colors.orange,
                       ),
                       hintText: "Vaccine dose "),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Container(
+                SizedBox(
                   height: 50,
                   width: 150,
                   child: MaterialButton(
@@ -315,9 +309,9 @@ class _healthProfileFormState extends State<healthProfileForm> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),
                     elevation: 5.0,
-                    child: Text('Save as Draft'),
-                    color: Color(0xFF00a2e8),
+                    color: const Color(0xFF00a2e8),
                     textColor: Colors.black,
+                    child: const Text('Save as Draft'),
                   ),
                 ),
               ],

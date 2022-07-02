@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:palika/Hive/appearencehive.dart';
-import 'package:palika/models/skinColor.dart';
 import 'package:palika/providers/Hive%20Providers/appearenceProvider.dart';
-import 'package:palika/providers/formProvider.dart';
-import 'package:palika/providers/skinColor.dart';
+
+import '../../models/Api Models/skinColor.dart';
+import '../../providers/Api Providers/skinColor.dart';
 
 class appearenceProfile extends StatefulWidget {
   static const routeName = "apperenceProfile-form";
@@ -18,7 +18,7 @@ class _appearenceProfileState extends State<appearenceProfile> {
   final skincolor = TextEditingController();
 
   final handicapedid = TextEditingController();
-  bool _checkHandicapped = false;
+  final bool _checkHandicapped = false;
   bool isChecked = false;
 
   @override
@@ -28,7 +28,7 @@ class _appearenceProfileState extends State<appearenceProfile> {
           child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Center(
+          title: const Center(
             child: Text(
               'Appearance Profile',
               style: TextStyle(
@@ -40,7 +40,7 @@ class _appearenceProfileState extends State<appearenceProfile> {
           ),
           elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -51,16 +51,16 @@ class _appearenceProfileState extends State<appearenceProfile> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: ListView(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Is Handicapped?",
                       style: TextStyle(color: Colors.black),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Checkbox(
                       value: isChecked,
                       onChanged: (value) {
@@ -71,7 +71,7 @@ class _appearenceProfileState extends State<appearenceProfile> {
                     ) //Row
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 FutureBuilder<List<SkinColor>>(
@@ -107,7 +107,7 @@ class _appearenceProfileState extends State<appearenceProfile> {
                     }
                   },
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -126,16 +126,16 @@ class _appearenceProfileState extends State<appearenceProfile> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       labelText: 'Handicapped Id',
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.email,
                         color: Colors.orange,
                       ),
                       hintText: "Handicapped Id"),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Container(
+                SizedBox(
                   height: 50,
                   width: 150,
                   child: MaterialButton(
@@ -171,9 +171,9 @@ class _appearenceProfileState extends State<appearenceProfile> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),
                     elevation: 5.0,
-                    child: Text('Save as Draft'),
-                    color: Color(0xFF00a2e8),
+                    color: const Color(0xFF00a2e8),
                     textColor: Colors.black,
+                    child: const Text('Save as Draft'),
                   ),
                 ),
               ],

@@ -4,8 +4,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:palika/Hive/googlehive.dart';
 import 'package:palika/providers/Hive%20Providers/googleMapProvider.dart';
-import 'package:palika/providers/formProvider.dart';
-import 'package:palika/screens/google_map.dart';
+
+import '../locations/google_map.dart';
 
 class googlemapProfile extends StatefulWidget {
   static const routeName = "googlemap-form";
@@ -28,7 +28,7 @@ class _googlemapProfileState extends State<googlemapProfile> {
           child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Center(
+          title: const Center(
             child: Text(
               'Google Map',
               style: TextStyle(
@@ -40,7 +40,7 @@ class _googlemapProfileState extends State<googlemapProfile> {
           ),
           elevation: 0,
           leading: IconButton(
-            icon: Icon(Icons.arrow_back, color: Colors.black),
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
               Navigator.of(context).pop();
             },
@@ -51,7 +51,7 @@ class _googlemapProfileState extends State<googlemapProfile> {
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: ListView(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               children: [
                 TextFormField(
                   autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -62,14 +62,14 @@ class _googlemapProfileState extends State<googlemapProfile> {
                       borderRadius: BorderRadius.circular(30),
                     ),
                     labelText: 'Longitude',
-                    prefixIcon: Icon(
+                    prefixIcon: const Icon(
                       Icons.person,
                       color: Colors.blue,
                     ),
                     hintText: 'Longitude',
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
@@ -81,13 +81,13 @@ class _googlemapProfileState extends State<googlemapProfile> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       labelText: 'Latitude',
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                         Icons.email,
                         color: Colors.orange,
                       ),
                       hintText: "Latitude"),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 Container(
@@ -115,12 +115,12 @@ class _googlemapProfileState extends State<googlemapProfile> {
                               transition: Transition.leftToRight);
                         }
                       },
-                      child: Text('Open Map')),
+                      child: const Text('Open Map')),
                 ),
                 const SizedBox(
                   height: 60,
                 ),
-                Container(
+                SizedBox(
                   height: 50,
                   width: 80,
                   child: MaterialButton(
@@ -156,9 +156,9 @@ class _googlemapProfileState extends State<googlemapProfile> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22.0)),
                     elevation: 5.0,
-                    child: Text('Save as Draft'),
-                    color: Color(0xFF00a2e8),
+                    color: const Color(0xFF00a2e8),
                     textColor: Colors.black,
+                    child: const Text('Save as Draft'),
                   ),
                 ),
               ],
