@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'homehive.dart';
+part of 'mainhive.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
@@ -17,22 +17,25 @@ class HomeHiveModelAdapter extends TypeAdapter<HomeHiveModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return HomeHiveModel(
-      homeid: fields[0] as String?,
-      homename: fields[1] as String?,
-      homeaddress: fields[2] as String?,
+      id: fields[0] as String,
+      name: fields[1] as String,
+      createdDate: fields[2] as DateTime,
+      address: fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, HomeHiveModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
-      ..write(obj.homeid)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.homename)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.homeaddress);
+      ..write(obj.createdDate)
+      ..writeByte(3)
+      ..write(obj.address);
   }
 
   @override

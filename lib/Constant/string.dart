@@ -1,1 +1,2 @@
-const String homeList = '-list';
+const String mainList = 'list_data';
+const String personalList = 'personal-list';

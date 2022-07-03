@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:palika/screens/Main%20Screens/profile.dart';
 import 'package:palika/screens/Main%20Screens/settings.dart';
-import 'package:palika/screens/Main%20Screens/storage.dart';
 
 import 'dashBoard.dart';
 
@@ -19,10 +17,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int _index = 0;
   List pages = [
-    myProfile(),
+    // HomeScreen(),
+    // myProfile(),
     dashBoard(),
     settingPage(),
-    storage(),
+    //storage(),
     //DraftStorage(),
   ];
   PageController controller = PageController();

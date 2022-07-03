@@ -40,19 +40,26 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 
+import '../../Hive/Home/mainhive.dart';
+
 final dbProvider = Provider<DbClient>((ref) {
   return DbClient();
 });
 
 class DbClient {
-  getData({required String dbKey}) {
+  getData({required String dbKey}) async {
+    final boxHome1 = await Hive.openBox<HomeHiveModel>('homehive');
+    // final result = boxHome1;
     // Hive.box('homehive').get('homehive');
-    final result = Hive.box('homehive').get('homehive');
-    return result;
+    // final result = Hive.box('homehive').get('homehive');
+    // return result;
+    final boxHome = boxHome1.get('homehive');
   }
 
-  saveData({required String dbKey, required dynamic data}) {
-    Hive.box('homehive').put('homehive', data);
+  saveData({required String dbKey, required dynamic data}) async {
+    // Hive.box('homehive').put('homehive', data);
+    final boxHome1 = await Hive.openBox<HomeHiveModel>('homehive');
+    final boxHome = boxHome1.put(dbKey, data);
   }
 
   resetDb() {

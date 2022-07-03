@@ -39,6 +39,11 @@ import 'package:palika/screens/Forms/schoolprofileForm.dart';
 import 'package:palika/screens/Forms/workingform.dart';
 import 'package:palika/screens/Main%20Screens/buttomNavigationbar.dart';
 
+import 'Hive/Home/mainhive.dart';
+import 'models/Final Model/finalModel.dart';
+
+final boxHome = Provider<List<HomeHiveModel>>((ref) => []);
+final boxFinalModel = Provider<List<FinalformModel>>((ref) => []);
 final boxAddress = Provider<List<AddressHiveModel>>((ref) => []);
 final boxAppearence = Provider<List<AppearenceHiveModel>>((ref) => []);
 final boxBussiness = Provider<List<BusinessHiveModel>>((ref) => []);
@@ -62,9 +67,11 @@ final boxWorking = Provider<List<WorkingHiveModel>>((ref) => []);
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Hive.initFlutter(); //hive initalize
+  //await Hive.initFlutter(); //hive initalize
 
 //  Hive.registerAdapter(formModelAdapter()); // hive register
+  Hive.registerAdapter(FinalformModelAdapter()); // hive register
+//  Hive.registerAdapter(HomeHiveModelAdapter());
   Hive.registerAdapter(AddressHiveModelAdapter());
   Hive.registerAdapter(AppearenceHiveModelAdapter());
   Hive.registerAdapter(BusinessHiveModelAdapter());
@@ -83,6 +90,8 @@ void main() async {
   Hive.registerAdapter(SchoolHiveModelAdapter());
   Hive.registerAdapter(WorkingHiveModelAdapter());
 
+  final boxFinalModel1 = await Hive.openBox<FinalformModel>('finalformModel');
+  final boxHome1 = await Hive.openBox<HomeHiveModel>('homehive');
   final boxPersonal1 =
       await Hive.openBox<PersonalHiveModel>('personalhivemodel');
   final boxAddress1 = await Hive.openBox<AddressHiveModel>('addresshivemodel');
@@ -114,6 +123,8 @@ void main() async {
   runApp(
     ProviderScope(
       overrides: [
+        boxHome.overrideWithValue(boxHome1.values.toList()),
+        boxFinalModel.overrideWithValue(boxFinalModel1.values.toList()),
         boxAddress.overrideWithValue(boxAddress1.values.toList()),
         boxPersonal.overrideWithValue(boxPersonal1.values.toList()),
         boxAppearence.overrideWithValue(boxAppearence1.values.toList()),

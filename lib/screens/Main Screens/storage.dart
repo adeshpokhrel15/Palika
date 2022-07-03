@@ -1,8 +1,8 @@
-import 'dart:io';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart' as http;
+import 'package:palika/Hive/Home/mainhive.dart';
 import 'package:palika/Hive/addresshive.dart';
 import 'package:palika/Hive/appearencehive.dart';
 import 'package:palika/Hive/businesshive.dart';
@@ -32,8 +32,12 @@ import 'package:palika/providers/Hive%20Providers/healthhiveProvider.dart';
 import 'package:palika/providers/Hive%20Providers/personalProvider.dart';
 import 'package:palika/providers/Hive%20Providers/schoolProvider.dart';
 
+import '../../Constant/string.dart';
 import '../../Hive/childrenhive.dart';
 import '../../Hive/househive.dart';
+import '../../models/Final Model/finalModel.dart';
+import '../../providers/Core/ApiClientProvider.dart';
+import '../../providers/Core/HomePageProvider.dart';
 import '../../providers/Hive Providers/addressProvider.dart';
 import '../../providers/Hive Providers/appearenceProvider.dart';
 import '../../providers/Hive Providers/houseProvider.dart';
@@ -750,35 +754,95 @@ class storage extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: MaterialButton(
-                      onPressed: () async {
-                        var url =
-                            Uri.parse('https://reqbin.com/echo/post/json');
-                        var response = await http.post(
-                          url,
-                          headers: {
-                            "Accept": "application/json; charset=utf-8",
-                            "Access-Control-Allow-Origin":
-                                "*", // Required for CORS support to work
-                            "Access-Control-Allow-Methods":
-                                "POST, GET, OPTIONS",
-                            HttpHeaders.contentTypeHeader: "application/json",
-                          },
-                          // body: json.encode(personalAddress)
+                  ElevatedButton(
+                    onPressed: () async {
+                      final myString =
+                          await ref.watch(dbProvider).getData(dbKey: mainList);
+                      final List jsonData = json.decode(myString);
+                      final List<HomeHiveModel> listData = jsonData
+                          .map((d) => HomeHiveModel.fromJson(d))
+                          .toList();
+
+                      final personalString = await ref
+                          .watch(dbProvider)
+                          .getData(dbKey: personalList);
+                      final List jsonDatapersonal = json.decode(personalString);
+                      final List<PersonalHiveModel> listDatapersonal =
+                          jsonDatapersonal
+                              .map((d) => PersonalHiveModel.fromJson(d))
+                              .toList();
+
+                      List<FinalformModel> finalList = [];
+
+                      for (int i = 0; i < listData.length; i++) {
+                        final HomeHiveModel myFormModel = listData
+                            .where((element) =>
+                                element.homeid == listData[i].homeid)
+                            .toList()
+                            .first;
+
+                        final PersonalHiveModel personalFormModel =
+                            listDatapersonal
+                                .where((element) =>
+                                    element.firstNamepersonal ==
+                                    listData[i].homename)
+                                .toList()
+                                .first;
+                        final FinalformModel finalFormModel = FinalformModel(
+                          firstname: personalFormModel.firstNamepersonal,
+                          middlename: personalFormModel.middleNamepersonal,
+                          lastname: personalFormModel.lastNamepersonal,
+                          email: personalFormModel.emailpersonal,
+                          pannumber: personalFormModel.pannumberpersonal,
+                          mobilenumber: personalFormModel.mobilenumberpersonal,
+                          age: personalFormModel.agepersonal,
+                          handicappedidpersonal:
+                              personalFormModel.handicappedIDPersonal,
+                          gender: personalFormModel.genderpersonal,
+                          bloodgroup: personalFormModel.bloodgroupPersonal,
+                          dateofbirthpersonal:
+                              personalFormModel.dateofbirthpersonal,
                         );
-                        print(response.body);
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(22.0)),
-                      elevation: 5.0,
-                      color: const Color(0xFF00a2e8),
-                      textColor: Colors.black,
-                      child: const Text('Submit'),
-                    ),
+                        print(personalFormModel);
+                      }
+
+                      for (int j = 0; j < finalList.length; j++) {
+                        await ref
+                            .watch(apiClientProvider)
+                            .postData(formData: finalList[j].toMap());
+                      }
+                    },
+                    child: const Text("Push To Server"),
                   ),
+                  // SizedBox(
+                  //   height: 50,
+                  //   width: double.infinity,
+                  //   child: MaterialButton(
+                  //     onPressed: () async {
+                  //       var url =
+                  //           Uri.parse('https://reqbin.com/echo/post/json');
+                  //       var response = await http.post(
+                  //         url,
+                  //         headers: {
+                  //           "Accept": "application/json; charset=utf-8",
+                  //           "Access-Control-Allow-Origin":
+                  //               "*", // Required for CORS support to work
+                  //           "Access-Control-Allow-Methods":
+                  //               "POST, GET, OPTIONS",
+                  //           HttpHeaders.contentTypeHeader: "application/json",
+                  //         },
+                  //         // body: json.encode(personalAddress)
+                  //       );
+                  //       print(response.body);
+                  //     },
+                  //     shape: RoundedRectangleBorder(
+                  //         borderRadius: BorderRadius.circular(22.0)),
+                  //     elevation: 5.0,
+                  //     color: const Color(0xFF00a2e8),
+                  //     textColor: Colors.black,
+                  //     child: const Text('Submit'),
+                  //   ),
+                  // ),
                 ],
               );
             }))));
